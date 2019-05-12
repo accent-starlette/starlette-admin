@@ -1,0 +1,29 @@
+/* variables */
+
+/* typography */
+$base-font-family:              "Roboto", sans-serif;
+$code-font-family:              "Inconsolata", monospace;
+
+/* colors */
+$colors: (
+  "black":                      rgb(0, 0, 0),
+  "red":                        rgb(255, 65, 54),
+  "solitude":                   rgb(238, 240, 246),
+  "white":                      rgb(255, 255, 255)
+);
+
+$body-background:               rgb(238, 240, 246);
+
+/* misc */
+$global-radius:                 0;
+
+/* forms */
+$input-use-full-width:          true;
+$input-margin-bottom:           3rem;
+
+/* buttons */
+$buttons: (
+  // name                       color                          font-color
+  red:                          map-get($colors, "red")        map-get($colors, "white"),
+  solitude:                     map-get($colors, "solitude")   map-get($colors, "black")
+);

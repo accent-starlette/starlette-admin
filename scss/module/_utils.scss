@@ -1,0 +1,19 @@
+/* utils */
+
+$spacers: (
+  "0": 0,
+  "h": .5rem,
+  "1": 1rem,
+  "1h": 1.5rem
+);
+
+@each $infix, $size in $spacers {
+  @each $axis in ("", "x", "y", "t", "r", "b", "l") {
+    .p#{$axis}-#{$infix} {
+      @include padding($axis, $size !important);
+    }
+    .m#{$axis}-#{$infix} {
+      @include margin($axis, $size !important);
+    }
+  }
+}

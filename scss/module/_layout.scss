@@ -1,0 +1,49 @@
+/* layout */
+
+header {
+  margin-bottom: 2rem;
+  padding: 1.5rem 0;
+
+  .breadcrumb {
+    margin-top: .5rem;
+    list-style-type: none;
+  }
+
+  .breadcrumb li {
+    display: inline-block;
+  }
+
+  .breadcrumb li+li:before {
+    @include pseudo($display: inline-block, $pos: relative, $content: ">");
+    color: color-a("black", .54);
+    padding: 0 1.5rem 0 1rem;
+  }
+
+  .breadcrumb li a {
+    color: color-a("black", .85);
+  }
+
+  .breadcrumb li a:hover {
+    color: color("black");
+  }
+}
+
+.list-actions {
+  display: flex;
+  margin-bottom: $generic-margin-bottom;
+
+  * {
+    margin-bottom: 0;
+  }
+
+  .search-form {
+    width: 40rem;
+    max-width: 40rem;
+  }
+
+  .search-form input {
+    background: transparent;
+    border-width: 0 0 1px 0;
+    padding-left: .85rem;
+  }
+}

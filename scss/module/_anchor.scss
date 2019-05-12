@@ -1,0 +1,7 @@
+/* anchor */
+
+@each $name, $color in $colors {
+  a.c-#{$name}:hover {
+    color: darken($color, $darken-hover-percent);
+  }
+}
