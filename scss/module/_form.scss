@@ -1,0 +1,21 @@
+// Form
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+
+input[disabled] {
+  background: color("seashell");
+}
+
+.text-error {
+  margin-bottom: $input-margin-bottom;
+
+  input[type="text"] {
+    margin-bottom: .25rem;
+    border-color: color("red");
+    border-width: 2px;
+  }
+
+  cite {
+    font-style: normal;
+    color: color("red");
+  }
+}

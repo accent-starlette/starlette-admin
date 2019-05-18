@@ -1,7 +1,7 @@
 /* layout */
 
 header {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   padding: 1.5rem 0;
 
   .breadcrumb {
@@ -25,25 +25,5 @@ header {
 
   .breadcrumb li a:hover {
     color: color("black");
-  }
-}
-
-.list-actions {
-  display: flex;
-  margin-bottom: $generic-margin-bottom;
-
-  * {
-    margin-bottom: 0;
-  }
-
-  .search-form {
-    width: 40rem;
-    max-width: 40rem;
-  }
-
-  .search-form input {
-    background: transparent;
-    border-width: 0 0 1px 0;
-    padding-left: .85rem;
   }
 }

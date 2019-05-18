@@ -10,51 +10,81 @@
     </head>
 
     <body>
-        <header>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-2">
-                        <a href="/" class="h2 mb-0 d-block">Admin</a>
+
+        <header class="b-primary">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <a href="/" class="h2 m-0 c-white d-block"><span class="f-semi">Starlette</span> <span class="f-lite">Admin</span></a>
                     </div>
-                    <div class="col-6">
-                        <ul class="breadcrumb">
-                            <li class="muted">Table 1</li>
-                        </ul>
-                    </div>
-                    <div class="col-4">
-                        <span class="d-block text-right">Stuart George</span>
-                        <a href="" class="d-block text-right small">Logout</a>
+                    
+                    <div class="col text-right">
+                        <span class="mr-1 c-white">Stuart George</span>
+                        <a href="" class="button button-outline button-white small">Logout</a>
                     </div>
                 </div>
             </div>
         </header>
-        <div class="container-fluid">
+
+
+        <div class="container">
             <div class="row">
-                <div class="col-2">
+                <div class="col-3">
+
+                    <p class="top-line mb-h">Authentication</p>
                     <ul class="list-style-none">
-                        <li><a href="/">Table 1</a></li>
-                        <li><a href="/">Table 2</a></li>
-                        <li><a href="/">Table 3</a></li>
-                        <li><a href="/">Table 4</a></li>
-                        <li><a href="/">Table 5</a></li>
+                        <li><a href="/">Users</a></li>
                     </ul>
+
+                    <p class="top-line mb-h">Authorization</p>
+                    <ul class="list-style-none">
+                        <li><a href="/">Groups</a></li>
+                    </ul>
+
+                    <p class="top-line mb-h">Taggit</p>
+                    <ul class="list-style-none">
+                        <li><a href="/">Tags</a></li>
+                    </ul>
+
+                    <p class="top-line mb-h">Wagtail Core</p>
+                    <ul class="list-style-none">
+                        <li><a href="/">Pages</a></li>
+                        <li><a href="/">Sites</a></li>
+                    </ul>
+
+                    <p class="top-line mb-h">Wagtail Documents</p>
+                    <ul class="list-style-none">
+                        <li><a href="/">Documents</a></li>
+                    </ul>
+
+                    <p class="top-line mb-h">Wagtail Images</p>
+                    <ul class="list-style-none">
+                        <li><a href="/">Images</a></li>
+                    </ul>
+
                 </div>
-                <div class="col-10">
-                    <div class="list-actions">
-                        <form class="search-form">
-                            <div class="input-group">
-                                <div class="icon-input">
-                                    <input type="text" placeholder="Search">
-                                    <span class="icon-search"></span>
+                <div class="col-offset-1 col-9">
+                    
+                    <div class="row">
+                        <div class="col">
+                            <form class="search-form">
+                                <div class="input-group mb-0">
+                                    <div class="icon-input">
+                                        <input type="text" placeholder="Search">
+                                        <span class="icon-search"></span>
+                                    </div>
+                                    <button type="submit" class="d-hidden"></button>
                                 </div>
-                                <button type="submit" class="d-hidden"></button>
-                            </div>
-                        </form>
-                        <a href="create.html" class="button button-primary ml-auto">New Record</a>
+                            </form>
+                        </div>
+                        <div class="col text-right">
+                            <a href="create.html" class="button button-silver">New Record</a>
+                        </div>
                     </div>
-                    <table>
+                    
+                    <table class="table-striped">
                         <thead>
-                            <tr><th><a href="" class="c-black">Field 1</a> <i class="icon-up-dir"></i></th></tr>
+                            <tr><th><a href="" class="c-dovegray">Field 1</a> <i class="icon-up-dir"></i></th></tr>
                         </thead>
                         <tbody>
                             <tr><td><a href="edit.html">Record 1</a></td></tr>
@@ -67,8 +97,88 @@
                             <tr><td class="muted">5 records</td></tr>
                         </tfoot>
                     </table>
+
+                    <hr>
+
+                    <p>
+                        Home <i class="icon-angle-right c-silverchalice"></i> 
+                        Authentication <i class="icon-angle-right c-silverchalice"></i> 
+                        Users <i class="icon-angle-right c-silverchalice"></i> 
+                        <span class="c-silverchalice">dave@accentdesign.co.uk</span>
+                    </p>
+
+                    <h1 class="f-lite">Update User</h1>
+
+                    <form>
+                        <label>Email Address</label>
+                        <input type="email" placeholder="test@mailbox.com">
+
+                        <label>First Name</label>
+                        <input type="text" placeholder="Bilbo">
+
+                        <label>Last Name</label>
+                        <input type="text" placeholder="Baggins">
+
+                        <label>Some Field (disabled)</label>
+                        <input type="text" value="you can't touch this" disabled="disabled">
+
+                        <div class="mb-1">
+                            <button class="button button-outline button-primary mr-1">update</button>
+                            <button class="button button-clear button-red">delete</button>
+                        </div>
+                    </form>
+
+                    <hr>
+
+                    <div class="panel highlight">
+                        <p>Some interesting text goes here for breakout block with a form</p>
+                        <p class="c-silverchalice"><em>Quisque nec vestibulum risus, quis egestas arcu. Maecenas laoreet elit faucibus sollicitudin volutpat. Morbi rhoncus sem mauris, vitae congue mi pulvinar vitae. Sed cursus enim ac eleifend semper. Donec sollicitudin feugiat risus vitae vestibulum. Duis hendrerit velit id pharetra volutpat. In hac habitasse platea dictumst.</em></p>
+                    </div>
+
+                    <div class="panel panel-raised">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in leo vitae nisi pharetra euismod ut at mi. Sed feugiat quam ut ligula rutrum tempus.
+                    </div>
+
+                    <div class="panel panel-raised panel-success">
+                        Good News everyone your whatever has been successful
+                    </div>
+
+                    <div class="panel panel-raised panel-error">
+                        Nope didn’t work, you smell of poo
+                    </div>
+
+                    <hr>
+
+                    <h2>General</h2>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore. </p>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="text-error">
+                                <input type="text" placeholder="Name">
+                                <cite>Name cannot be left blank</cite>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <input type="text" placeholder="Value">
+                        </div>
+                        <div class="col">
+                            <a href="create.html" class="button button-silver">Add</a>
+                        </div>
+                    </div>
+
+                    <div class="tab-wrap">
+                        <ul class="tabs">
+                            <li><a href="">First Tab</a></li>
+                            <li><a href="" class="active">Second Tab</a></li>
+                            <li><a href="">Settings</a></li>
+                        </ul>
+                    </div>
+                    
                 </div>
             </div>
+            
         </div>
     </body>
 </html>
