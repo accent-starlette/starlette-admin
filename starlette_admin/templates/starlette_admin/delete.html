@@ -1,0 +1,13 @@
+{% extends "starlette_admin/base.html" %}
+
+{% block content %}
+
+{% include "starlette_admin/partials/breadcrumb.html" %}
+<h1 class="f-lite">Delete</h1>
+<div class="panel highlight">
+    <p>Are you sure you wish to delete this record?</p>
+    <p class="c-silverchalice"><em>You may not be able to undo this action.</em></p>
+</div>
+<button class="button button-outline button-red">delete</button>
+
+{% endblock %}

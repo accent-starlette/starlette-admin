@@ -21,5 +21,8 @@ class AdminSite(Starlette):
         # static files, temp till usable
         self.mount(path="/static", app=StaticFiles(directory=static_directory), name="static")
 
+    def register(self, model_admin):
+        self.mount(model_admin.mount_point(), model_admin.routes())
+
 
 adminsite = AdminSite()
