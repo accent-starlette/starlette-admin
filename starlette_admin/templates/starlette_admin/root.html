@@ -1,0 +1,41 @@
+{% extends "starlette_admin/base.html" %}
+
+{% block content %}
+
+{% include "starlette_admin/partials/list_actions.html" %}
+{% include "starlette_admin/partials/table.html" %}
+
+<hr>
+
+{% include "starlette_admin/partials/breadcrumb.html" %}
+<h1 class="f-lite">Update User</h1>
+{% include "starlette_admin/partials/form.html" %}
+
+<hr>
+
+{% include "starlette_admin/partials/messages.html" %}
+
+<hr>
+
+<h2>General</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore. </p>
+
+{# not a partial thing just an example prob handled by some other means #}
+<div class="row">
+    <div class="col">
+        <div class="text-error">
+            <input type="text" placeholder="Name">
+            <cite>Name cannot be left blank</cite>
+        </div>
+    </div>
+    <div class="col">
+        <input type="text" placeholder="Value">
+    </div>
+    <div class="col">
+        <a href="" class="button button-silver">Add</a>
+    </div>
+</div>
+
+{% include "starlette_admin/partials/tabs.html" %}
+
+{% endblock %}
