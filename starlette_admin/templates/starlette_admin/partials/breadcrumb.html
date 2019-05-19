@@ -1,6 +1,6 @@
 <p>
     Home <i class="icon-angle-right c-silverchalice"></i>
-    Authentication <i class="icon-angle-right c-silverchalice"></i>
-    Users <i class="icon-angle-right c-silverchalice"></i>
-    <span class="c-silverchalice">dave@accentdesign.co.uk</span>
+    {{ section_name }} <i class="icon-angle-right c-silverchalice"></i>
+    {{ entity_name_plural }} <i class="{% if object %}icon-angle-right{% endif %} c-silverchalice"></i>
+    {% if object %}<span class="c-silverchalice">{{ object }}</span>{% endif %}
 </p>
