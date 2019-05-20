@@ -9,7 +9,7 @@ class Root(HTTPEndpoint):
         app = request["app"]
         template = "starlette_admin/root.html"
         context = {
-            "entities_by_section": BaseAdminMetaclass.entities_by_section(),
+            "admin_classes": BaseAdminMetaclass.get_admin_classes(app.name),
             "request": request,
             "base_url_name": f"{app.name}:base"
         }

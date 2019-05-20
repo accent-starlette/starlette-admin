@@ -1,8 +1,7 @@
-{% for section in entities_by_section.keys()|sort %}
-<p class="top-line mb-h">{{ section }}</p>
+{% for section in admin_classes|groupby('section_name') %}
+<p class="top-line mb-h">{{ section.grouper }}</p>
 <ul class="list-style-none">
-{% for admin in entities_by_section[section] %}
-    {# TODO: needs to use proper url names #}
+{% for admin in section.list %}
     <li><a href="{{ url_for(admin.url_names().list) }}">{{ admin.collection_name }}</a></li>
 {% endfor %}
 </ul>

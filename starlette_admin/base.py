@@ -4,24 +4,17 @@ from .config import config
 
 
 class BaseAdminMetaclass(type):
-
     _registry = []
 
     def __init__(cls, name, bases, dct):
-        if cls.section_name and not cls.__module__.startswith("__"):
+        if not cls.__module__.startswith("__"):
             cls._registry.append(cls)
-        return super(BaseAdminMetaclass, cls).__init__(name, bases, dct)
+        return super().__init__(name, bases, dct)
 
     @classmethod
-    def registry(cls):
-        return cls._registry
-
-    @classmethod
-    def entities_by_section(cls):
-        by_section = {}
-        for klass in sorted(cls.registry(), key=lambda k: k.collection_name):
-            by_section.setdefault(klass.section_name, []).append(klass)
-        return by_section
+    def get_admin_classes(cls, app_name):
+        for_admin = [c for c in cls._registry if c.app_name == app_name]
+        return sorted(for_admin, key=lambda k: (k.section_name, k.collection_name))
 
 
 class BaseAdmin(metaclass=BaseAdminMetaclass):
@@ -35,14 +28,14 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
     delete_template = "starlette_admin/delete.html"
 
     # will be set via `AdminSite.register`
-    app_name = "admin"
+    app_name = ""
 
     @classmethod
     def get_global_context(cls, request):
         return {
             "base_url_name": cls.base_url_name(),
             "url_names": cls.url_names(),
-            "entities_by_section": cls.entities_by_section(),
+            "admin_classes": cls.get_admin_classes(cls.app_name),
             "request": request,
             "collection_name": cls.collection_name,
             "section_name": cls.section_name
@@ -109,13 +102,12 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
     @classmethod
     def url_names(cls):
         mount = cls.mount_name()
-        urls = {
+        return {
             "list": f"{cls.app_name}:{mount}_list",
             "create": f"{cls.app_name}:{mount}_create",
             "update": f"{cls.app_name}:{mount}_update",
             "delete": f"{cls.app_name}:{mount}_delete",
         }
-        return urls
 
     @classmethod
     def routes(cls):
