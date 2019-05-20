@@ -1,10 +1,9 @@
-<p class="top-line mb-h">Authentication</p>
+{% for section in entities_by_section.keys()|sort %}
+<p class="top-line mb-h">{{ section }}</p>
 <ul class="list-style-none">
-    <li><a href="">Scopes</a></li>
-    <li><a href="">Users</a></li>
+{% for admin in entities_by_section[section] %}
+    {# TODO: needs to use proper url names #}
+    <li><a href="{{ url_for(admin.url_names().list) }}">{{ admin.collection_name }}</a></li>
+{% endfor %}
 </ul>
-
-<p class="top-line mb-h">Taggit</p>
-<ul class="list-style-none">
-    <li><a href="">Tags</a></li>
-</ul>
+{% endfor %}
