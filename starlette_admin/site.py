@@ -1,28 +1,21 @@
-from os.path import join
-import typing
 from starlette.applications import Starlette
-from starlette.routing import BaseRoute
-from starlette.staticfiles import StaticFiles
 
-from .config import package_directory
 from .endpoints import Root
 
 
-static_directory = join(package_directory, "static")
-
-
 class AdminSite(Starlette):
+    name: str = None
+
     def __init__(
-        self, debug: bool = False, routes: typing.List[BaseRoute] = None
+        self, debug: bool = False, name: str = None
     ) -> None:
-        super().__init__(debug, routes)
-        # register default routes
-        self.add_route("/", Root, methods=["GET"], name="root")
-        # static files, temp till usable
-        self.mount(path="/static", app=StaticFiles(directory=static_directory), name="static")
+        super().__init__(debug, [])
+        self.name = name
+        # register default route
+        self.add_route("/", Root, methods=["GET"], name="base")
 
     def register(self, model_admin):
+        # set atts required on the admin class
+        model_admin.app_name = self.name
+        # register the routes for this section
         self.mount(model_admin.mount_point(), model_admin.routes())
-
-
-adminsite = AdminSite()

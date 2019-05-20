@@ -6,9 +6,30 @@ from starlette.templating import Jinja2Templates
 from .config import package_directory
 
 
-class BaseAdmin:
+class BaseAdminMetaclass(type):
+
+    _registry = []
+
+    def __init__(cls, name, bases, dct):
+        if cls.section_name and not cls.__module__.startswith("__"):
+            cls._registry.append(cls)
+        return super(BaseAdminMetaclass, cls).__init__(name, bases, dct)
+
+    @classmethod
+    def registry(cls):
+        return cls._registry
+
+    @classmethod
+    def entities_by_section(cls):
+        by_section = {}
+        for klass in sorted(cls.registry(), key=lambda k: k.collection_name):
+            by_section.setdefault(klass.section_name, []).append(klass)
+        return by_section
+
+
+class BaseAdmin(metaclass=BaseAdminMetaclass):
     section_name: str = ""
-    entity_name_plural: str = ""
+    collection_name: str = ""
     list_field_names: []
     templates_dir = Jinja2Templates(directory=join(package_directory, 'templates'))
     list_template = "starlette_admin/list.html"
@@ -16,11 +37,17 @@ class BaseAdmin:
     update_template = "starlette_admin/update.html"
     delete_template = "starlette_admin/delete.html"
 
+    # will be set via `AdminSite.register`
+    app_name = "admin"
+
     @classmethod
     def get_global_context(cls, request):
         return {
+            "base_url_name": cls.base_url_name(),
+            "url_names": cls.url_names(),
+            "entities_by_section": cls.entities_by_section(),
             "request": request,
-            "entity_name_plural": cls.entity_name_plural,
+            "collection_name": cls.collection_name,
             "section_name": cls.section_name
         }
 
@@ -63,18 +90,64 @@ class BaseAdmin:
         return cls.templates_dir.TemplateResponse(cls.delete_template, context)
 
     @classmethod
+    def section_path(cls):
+        return cls.section_name.replace(" ", "").lower()
+
+    @classmethod
+    def collection_path(cls):
+        return cls.collection_name.replace(" ", "").lower()
+
+    @classmethod
     def mount_point(cls):
-        base_path = cls.section_name.replace(" ", "-").lower()
-        entity_path = cls.entity_name_plural.replace(" ", "-").lower()
-        return f"/{base_path}/{entity_path}"
+        return f"/{cls.section_path()}/{cls.collection_path()}"
+
+    @classmethod
+    def mount_name(cls):
+        return f"{cls.section_path()}_{cls.collection_path()}"
+
+    @classmethod
+    def base_url_name(cls):
+        return f"{cls.app_name}:base"
+
+    @classmethod
+    def url_names(cls):
+        mount = cls.mount_name()
+        urls = {
+            "list": f"{cls.app_name}:{mount}_list",
+            "create": f"{cls.app_name}:{mount}_create",
+            "update": f"{cls.app_name}:{mount}_update",
+            "delete": f"{cls.app_name}:{mount}_delete",
+        }
+        return urls
 
     @classmethod
     def routes(cls):
+        mount = cls.mount_name()
         return Router(
             [
-                Route("/", endpoint=cls.list_view, methods=["GET"]),
-                Route("/create", endpoint=cls.create_view, methods=["GET", "POST"]),
-                Route("/{id:int}/update", endpoint=cls.update_view, methods=["GET", "POST"]),
-                Route("/{id:int}/delete", endpoint=cls.delete_view, methods=["GET", "POST"])
+                Route(
+                    "/",
+                    endpoint=cls.list_view,
+                    methods=["GET"],
+                    name=f"{mount}_list"
+                ),
+                Route(
+                    "/create",
+                    endpoint=cls.create_view,
+                    methods=["GET", "POST"],
+                    name=f"{mount}_create"
+                ),
+                Route(
+                    "/{id:int}/update",
+                    endpoint=cls.update_view,
+                    methods=["GET", "POST"],
+                    name=f"{mount}_update"
+                ),
+                Route(
+                    "/{id:int}/delete",
+                    endpoint=cls.delete_view,
+                    methods=["GET", "POST"],
+                    name=f"{mount}_delete"
+                )
             ]
         )

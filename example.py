@@ -1,4 +1,8 @@
 import uvicorn
+from starlette.applications import Starlette
+from starlette.responses import JSONResponse
+from starlette.staticfiles import StaticFiles
+
 from starlette_admin import BaseAdmin, AdminSite
 
 
@@ -18,7 +22,7 @@ objects = [
 
 class DemoAdmin(BaseAdmin):
     section_name = "Example"
-    entity_name_plural = "Demos"
+    collection_name = "Demos"
     list_field_names = ["name", "description"]
 
     @classmethod
@@ -33,10 +37,33 @@ class DemoAdmin(BaseAdmin):
         return next((x for x in objects if x["id"] == id), None)
 
 
-adminsite = AdminSite()
+class MoreAdmin(DemoAdmin):
+    section_name = "Example"
+    collection_name = "More Demos"
 
+
+# create admin site
+adminsite = AdminSite(name="admin")
+# register admins
 adminsite.register(DemoAdmin)
+adminsite.register(MoreAdmin)
 
+# create app
+app = Starlette(debug=True)
+
+app.mount(
+    path="/static",
+    app=StaticFiles(directory="static", packages=["starlette_admin"]),
+    name="static"
+)
+
+
+@app.route('/')
+async def homepage(request):
+    return JSONResponse({'hello': 'world'})
+
+# mount admin site
+app.mount(path="/admin", app=adminsite, name=adminsite.name)
 
 if __name__ == "__main__":
-    uvicorn.run("example:adminsite", host="0.0.0.0", port=8000, debug=True)
+    uvicorn.run("example:app", host="0.0.0.0", port=8000, debug=True)
