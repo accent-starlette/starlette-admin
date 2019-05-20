@@ -6,7 +6,7 @@ from starlette.templating import Jinja2Templates
 from .config import package_directory
 
 
-class ModelAdmin:
+class BaseAdmin:
     section_name: str = ""
     entity_name_plural: str = ""
     list_field_names: []
@@ -26,11 +26,11 @@ class ModelAdmin:
 
     @classmethod
     def get_list_objects(cls, request):
-        return []
+        raise NotImplementedError()
 
     @classmethod
     def get_object(cls, request):
-        return {}
+        raise NotImplementedError()
 
     @classmethod
     async def list_view(cls, request):

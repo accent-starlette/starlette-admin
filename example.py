@@ -1,5 +1,5 @@
 import uvicorn
-from starlette_admin import AdminSite, ModelAdmin
+from starlette_admin import BaseAdmin, AdminSite
 
 
 class DemoObject(dict):
@@ -16,7 +16,7 @@ objects = [
 ]
 
 
-class DemoAdmin(ModelAdmin):
+class DemoAdmin(BaseAdmin):
     section_name = "Example"
     entity_name_plural = "Demos"
     list_field_names = ["name", "description"]
