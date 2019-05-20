@@ -1,6 +1,6 @@
 import uvicorn
 from starlette.applications import Starlette
-from starlette.responses import JSONResponse
+from starlette.responses import PlainTextResponse
 from starlette.staticfiles import StaticFiles
 
 from starlette_admin import BaseAdmin, AdminSite
@@ -60,7 +60,7 @@ app.mount(
 
 @app.route('/')
 async def homepage(request):
-    return JSONResponse({'hello': 'world'})
+    return PlainTextResponse("go to /admin to see the demo")
 
 # mount admin site
 app.mount(path="/admin", app=adminsite, name=adminsite.name)
