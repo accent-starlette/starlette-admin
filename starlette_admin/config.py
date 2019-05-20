@@ -1,4 +1,12 @@
-from os.path import dirname, realpath
+from os.path import dirname, join, realpath
+
+from starlette.templating import Jinja2Templates
+
+templates_directory = join(dirname(realpath(__file__)), 'templates')
 
 
-package_directory = dirname(realpath(__file__))
+class AppConfig:
+    templates = Jinja2Templates(directory=templates_directory)
+
+
+config = AppConfig()

@@ -1,14 +1,7 @@
-from os.path import join
-
 from starlette.endpoints import HTTPEndpoint
-from starlette.templating import Jinja2Templates
 
 from .base import BaseAdminMetaclass
-from .config import package_directory
-
-
-templates_directory = join(package_directory, 'templates')
-templates = Jinja2Templates(directory=templates_directory)
+from .config import config
 
 
 class Root(HTTPEndpoint):
@@ -20,4 +13,4 @@ class Root(HTTPEndpoint):
             "request": request,
             "base_url_name": f"{app.name}:base"
         }
-        return templates.TemplateResponse(template, context)
+        return config.templates.TemplateResponse(template, context)

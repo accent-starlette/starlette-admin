@@ -1,9 +1,6 @@
-from os.path import join
-
 from starlette.routing import Route, Router
-from starlette.templating import Jinja2Templates
 
-from .config import package_directory
+from .config import config
 
 
 class BaseAdminMetaclass(type):
@@ -31,7 +28,7 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
     section_name: str = ""
     collection_name: str = ""
     list_field_names: []
-    templates_dir = Jinja2Templates(directory=join(package_directory, 'templates'))
+    templates = config.templates
     list_template = "starlette_admin/list.html"
     create_template = "starlette_admin/create.html"
     update_template = "starlette_admin/update.html"
@@ -66,12 +63,12 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
             "list_objects": cls.get_list_objects(request),
             "list_field_names": cls.list_field_names
         })
-        return cls.templates_dir.TemplateResponse(cls.list_template, context)
+        return cls.templates.TemplateResponse(cls.list_template, context)
 
     @classmethod
     async def create_view(cls, request):
         context = cls.get_global_context(request)
-        return cls.templates_dir.TemplateResponse(cls.create_template, context)
+        return cls.templates.TemplateResponse(cls.create_template, context)
 
     @classmethod
     async def update_view(cls, request):
@@ -79,7 +76,7 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
         context.update({
             "object": cls.get_object(request)
         })
-        return cls.templates_dir.TemplateResponse(cls.update_template, context)
+        return cls.templates.TemplateResponse(cls.update_template, context)
 
     @classmethod
     async def delete_view(cls, request):
@@ -87,7 +84,7 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
         context.update({
             "object": cls.get_object(request)
         })
-        return cls.templates_dir.TemplateResponse(cls.delete_template, context)
+        return cls.templates.TemplateResponse(cls.delete_template, context)
 
     @classmethod
     def section_path(cls):
