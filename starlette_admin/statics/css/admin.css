@@ -1897,7 +1897,9 @@ a.c-silverchalice:hover {
   text-transform: uppercase;
 }
 
-input[disabled] {
+input[disabled],
+select[disabled],
+textarea[disabled] {
   background: #f1f1f1;
 }
 
@@ -1905,7 +1907,9 @@ input[disabled] {
   margin-bottom: 1.5rem;
 }
 
-.text-error input[type="text"] {
+.text-error input,
+.text-error select,
+.text-error textarea {
   margin-bottom: .25rem;
   border-color: #aa0403;
   border-width: 2px;
@@ -1920,31 +1924,6 @@ input[disabled] {
 header {
   margin-bottom: 3rem;
   padding: 1.5rem 0;
-}
-
-header .breadcrumb {
-  margin-top: .5rem;
-  list-style-type: none;
-}
-
-header .breadcrumb li {
-  display: inline-block;
-}
-
-header .breadcrumb li + li:before {
-  position: relative;
-  display: inline-block;
-  content: ">";
-  color: rgba(0, 0, 0, 0.54);
-  padding: 0 1.5rem 0 1rem;
-}
-
-header .breadcrumb li a {
-  color: rgba(0, 0, 0, 0.85);
-}
-
-header .breadcrumb li a:hover {
-  color: black;
 }
 
 .panel {

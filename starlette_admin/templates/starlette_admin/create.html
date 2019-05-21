@@ -4,6 +4,9 @@
 
 {% include "starlette_admin/partials/breadcrumb.html" %}
 <h1 class="f-lite">Create</h1>
+
+{% with button_name='create' %}
 {% include "starlette_admin/partials/form.html" %}
+{% endwith %}
 
 {% endblock %}

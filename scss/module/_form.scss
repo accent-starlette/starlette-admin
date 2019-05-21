@@ -1,14 +1,18 @@
 // Form
 // ––––––––––––––––––––––––––––––––––––––––––––––––––
 
-input[disabled] {
+input[disabled],
+select[disabled],
+textarea[disabled] {
   background: color("seashell");
 }
 
 .text-error {
   margin-bottom: $input-margin-bottom;
 
-  input[type="text"] {
+  input,
+  select,
+  textarea {
     margin-bottom: .25rem;
     border-color: color("red");
     border-width: 2px;

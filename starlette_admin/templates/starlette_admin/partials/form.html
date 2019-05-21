@@ -1,13 +1,9 @@
 <form method="post" novalidate>
     {{ form }}
     <div class="mb-1">
-    {% if delete %}
-        <button class="button button-outline button-red">delete</button>
-    {% else %}
-        <button class="button button-outline button-primary mr-1">save</button>
-        {% if object %}
+        <button class="button button-outline {{ button_class|default('button-primary') }}">{{ button_name|default('save') }}</button>
+        {% if show_delete_link %}
         <a href="{{ url_for(url_names.delete, id=object.id) }}" class="button button-clear button-red">delete</a>
         {% endif %}
-    {% endif %}
     </div>
 </form>

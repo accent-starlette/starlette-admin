@@ -3,27 +3,4 @@
 header {
   margin-bottom: 3rem;
   padding: 1.5rem 0;
-
-  .breadcrumb {
-    margin-top: .5rem;
-    list-style-type: none;
-  }
-
-  .breadcrumb li {
-    display: inline-block;
-  }
-
-  .breadcrumb li+li:before {
-    @include pseudo($display: inline-block, $pos: relative, $content: ">");
-    color: color-a("black", .54);
-    padding: 0 1.5rem 0 1rem;
-  }
-
-  .breadcrumb li a {
-    color: color-a("black", .85);
-  }
-
-  .breadcrumb li a:hover {
-    color: color("black");
-  }
 }
