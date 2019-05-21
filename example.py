@@ -36,7 +36,7 @@ class DemoAdmin(BaseAdmin):
     @classmethod
     def get_list_objects(cls, request):
         """ overridden for demo purposes """
-        return objects
+        return sorted(objects, key=lambda k: k["name"])
 
     @classmethod
     def get_object(cls, request):
