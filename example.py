@@ -1,6 +1,7 @@
 import typesystem
 import uvicorn
 from starlette.applications import Starlette
+from starlette.exceptions import HTTPException
 from starlette.responses import PlainTextResponse
 from starlette.staticfiles import StaticFiles
 
@@ -13,11 +14,11 @@ class DemoObject(dict):
 
 
 objects = [
-    DemoObject({"id": 1, "name": "Record 1", "description": "Something"}),
-    DemoObject({"id": 2, "name": "Record 2", "description": "Something else"}),
-    DemoObject({"id": 3, "name": "Record 3", "description": "Something more"}),
-    DemoObject({"id": 4, "name": "Record 4", "description": "Whatever"}),
-    DemoObject({"id": 5, "name": "Record 5", "description": "Cant be bothered"})
+    DemoObject({"id": 1, "name": "Record 1", "description": "Some description"}),
+    DemoObject({"id": 2, "name": "Record 2", "description": "Some description"}),
+    DemoObject({"id": 3, "name": "Record 3", "description": "Some description"}),
+    DemoObject({"id": 4, "name": "Record 4", "description": "Some description"}),
+    DemoObject({"id": 5, "name": "Record 5", "description": "Some description"})
 ]
 
 
@@ -31,18 +32,20 @@ class DemoAdmin(BaseAdmin):
     collection_name = "Demos"
     list_field_names = ["name", "description"]
     create_schema = DemoSchema
+    update_schema = DemoSchema
     delete_schema = typesystem.Schema
 
     @classmethod
     def get_list_objects(cls, request):
-        """ overridden for demo purposes """
         return sorted(objects, key=lambda k: k["name"])
 
     @classmethod
     def get_object(cls, request):
-        """ overridden for demo purposes """
         id = request.path_params["id"]
-        return next((x for x in objects if x["id"] == id), None)
+        try:
+            return next(o for o in objects if o["id"] == id)
+        except StopIteration:
+            raise HTTPException(404)
 
     @classmethod
     def do_create(cls, validated_data):
@@ -50,6 +53,13 @@ class DemoAdmin(BaseAdmin):
         new_object = DemoObject(validated_data)
         new_object["id"] = next_id
         objects.append(new_object)
+
+    @classmethod
+    def do_update(cls, object, validated_data):
+        index = objects.index(object)
+        for k, v in validated_data.items():
+            object[k] = v
+        objects[index] = object
 
     @classmethod
     def do_delete(cls, object, validated_data):
