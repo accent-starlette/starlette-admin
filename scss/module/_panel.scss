@@ -1,0 +1,19 @@
+// Panel
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+
+.panel {
+  padding: 3rem;
+  margin: 3rem 0;
+}
+
+.panel-raised {
+  @include box-shadow(0px, 3px, 15px, rgba(0, 0, 0, .16));
+}
+
+.panel-success {
+  background: linear-gradient(to right, color("green") 0,color("green") 10px, color("white") 10px, color("white") 100%) no-repeat;
+}
+
+.panel-error {
+  background: linear-gradient(to right, color("red") 0,color("red") 10px, color("white") 10px, color("white") 100%) no-repeat;
+}

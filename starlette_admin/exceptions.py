@@ -1,0 +1,2 @@
+class MissingSchemaError(Exception):
+    pass

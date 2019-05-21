@@ -1,0 +1,23 @@
+<table class="table-striped">
+    <thead>
+        <tr>
+        {% for name in list_field_names %}
+            <th><a class="c-dovegray">{{ name|replace("_", " ")|title }}</a> <i class="icon-up-dir"></i></th>
+        {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+    {% for object in list_objects %}
+        <tr>
+        {% for name in list_field_names %}
+            <td>{% if loop.index == 1 %}<a href="{{ object.id }}/update">{{ object[name] }}</a>{% else %}{{ object[name] }}{% endif %}</td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td class="muted" colspan="{{ list_field_names|length }}">{{ list_objects|length }} record{% if list_objects|length != 1 %}s{% endif %}</td>
+        </tr>
+    </tfoot>
+</table>

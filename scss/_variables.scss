@@ -1,29 +1,42 @@
 /* variables */
 
-/* typography */
-$base-font-family:              "Roboto", sans-serif;
+// typography
+$base-font-family:              "Source Sans Pro", sans-serif;
 $code-font-family:              "Inconsolata", monospace;
+$base-font-size:                14px !default;
+$table-font-size:               1.4rem !default;
 
 /* colors */
 $colors: (
+  "primary":                    rgb(103, 175, 194),
   "black":                      rgb(0, 0, 0),
-  "red":                        rgb(255, 65, 54),
-  "solitude":                   rgb(238, 240, 246),
-  "white":                      rgb(255, 255, 255)
+  "white":                      rgb(255, 255, 255),
+  "red":                        rgb(170, 4, 3),
+  "green":                      rgb(194, 227, 139),
+  "dovegray":                   rgb(102, 102, 102),
+  "seashell":                   rgb(241, 241, 241),
+  "silverchalice":              rgb(157, 157, 157),
 );
 
-$body-background:               rgb(238, 240, 246);
+$body-background:               map-get($colors, "white") !default;
+$header-font-color:             map-get($colors, "primary") !default;
+$font-color:                    map-get($colors, "dovegray") !default;
+$link-color:                    map-get($colors, "primary") !default;
 
 /* misc */
-$global-radius:                 0;
+$global-radius:                 .25rem;
 
 /* forms */
 $input-use-full-width:          true;
-$input-margin-bottom:           3rem;
 
 /* buttons */
 $buttons: (
-  // name                       color                          font-color
-  red:                          map-get($colors, "red")        map-get($colors, "white"),
-  solitude:                     map-get($colors, "solitude")   map-get($colors, "black")
+  // name                       color                               font-color
+  red:                          map-get($colors, "red")             map-get($colors, "white"),
+  primary:                      map-get($colors, "primary")         map-get($colors, "white"),
+  white:                        map-get($colors, "white")           map-get($colors, "black"),
+  silver:                       map-get($colors, "silverchalice")   map-get($colors, "white"),
 );
+$button-padding-y:              .4rem !default;
+$button-padding-x:              1rem !default;
+$button-font-size:              1.4rem !default;

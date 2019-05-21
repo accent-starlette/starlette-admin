@@ -6,14 +6,14 @@
   "license": "MIT",
   "scripts": {
     "css": "npm-run-all css-compile* --sequential css-prefix* css-minify* fontello-dist*",
-    "css-compile": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 scss/karma.scss starlette_admin/static/css/karma.css",
-    "css-prefix": "postcss --config scss/postcss.config.js --replace \"starlette_admin/static/css/*.css\" \"!starlette_admin/static/css/*.min.css\"",
-    "css-minify": "cleancss --level 1 --source-map --source-map-inline-sources --output starlette_admin/static/css/karma.min.css starlette_admin/static/css/karma.css",
-    "fontello-dist": "cpy 'scss/fontello/font/*' starlette_admin/static/font",
+    "css-compile": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 scss/admin.scss starlette_admin/statics/css/admin.css",
+    "css-prefix": "postcss --config scss/postcss.config.js --replace \"starlette_admin/statics/css/*.css\" \"!starlette_admin/statics/css/*.min.css\"",
+    "css-minify": "cleancss --level 1 --source-map --source-map-inline-sources --output starlette_admin/statics/css/admin.min.css starlette_admin/statics/css/admin.css",
+    "fontello-dist": "cpy 'scss/fontello/font/*' starlette_admin/statics/font",
     "fontello-install": "fontello-cli install --config scss/fontello/config.json --css scss/fontello/css --font scss/fontello/font",
     "fontello-web": "fontello-cli open --config scss/fontello/config.json",
     "watch-css": "nodemon -e scss -x \"npm run css\"",
-    "js-minify": "rm starlette_admin/static/js/*.min.js; for f in starlette_admin/static/js/*.js; do short=${f%.js}; uglifyjs $f > $short.min.js; done"
+    "js-minify": "rm starlette_admin/statics/js/*.min.js; for f in starlette_admin/statics/js/*.js; do short=${f%.js}; uglifyjs $f > $short.min.js; done"
   },
   "dependencies": {
     "uglify-js": "^3.4.10"

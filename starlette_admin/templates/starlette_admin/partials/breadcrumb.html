@@ -1,0 +1,8 @@
+<p>
+    Home <i class="{% if section_name %}icon-angle-right{% endif %} c-silverchalice"></i>
+    {% if section_name %}
+    {{ section_name }} <i class="icon-angle-right c-silverchalice"></i>
+    {{ collection_name }} <i class="{% if object %}icon-angle-right{% endif %} c-silverchalice"></i>
+    {% if object %}<span class="c-silverchalice">{{ object }}</span>{% endif %}
+    {% endif %}
+</p>

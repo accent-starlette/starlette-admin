@@ -17,3 +17,20 @@ $spacers: (
     }
   }
 }
+
+.f-lite {
+  font-weight: 300;
+}
+
+.f-semi {
+  font-weight: 600;
+}
+
+.top-line {
+  border-top: 2px solid color("seashell");
+  padding-top: 4px;
+}
+
+.highlight {
+  background: color-lighten("primary", 38%);
+}
