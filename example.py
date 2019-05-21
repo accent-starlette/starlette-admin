@@ -1,3 +1,4 @@
+import typesystem
 import uvicorn
 from starlette.applications import Starlette
 from starlette.responses import PlainTextResponse
@@ -20,10 +21,16 @@ objects = [
 ]
 
 
+class DemoSchema(typesystem.Schema):
+    name = typesystem.String()
+    description = typesystem.String()
+
+
 class DemoAdmin(BaseAdmin):
     section_name = "Example"
     collection_name = "Demos"
     list_field_names = ["name", "description"]
+    create_schema = DemoSchema
 
     @classmethod
     def get_list_objects(cls, request):
@@ -36,6 +43,13 @@ class DemoAdmin(BaseAdmin):
         id = request.path_params["id"]
         return next((x for x in objects if x["id"] == id), None)
 
+    @classmethod
+    def do_create(cls, validated_data):
+        next_id = objects[-1]["id"] + 1 if objects else 1
+        new_object = DemoObject(validated_data)
+        new_object["id"] = next_id
+        objects.append(new_object)
+
 
 class MoreAdmin(DemoAdmin):
     section_name = "Example"
@@ -43,7 +57,7 @@ class MoreAdmin(DemoAdmin):
 
 
 # create admin site
-adminsite = AdminSite(name="admin")
+adminsite = AdminSite(debug=True, name="admin")
 # register admins
 adminsite.register(DemoAdmin)
 adminsite.register(MoreAdmin)

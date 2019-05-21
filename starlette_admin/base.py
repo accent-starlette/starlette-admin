@@ -1,6 +1,11 @@
+import typesystem
+import typing
 from starlette.routing import Route, Router
+from starlette.responses import RedirectResponse
+from starlette.templating import Jinja2Templates
 
 from .config import config
+from .exceptions import MissingSchemaError
 
 
 class BaseAdminMetaclass(type):
@@ -20,12 +25,14 @@ class BaseAdminMetaclass(type):
 class BaseAdmin(metaclass=BaseAdminMetaclass):
     section_name: str = ""
     collection_name: str = ""
-    list_field_names: []
-    templates = config.templates
-    list_template = "starlette_admin/list.html"
-    create_template = "starlette_admin/create.html"
-    update_template = "starlette_admin/update.html"
-    delete_template = "starlette_admin/delete.html"
+    list_field_names: typing.List[str] = []
+    templates: typing.Type[Jinja2Templates] = config.templates
+    forms: typing.Type[typesystem.Jinja2Forms] = config.forms
+    list_template: str = "starlette_admin/list.html"
+    create_template: str = "starlette_admin/create.html"
+    update_template: str = "starlette_admin/update.html"
+    delete_template: str = "starlette_admin/delete.html"
+    create_schema: typing.Type[typesystem.Schema] = None
 
     # will be set via `AdminSite.register`
     app_name = ""
@@ -50,6 +57,10 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
         raise NotImplementedError()
 
     @classmethod
+    def do_create(cls, validated_data):
+        raise NotImplementedError()
+
+    @classmethod
     async def list_view(cls, request):
         context = cls.get_global_context(request)
         context.update({
@@ -60,8 +71,26 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
 
     @classmethod
     async def create_view(cls, request):
+        if not cls.create_schema:
+            raise MissingSchemaError()
+
         context = cls.get_global_context(request)
-        return cls.templates.TemplateResponse(cls.create_template, context)
+
+        if request.method == "GET":
+            form = cls.forms.Form(cls.create_schema)
+            context.update({"form": form})
+            return cls.templates.TemplateResponse(cls.create_template, context)
+
+        data = await request.form()
+        validated_data, errors = cls.create_schema.validate_or_error(data)
+
+        if errors:
+            form = cls.forms.Form(cls.create_schema, values=data, errors=errors)
+            context.update({"form": form})
+            return cls.templates.TemplateResponse(cls.create_template, context)
+
+        cls.do_create(validated_data)
+        return RedirectResponse(request.url_for(cls.url_names()["list"]))
 
     @classmethod
     async def update_view(cls, request):
