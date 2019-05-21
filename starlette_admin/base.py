@@ -33,6 +33,7 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
     update_template: str = "starlette_admin/update.html"
     delete_template: str = "starlette_admin/delete.html"
     create_schema: typing.Type[typesystem.Schema] = None
+    delete_schema: typing.Type[typesystem.Schema] = None
 
     # will be set via `AdminSite.register`
     app_name = ""
@@ -58,6 +59,10 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
 
     @classmethod
     def do_create(cls, validated_data):
+        raise NotImplementedError()
+
+    @classmethod
+    def do_delete(cls, object, validated_data):
         raise NotImplementedError()
 
     @classmethod
@@ -102,11 +107,30 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
 
     @classmethod
     async def delete_view(cls, request):
+        if not cls.delete_schema:
+            raise MissingSchemaError()
+
         context = cls.get_global_context(request)
-        context.update({
-            "object": cls.get_object(request)
-        })
-        return cls.templates.TemplateResponse(cls.delete_template, context)
+        object = cls.get_object(request)
+
+        if request.method == "GET":
+            form = cls.forms.Form(cls.delete_schema, values=object)
+            context.update({
+                "form": form,
+                "object": object
+            })
+            return cls.templates.TemplateResponse(cls.delete_template, context)
+
+        data = await request.form()
+        validated_data, errors = cls.delete_schema.validate_or_error(data)
+
+        if errors:
+            form = cls.forms.Form(cls.delete_schema, values=data, errors=errors)
+            context.update({"form": form})
+            return cls.templates.TemplateResponse(cls.delete_template, context)
+
+        cls.do_delete(object, validated_data)
+        return RedirectResponse(request.url_for(cls.url_names()["list"]))
 
     @classmethod
     def section_path(cls):

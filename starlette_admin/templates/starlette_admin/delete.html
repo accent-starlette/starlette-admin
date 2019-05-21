@@ -8,6 +8,8 @@
     <p>Are you sure you wish to delete this record?</p>
     <p class="c-silverchalice"><em>You may not be able to undo this action.</em></p>
 </div>
-<button class="button button-outline button-red">delete</button>
+{% with delete=True %}
+{% include "starlette_admin/partials/form.html" %}
+{% endwith %}
 
 {% endblock %}

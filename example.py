@@ -31,6 +31,7 @@ class DemoAdmin(BaseAdmin):
     collection_name = "Demos"
     list_field_names = ["name", "description"]
     create_schema = DemoSchema
+    delete_schema = typesystem.Schema
 
     @classmethod
     def get_list_objects(cls, request):
@@ -49,6 +50,11 @@ class DemoAdmin(BaseAdmin):
         new_object = DemoObject(validated_data)
         new_object["id"] = next_id
         objects.append(new_object)
+
+    @classmethod
+    def do_delete(cls, object, validated_data):
+        index = objects.index(object)
+        objects.pop(index)
 
 
 class MoreAdmin(DemoAdmin):
