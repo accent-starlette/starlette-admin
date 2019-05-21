@@ -1,0 +1,14 @@
+<div {% if error %}class="text-error"{% endif %}>
+    <label for="{{ field_id }}">{{ label }}</label>
+    <select id="{{ field_id }}" name="{{ field_name }}" {% if required %}required{% endif %}>
+        <option value>Please Select...</option>
+        {% for choice_value, choice_text in field.choices %}
+            <option value="{{ choice_value }}" {% if value == choice_value %}selected{% endif %}>{{ choice_text }}</option>
+        {% endfor %}
+    </select>
+    {% if error %}
+    <cite>{{ error }}</cite>
+    {% elif field.description %}
+    <cite>{{ field.description }}</cite>
+    {% endif %}
+</div>

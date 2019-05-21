@@ -1,0 +1,14 @@
+<div {% if error %}class="text-error"{% endif %}>
+    <label for="{{ field_id }}">{{ label }}</label>
+    <div class="checkbox">
+        <label for="{{ field_id }}">
+            <input type="checkbox" id="{{ field_id }}" name="{{ field_name }}" value="true" {% if value %}checked{% endif %}>
+            {{ label }}<span></span>
+        </label>
+    </div>
+    {% if error %}
+    <cite>{{ error }}</cite>
+    {% elif field.description %}
+    <cite>{{ field.description }}</cite>
+    {% endif %}
+</div>

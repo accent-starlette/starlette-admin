@@ -24,7 +24,7 @@ objects = [
 
 class DemoSchema(typesystem.Schema):
     name = typesystem.String(title="Name")
-    description = typesystem.String(title="Description")
+    description = typesystem.Text(title="Description")
 
 
 class DemoAdmin(BaseAdmin):

@@ -1,6 +1,6 @@
 <div {% if error %}class="text-error"{% endif %}>
     <label for="{{ field_id }}">{{ label }}</label>
-    <input type="{{ input_type }}" id="{{ field_id }}" name="{{ field_name }}" {% if required %}required{% endif %} {% if value is not none %}value="{{ value }}"{% endif %}>
+    <textarea id="{{ field_id }}" name="{{ field_name }}" {% if required %}required{% endif %}>{% if value is not none %}{{ value }}{% endif %}</textarea>
     {% if error %}
     <cite>{{ error }}</cite>
     {% elif field.description %}

@@ -1601,6 +1601,7 @@ sup {
 /* karma-css components */
 /* Component Variables */
 /* Button Groups */
+/* checkboxes */
 /* Icon Input */
 /* Input Groups */
 .button-group {
@@ -1623,6 +1624,118 @@ sup {
 .button-group > .button:not(:last-child) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+ul.checkboxes,
+ul.radios {
+  list-style: none;
+}
+
+ul.checkboxes li,
+ul.radios li {
+  margin-bottom: .5rem;
+  position: relative;
+}
+
+.checkbox,
+ul.checkboxes,
+ul.radios {
+  margin-bottom: 1.5rem;
+}
+
+.checkbox label,
+ul.checkboxes label,
+ul.radios label {
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 400;
+  line-height: 2.4rem;
+  margin-bottom: 0;
+  padding: 0 3.6rem;
+  position: relative;
+}
+
+.checkbox label span,
+ul.checkboxes label span,
+ul.radios label span {
+  position: absolute;
+  top: 0;
+  right: auto;
+  bottom: auto;
+  left: 0;
+  background: white;
+  border: 1px solid #e6e6e6;
+  height: 2.4rem;
+  width: 2.4rem;
+}
+
+.checkbox input,
+ul.checkboxes input,
+ul.radios input {
+  position: absolute;
+  visibility: hidden;
+}
+
+.checkbox input + span:after,
+ul.checkboxes input + span:after,
+ul.radios input + span:after {
+  position: absolute;
+  display: block;
+  content: "";
+  opacity: 0;
+}
+
+.checkbox input:checked + span:after,
+ul.checkboxes input:checked + span:after,
+ul.radios input:checked + span:after {
+  opacity: 1;
+}
+
+.checkbox label:hover input:not(:checked):not(:disabled) + span:after,
+ul.checkboxes label:hover input:not(:checked):not(:disabled) + span:after,
+ul.radios label:hover input:not(:checked):not(:disabled) + span:after {
+  opacity: 0.5;
+}
+
+.checkbox label input:disabled + span,
+ul.checkboxes label input:disabled + span,
+ul.radios label input:disabled + span {
+  cursor: not-allowed;
+}
+
+.checkbox label span,
+ul.checkboxes label span {
+  border-radius: 0.25rem;
+}
+
+.checkbox input[type=checkbox] + span:after,
+ul.checkboxes input[type=checkbox] + span:after {
+  position: absolute;
+  top: 0.672rem;
+  right: auto;
+  bottom: auto;
+  left: 0.408rem;
+  border: 0.3rem solid #67afc2;
+  border-top: none;
+  border-right: none;
+  height: 0.72rem;
+  width: 1.296rem;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+ul.radios label span {
+  border-radius: 50%;
+}
+
+ul.radios input[type=radio] + span:after {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  bottom: 0.4rem;
+  left: 0.4rem;
+  background: #67afc2;
+  border-radius: 50%;
 }
 
 .icon-input {

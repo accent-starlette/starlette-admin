@@ -2,16 +2,24 @@
 
 /* Button Groups */
 
-$button-group-collapse-dividing-borders:   false !default;
+$button-group-collapse-dividing-borders:   false;
+
+/* checkboxes */
+
+$checkbox-checked-color:        color("primary");
+$checkbox-font-weight:          400;
+$checkbox-size:                 2.4rem;
+$checkbox-tick-width:           .3rem;
+$radio-dot-spacing:             .4rem;
 
 /* Icon Input */
 
-$icon-input-icon-color:         $input-placeholder-color !default;
-$icon-input-icon-class-prefix:  'icon-' !default;
-$icon-input-icon-width:         2.65em !default;
-$icon-input-margin-bottom:      $input-margin-bottom !default;
+$icon-input-icon-color:         $input-placeholder-color;
+$icon-input-icon-class-prefix:  'icon-';
+$icon-input-icon-width:         2.65em;
+$icon-input-margin-bottom:      $input-margin-bottom;
 
 /* Input Groups */
 
-$input-group-addon-y-padding:   1rem !default;
-$input-group-margin-bottom:     $input-margin-bottom !default;
+$input-group-addon-y-padding:   1rem;
+$input-group-margin-bottom:     $input-margin-bottom;
