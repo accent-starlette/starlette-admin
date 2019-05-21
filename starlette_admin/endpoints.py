@@ -11,6 +11,6 @@ class Root(HTTPEndpoint):
         context = {
             "admin_classes": BaseAdminMetaclass.get_admin_classes(app.name),
             "request": request,
-            "base_url_name": f"{app.name}:base"
+            "base_url_name": f"{app.name}:base",
         }
         return config.templates.TemplateResponse(template, context)

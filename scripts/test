@@ -1,0 +1,8 @@
+#!/bin/sh -e
+
+set -x
+
+pytest --cov=starlette_admin --cov-report html
+mypy starlette_admin --ignore-missing-imports
+autoflake --recursive --remove-unused-variables starlette_admin tests
+black starlette_admin tests --check

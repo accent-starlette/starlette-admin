@@ -10,3 +10,6 @@ mypy
 pytest
 pytest-cov
 requests
+
+# Example
+uvicorn

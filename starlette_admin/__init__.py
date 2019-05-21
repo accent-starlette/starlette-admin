@@ -5,9 +5,4 @@ from .base import BaseAdmin
 from .config import config
 from .site import AdminSite
 
-
-__all__ = [
-    "AdminSite",
-    "config",
-    "BaseAdmin"
-]
+__all__ = ["AdminSite", "config", "BaseAdmin"]

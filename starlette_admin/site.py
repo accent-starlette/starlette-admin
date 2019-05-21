@@ -4,11 +4,9 @@ from .endpoints import Root
 
 
 class AdminSite(Starlette):
-    name: str = None
+    name: str
 
-    def __init__(
-        self, debug: bool = False, name: str = None
-    ) -> None:
+    def __init__(self, debug: bool = False, name: str = "") -> None:
         super().__init__(debug, [])
         self.name = name
         # register default route

@@ -1,7 +1,8 @@
-import typesystem
 import typing
-from starlette.routing import Route, Router
+
+import typesystem
 from starlette.responses import RedirectResponse
+from starlette.routing import Route, Router
 from starlette.templating import Jinja2Templates
 
 from .config import config
@@ -9,7 +10,7 @@ from .exceptions import MissingSchemaError
 
 
 class BaseAdminMetaclass(type):
-    _registry = []
+    _registry: typing.List[typing.Type["BaseAdmin"]] = []
 
     def __init__(cls, name, bases, dct):
         if not cls.__module__.startswith("__"):
@@ -26,15 +27,15 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
     section_name: str = ""
     collection_name: str = ""
     list_field_names: typing.List[str] = []
-    templates: typing.Type[Jinja2Templates] = config.templates
-    forms: typing.Type[typesystem.Jinja2Forms] = config.forms
+    templates: Jinja2Templates = config.templates
+    forms: typesystem.Jinja2Forms = config.forms
     list_template: str = "starlette_admin/list.html"
     create_template: str = "starlette_admin/create.html"
     update_template: str = "starlette_admin/update.html"
     delete_template: str = "starlette_admin/delete.html"
-    create_schema: typing.Type[typesystem.Schema] = None
-    update_schema: typing.Type[typesystem.Schema] = None
-    delete_schema: typing.Type[typesystem.Schema] = None
+    create_schema: typing.Type[typesystem.Schema]
+    update_schema: typing.Type[typesystem.Schema]
+    delete_schema: typing.Type[typesystem.Schema]
 
     # will be set via `AdminSite.register`
     app_name = ""
@@ -47,7 +48,7 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
             "admin_classes": cls.get_admin_classes(cls.app_name),
             "request": request,
             "collection_name": cls.collection_name,
-            "section_name": cls.section_name
+            "section_name": cls.section_name,
         }
 
     @classmethod
@@ -73,10 +74,12 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
     @classmethod
     async def list_view(cls, request):
         context = cls.get_global_context(request)
-        context.update({
-            "list_objects": cls.get_list_objects(request),
-            "list_field_names": cls.list_field_names
-        })
+        context.update(
+            {
+                "list_objects": cls.get_list_objects(request),
+                "list_field_names": cls.list_field_names,
+            }
+        )
         return cls.templates.TemplateResponse(cls.list_template, context)
 
     @classmethod
@@ -192,28 +195,25 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
         return Router(
             [
                 Route(
-                    "/",
-                    endpoint=cls.list_view,
-                    methods=["GET"],
-                    name=f"{mount}_list"
+                    "/", endpoint=cls.list_view, methods=["GET"], name=f"{mount}_list"
                 ),
                 Route(
                     "/create",
                     endpoint=cls.create_view,
                     methods=["GET", "POST"],
-                    name=f"{mount}_create"
+                    name=f"{mount}_create",
                 ),
                 Route(
                     "/{id:int}/update",
                     endpoint=cls.update_view,
                     methods=["GET", "POST"],
-                    name=f"{mount}_update"
+                    name=f"{mount}_update",
                 ),
                 Route(
                     "/{id:int}/delete",
                     endpoint=cls.delete_view,
                     methods=["GET", "POST"],
-                    name=f"{mount}_delete"
-                )
+                    name=f"{mount}_delete",
+                ),
             ]
         )
