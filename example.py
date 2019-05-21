@@ -23,8 +23,8 @@ objects = [
 
 
 class DemoSchema(typesystem.Schema):
-    name = typesystem.String()
-    description = typesystem.String()
+    name = typesystem.String(title="Name")
+    description = typesystem.String(title="Description")
 
 
 class DemoAdmin(BaseAdmin):
