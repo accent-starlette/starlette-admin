@@ -1,7 +1,6 @@
 {% extends "starlette_admin/base.html" %}
 
 {% block content %}
-
 {% include "starlette_admin/partials/breadcrumb.html" %}
 <h1 class="f-lite">Delete</h1>
 <div class="panel highlight">
@@ -11,5 +10,4 @@
 {% with button_name='delete', button_class='button-red' %}
 {% include "starlette_admin/partials/form.html" %}
 {% endwith %}
-
 {% endblock %}

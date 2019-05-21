@@ -10,11 +10,9 @@
         {% block extra_css %}{% endblock %}
     </head>
     <body>
-
     {% block header %}
     {% include "starlette_admin/partials/header.html" %}
     {% endblock %}
-
     <div class="container">
         <div class="row">
             <div class="col-3">
@@ -27,8 +25,6 @@
             </div>
         </div>
     </div>
-
     {% block extra_js %}{% endblock %}
-
     </body>
 </html>
