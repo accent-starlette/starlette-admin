@@ -1,9 +1,11 @@
 import typing
 
 import typesystem
+from starlette.exceptions import HTTPException
 from starlette.responses import RedirectResponse
 from starlette.routing import Route, Router
 from starlette.templating import Jinja2Templates
+from starlette_core.paginator import InvalidPage, Paginator
 
 from .config import config
 from .exceptions import MissingSchemaError
@@ -40,6 +42,8 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
         list_field_names:   The list of fields to show on the main listing.
         templates:          Instance of `starlette.templating.Jinja2Templates` to load templates from.
         forms:              Instance of `typesystem.Jinja2Forms` to load form templates from.
+        paginate_by:        The number of objects to show per page, set to `None` to disable pagination.
+        paginator_class:    Built in pagination class.
         list_template:      List template path.
         create_template:    Create template path.
         update_template:    Update template path.
@@ -54,6 +58,8 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
     list_field_names: typing.List[str] = []
     templates: Jinja2Templates = config.templates
     forms: typesystem.Jinja2Forms = config.forms
+    paginate_by: typing.Optional[int] = None
+    paginator_class = Paginator
     list_template: str = "starlette_admin/list.html"
     create_template: str = "starlette_admin/create.html"
     update_template: str = "starlette_admin/update.html"
@@ -97,14 +103,48 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
         raise NotImplementedError()
 
     @classmethod
+    def paginate(cls, request, objects):
+        paginator = cls.paginator_class(objects, cls.paginate_by)
+        page_number = request.query_params.get("page")
+
+        try:
+            page_number = int(page_number)
+        except (TypeError, ValueError):
+            page_number = 1
+
+        try:
+            page = paginator.page(page_number)
+            return (paginator, page, page.object_list, page.has_other_pages)
+        except InvalidPage as e:
+            raise HTTPException(404, f"Invalid page {page_number}: {str(e)}")
+
+    @classmethod
     async def list_view(cls, request):
         context = cls.get_global_context(request)
-        context.update(
-            {
-                "list_objects": cls.get_list_objects(request),
-                "list_field_names": cls.list_field_names,
-            }
-        )
+        list_objects = cls.get_list_objects(request)
+        if cls.paginate_by:
+            paginator, page, list_objects, is_paginated = cls.paginate(
+                request, list_objects
+            )
+            context.update(
+                {
+                    "paginator": paginator,
+                    "page_obj": page,
+                    "is_paginated": is_paginated,
+                    "list_objects": list_objects,
+                    "list_field_names": cls.list_field_names,
+                }
+            )
+        else:
+            context.update(
+                {
+                    "paginator": None,
+                    "page_obj": None,
+                    "is_paginated": False,
+                    "list_objects": list_objects,
+                    "list_field_names": cls.list_field_names,
+                }
+            )
         return cls.templates.TemplateResponse(cls.list_template, context)
 
     @classmethod

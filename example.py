@@ -31,6 +31,7 @@ class DemoAdmin(BaseAdmin):
     section_name = "Example"
     collection_name = "Demos"
     list_field_names = ["name", "description"]
+    paginate_by = 10
     create_schema = DemoSchema
     update_schema = DemoSchema
     delete_schema = typesystem.Schema
