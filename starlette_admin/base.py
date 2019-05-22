@@ -10,7 +10,7 @@ from .exceptions import MissingSchemaError
 
 
 class BaseAdminMetaclass(type):
-    _registry: typing.List[typing.Type["BaseAdmin"]] = []
+    _registry: typing.List["BaseAdmin"] = []
 
     def __init__(cls, name, bases, dct):
         if not cls.__module__.startswith("__"):
