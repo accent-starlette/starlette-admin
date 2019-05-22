@@ -24,6 +24,31 @@ class BaseAdminMetaclass(type):
 
 
 class BaseAdmin(metaclass=BaseAdminMetaclass):
+    """
+    The base admin class for crud operations.
+
+    Methods that require implementing:
+    - get_list_objects
+    - get_object
+    - do_create
+    - do_update
+    - do_delete
+
+    Class variables:
+        section_name:       The section/app name the model would natually live in.
+        collection_name:    The collection/model name.
+        list_field_names:   The list of fields to show on the main listing.
+        templates:          Instance of `starlette.templating.Jinja2Templates` to load templates from.
+        forms:              Instance of `typesystem.Jinja2Forms` to load form templates from.
+        list_template:      List template path.
+        create_template:    Create template path.
+        update_template:    Update template path.
+        delete_template:    Delete template path.
+        create_schema:      The `typesystem.Schema` used to validate a new object.
+        update_schema:      The `typesystem.Schema` used to validate an existing object.
+        delete_schema:      The `typesystem.Schema` used to validate a deleted object.
+    """
+
     section_name: str = ""
     collection_name: str = ""
     list_field_names: typing.List[str] = []
