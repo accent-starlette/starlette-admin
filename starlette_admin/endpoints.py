@@ -1,6 +1,6 @@
 from starlette.endpoints import HTTPEndpoint
 
-from .base import BaseAdminMetaclass
+from .admin import BaseAdminMetaclass
 from .config import config
 
 

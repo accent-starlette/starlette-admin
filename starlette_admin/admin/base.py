@@ -8,8 +8,8 @@ from starlette.routing import Route, Router
 from starlette.templating import Jinja2Templates
 from starlette_core.paginator import InvalidPage, Paginator
 
-from .config import config
-from .exceptions import MissingSchemaError
+from ..config import config
+from ..exceptions import MissingSchemaError
 
 
 class BaseAdminMetaclass(type):
