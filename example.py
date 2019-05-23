@@ -27,15 +27,34 @@ class DemoSchema(typesystem.Schema):
 class DemoAdmin(BaseAdmin):
     section_name = "Example"
     collection_name = "Demos"
-    list_field_names = ["name", "description"]
+    list_field_names = ["id", "name", "description"]
     paginate_by = 10
+    order_enabled = True
+    search_enabled = True
     create_schema = DemoSchema
     update_schema = DemoSchema
     delete_schema = typesystem.Schema
 
     @classmethod
     def get_list_objects(cls, request):
-        return sorted(objects, key=lambda k: k["name"])
+        list_objects = objects
+
+        # if enabled, very basic search example
+        search = request.query_params.get("search")
+        if cls.search_enabled and search:
+            list_objects = list(
+                filter(lambda obj: search.lower() in obj["name"].lower(), list_objects)
+            )
+
+        # if enabled, sort the results
+        if cls.order_enabled:
+            order_by = request.query_params.get("order_by", "id")
+            order_direction = request.query_params.get("order_direction", "asc")
+            list_objects = sorted(
+                list_objects, key=lambda k: k[order_by], reverse=order_direction=="desc"
+            )
+
+        return list_objects
 
     @classmethod
     def get_object(cls, request):

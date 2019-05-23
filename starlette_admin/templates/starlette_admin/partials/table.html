@@ -2,7 +2,21 @@
     <thead>
         <tr>
         {% for name in list_field_names -%}
-            <th><a class="c-dovegray">{{ name|replace("_", " ")|title }}</a> <i class="icon-up-dir"></i></th>
+            <th>
+            {% if order_enabled %}
+                {% if order_by == name %}
+                    {% if order_direction == 'asc' %}
+                    <a href="?{{ query_params(request.query_params, order_direction='desc') }}" class="c-dovegray">{{ name|replace("_", " ")|title }}</a><i class="icon-up-dir"></i>
+                    {% else %}
+                    <a href="?{{ query_params(request.query_params, order_direction='asc') }}" class="c-dovegray">{{ name|replace("_", " ")|title }}</a><i class="icon-down-dir"></i>
+                    {% endif %}
+                {% else %}
+                <a href="?{{ query_params(request.query_params, order_by=name, order_direction='asc') }}" class="c-dovegray">{{ name|replace("_", " ")|title }}</a>
+                {% endif %}
+            {% else %}
+                <span class="c-dovegray">{{ name|replace("_", " ")|title }}</span>
+            {% endif %}
+            </th>
         {%- endfor %}
         </tr>
     </thead>

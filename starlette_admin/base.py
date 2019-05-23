@@ -31,13 +31,15 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
     The base admin class for crud operations.
 
     Methods that require implementing:
-    - get_list_objects
-    - get_object
-    - do_create
-    - do_update
-    - do_delete
+    * get_list_objects
+    * get_object
+    * do_create
+    * do_update
+    * do_delete
+    * create_schema
+    * update_schema
 
-    Class variables:
+    Variables:
         section_name:       The section/app name the model would natually live in.
         collection_name:    The collection/model name.
         list_field_names:   The list of fields to show on the main listing.
@@ -45,6 +47,12 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
         forms:              Instance of `typesystem.Jinja2Forms` to load form templates from.
         paginate_by:        The number of objects to show per page, set to `None` to disable pagination.
         paginator_class:    Built in pagination class.
+        search_enabled:     Whether to show the search form at the top of the list view.
+                            Seaching those objects is your responsibility within the 
+                            `cls.get_list_objects` method.
+        order_enabled:      Whether to render the list table headers as anchors that can be
+                            clicked to toggle search order and direction. Ordering those objects
+                            is your responsibility within the `cls.get_list_objects` method.
         list_template:      List template path.
         create_template:    Create template path.
         update_template:    Update template path.
@@ -62,6 +70,7 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
     paginate_by: typing.Optional[int] = None
     paginator_class = Paginator
     search_enabled: bool = False
+    order_enabled: bool = False
     list_template: str = "starlette_admin/list.html"
     create_template: str = "starlette_admin/create.html"
     update_template: str = "starlette_admin/update.html"
@@ -87,6 +96,25 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
 
     @classmethod
     def get_list_objects(cls, request):
+        """
+        Return the list of objects to render in the list view.
+
+        Notes
+
+        if `cls.order_enabled = True` you are responsible for returning
+        the list of objects in their relevent order by using the request.query_params
+        `order_by` and `order_direction`.
+
+        Example:
+            order_by = request.query_params.get("order_by", "id")
+            order_direction = request.query_params.get("order_direction", "asc")
+            return sorted(objects, key=lambda k: k[order_by], reverse=order_direction=="desc")
+
+        if `cls.search_enabled = True` you are responsible for returning
+        the filtered list of objects using the `request.query_param`
+        `search`.
+
+        """
         raise NotImplementedError()
 
     @classmethod
@@ -124,8 +152,19 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
     @classmethod
     async def list_view(cls, request):
         context = cls.get_global_context(request)
+        context.update(
+            {
+                "list_field_names": cls.list_field_names,
+                "search_enabled": cls.search_enabled,
+                "search": request.query_params.get("search"),
+                "order_enabled": cls.order_enabled,
+                "order_by": request.query_params.get("order_by"),
+                "order_direction": request.query_params.get("order_direction"),
+            }
+        )
+
         list_objects = cls.get_list_objects(request)
-        search_term = request.query_params.get("search")
+
         if cls.paginate_by:
             paginator, page, list_objects, is_paginated = cls.paginate(
                 request, list_objects
@@ -136,9 +175,6 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
                     "page_obj": page,
                     "is_paginated": is_paginated,
                     "list_objects": list_objects,
-                    "list_field_names": cls.list_field_names,
-                    "search_enabled": cls.search_enabled,
-                    "search_term": search_term,
                 }
             )
         else:
@@ -148,11 +184,9 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
                     "page_obj": None,
                     "is_paginated": False,
                     "list_objects": list_objects,
-                    "list_field_names": cls.list_field_names,
-                    "search_enabled": cls.search_enabled,
-                    "search_term": search_term,
                 }
             )
+
         return cls.templates.TemplateResponse(cls.list_template, context)
 
     @classmethod
