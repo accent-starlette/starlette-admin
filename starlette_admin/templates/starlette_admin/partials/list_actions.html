@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col">
-        {% include "starlette_admin/partials/search_form.html" %}
+        {% if search_enabled %}{% include "starlette_admin/partials/search_form.html" %}{% endif %}
     </div>
     <div class="col text-right">
         <a href="{{ url_for(url_names.create) }}" class="button button-silver">New Record</a>

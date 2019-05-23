@@ -1,7 +1,7 @@
 <form class="search-form" method="get">
     <div class="input-group mb-0">
         <div class="icon-input">
-            <input type="text" placeholder="Search">
+            <input type="text" name="search" placeholder="Search" {% if search_term %}value="{{ search_term }}"{% endif %}>
             <span class="icon-search"></span>
         </div>
         <button type="submit" class="d-hidden"></button>

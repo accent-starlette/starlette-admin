@@ -1,6 +1,7 @@
 import typing
 
 import typesystem
+from starlette.datastructures import QueryParams
 from starlette.exceptions import HTTPException
 from starlette.responses import RedirectResponse
 from starlette.routing import Route, Router
@@ -60,6 +61,7 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
     forms: typesystem.Jinja2Forms = config.forms
     paginate_by: typing.Optional[int] = None
     paginator_class = Paginator
+    search_enabled: bool = False
     list_template: str = "starlette_admin/list.html"
     create_template: str = "starlette_admin/create.html"
     update_template: str = "starlette_admin/update.html"
@@ -80,6 +82,7 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
             "request": request,
             "collection_name": cls.collection_name,
             "section_name": cls.section_name,
+            "query_params": cls.query_params,
         }
 
     @classmethod
@@ -122,6 +125,7 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
     async def list_view(cls, request):
         context = cls.get_global_context(request)
         list_objects = cls.get_list_objects(request)
+        search_term = request.query_params.get("search")
         if cls.paginate_by:
             paginator, page, list_objects, is_paginated = cls.paginate(
                 request, list_objects
@@ -133,6 +137,8 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
                     "is_paginated": is_paginated,
                     "list_objects": list_objects,
                     "list_field_names": cls.list_field_names,
+                    "search_enabled": cls.search_enabled,
+                    "search_term": search_term,
                 }
             )
         else:
@@ -143,6 +149,8 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
                     "is_paginated": False,
                     "list_objects": list_objects,
                     "list_field_names": cls.list_field_names,
+                    "search_enabled": cls.search_enabled,
+                    "search_term": search_term,
                 }
             )
         return cls.templates.TemplateResponse(cls.list_template, context)
@@ -282,3 +290,19 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
                 ),
             ]
         )
+
+    @classmethod
+    def query_params(cls, initial: QueryParams, **kwargs):
+        """
+        Update a `starlette.datastructures.QueryParams` objects
+        with new values passed into kwargs.
+
+        Usage:
+            if url is `/?search=foo&page=1`
+            {{ urlencode(request.query_params, page=2) }}
+            would return `search=foo&page=2`
+        """
+
+        values = dict(initial)
+        values.update(kwargs)
+        return QueryParams(**values)
