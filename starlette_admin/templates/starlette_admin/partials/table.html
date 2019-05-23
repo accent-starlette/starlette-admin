@@ -24,7 +24,7 @@
     {% for object in list_objects -%}
         <tr>
         {% for name in list_field_names -%}
-            <td>{% if loop.index == 1 %}<a href="{{ object.id }}/update">{{ object[name] }}</a>{% else %}{{ object[name] }}{% endif %}</td>
+            <td>{% if loop.index == 1 %}<a href="{{ object.id }}/update">{{ object[name] }}</a>{% else %}{{ object[name] or "-" }}{% endif %}</td>
         {%- endfor %}
         </tr>
     {%- endfor %}

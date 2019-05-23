@@ -1,11 +1,27 @@
 import typesystem
+
 import uvicorn
+import sqlalchemy as sa
+from sqlalchemy_utils import database_exists
 from starlette.applications import Starlette
 from starlette.exceptions import HTTPException
 from starlette.responses import PlainTextResponse
 from starlette.staticfiles import StaticFiles
+from starlette_admin import BaseAdmin, AdminSite, ModelAdmin
+from starlette_core.database import Database
+from starlette_core.middleware import DatabaseMiddleware
+from starlette_core.schemas import ModelSchemaGenerator
 
-from starlette_admin import BaseAdmin, AdminSite
+from example_models import DemoModel
+
+
+db = Database('sqlite:///')
+db.create_all()
+
+
+# objects using the base admin that must implement
+# all required methods
+####################################################################
 
 
 class DemoObject(dict):
@@ -25,7 +41,7 @@ class DemoSchema(typesystem.Schema):
 
 
 class DemoAdmin(BaseAdmin):
-    section_name = "Example"
+    section_name = "Base Examples"
     collection_name = "Demos"
     list_field_names = ["id", "name", "description"]
     paginate_by = 10
@@ -84,16 +100,33 @@ class DemoAdmin(BaseAdmin):
         objects.pop(index)
 
 
-class MoreAdmin(DemoAdmin):
-    section_name = "Example"
-    collection_name = "More Demos"
+# objects using the model admin
+####################################################################
+
+class DemoModelSchema(ModelSchemaGenerator):
+    model = DemoModel
+    model_fields = [
+        "name",
+        "description",
+    ]
+
+
+class DemoModelAdmin(ModelAdmin):
+    section_name = "Model Examples"
+    collection_name = "Demos"
+    model_class = DemoModel
+    list_field_names = ["id", "name", "description"]
+    paginate_by = 0
+    create_schema = DemoModelSchema().schema()
+    update_schema = DemoModelSchema().schema()
+    delete_schema = typesystem.Schema
 
 
 # create admin site
 adminsite = AdminSite(debug=True, name="admin")
 # register admins
 adminsite.register(DemoAdmin)
-adminsite.register(MoreAdmin)
+adminsite.register(DemoModelAdmin)
 
 # create app
 app = Starlette(debug=True)
@@ -103,6 +136,8 @@ app.mount(
     app=StaticFiles(directory="static", packages=["starlette_admin"]),
     name="static"
 )
+
+app.add_middleware(DatabaseMiddleware)
 
 
 @app.route('/')

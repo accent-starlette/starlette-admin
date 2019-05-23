@@ -36,8 +36,6 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
     * do_create
     * do_update
     * do_delete
-    * create_schema
-    * update_schema
 
     Variables:
         section_name:       The section/app name the model would natually live in.
@@ -120,6 +118,14 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
     @classmethod
     def get_object(cls, request):
         raise NotImplementedError()
+
+    @classmethod
+    def get_form_values_from_object(cls, object):
+        if isinstance(object, dict):
+            return object
+        elif hasattr(object, "to_json"):
+            return object.to_json()
+        raise Exception("Form values must be a dict or implement a method `to_json`")
 
     @classmethod
     def do_create(cls, validated_data):
@@ -225,7 +231,8 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
         context = cls.get_global_context(request)
 
         if request.method == "GET":
-            form = cls.forms.Form(schema, values=object)
+            values = cls.get_form_values_from_object(object)
+            form = cls.forms.Form(schema, values=values)
             context.update({"form": form, "object": object})
             return cls.templates.TemplateResponse(template, context)
 
@@ -251,7 +258,8 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
         context = cls.get_global_context(request)
 
         if request.method == "GET":
-            form = cls.forms.Form(schema, values=object)
+            values = cls.get_form_values_from_object(object)
+            form = cls.forms.Form(schema, values=values)
             context.update({"form": form, "object": object})
             return cls.templates.TemplateResponse(template, context)
 

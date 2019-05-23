@@ -1,7 +1,7 @@
 from os.path import dirname, join, realpath
 
 from starlette.templating import Jinja2Templates
-from typesystem import Jinja2Forms
+from starlette_core.forms import Jinja2Forms
 
 templates_directory = join(dirname(realpath(__file__)), "templates")
 
