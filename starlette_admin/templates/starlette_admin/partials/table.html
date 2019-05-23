@@ -17,7 +17,14 @@
     </tbody>
     <tfoot>
         <tr>
-            <td class="muted" colspan="{{ list_field_names|length }}">{{ list_objects|length }} record{% if list_objects|length != 1 %}s{% endif %}</td>
+            <td class="py-1" colspan="{{ list_field_names|length }}">
+                {% if is_paginated %}
+                    {% include "starlette_admin/partials/pagination.html" %}
+                {% else %}
+                    {{ list_objects|length }} record{% if list_objects|length != 1 %}s{% endif %}
+                {% endif %}
+            </td>
         </tr>
     </tfoot>
 </table>
+
