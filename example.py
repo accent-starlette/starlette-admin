@@ -14,11 +14,8 @@ class DemoObject(dict):
 
 
 objects = [
-    DemoObject({"id": 1, "name": "Record 1", "description": "Some description"}),
-    DemoObject({"id": 2, "name": "Record 2", "description": "Some description"}),
-    DemoObject({"id": 3, "name": "Record 3", "description": "Some description"}),
-    DemoObject({"id": 4, "name": "Record 4", "description": "Some description"}),
-    DemoObject({"id": 5, "name": "Record 5", "description": "Some description"})
+    DemoObject({"id": id, "name": f"Record {id:02d}", "description": "Some description"})
+    for id in range(1, 51)
 ]
 
 
