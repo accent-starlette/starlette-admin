@@ -78,15 +78,15 @@ class DemoAdmin(BaseAdmin):
         objects.append(new_object)
 
     @classmethod
-    def do_update(cls, object, validated_data):
-        index = objects.index(object)
+    def do_update(cls, instance, validated_data):
+        index = objects.index(instance)
         for k, v in validated_data.items():
-            object[k] = v
-        objects[index] = object
+            instance[k] = v
+        objects[index] = instance
 
     @classmethod
-    def do_delete(cls, object, validated_data):
-        index = objects.index(object)
+    def do_delete(cls, instance, validated_data):
+        index = objects.index(instance)
         objects.pop(index)
 
 

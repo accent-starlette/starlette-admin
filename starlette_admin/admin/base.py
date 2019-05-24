@@ -119,11 +119,11 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
         raise NotImplementedError()
 
     @classmethod
-    def get_form_values_from_object(cls, object):
-        if isinstance(object, dict):
-            return object
-        elif hasattr(object, "to_json"):
-            return object.to_json()
+    def get_form_values_from_object(cls, instance):
+        if isinstance(instance, dict):
+            return instance
+        elif hasattr(instance, "to_json"):
+            return instance.to_json()
         raise Exception("Form values must be a dict or implement a method `to_json`")
 
     @classmethod
@@ -131,11 +131,11 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
         raise NotImplementedError()
 
     @classmethod
-    def do_delete(cls, object, validated_data):
+    def do_delete(cls, instance, validated_data):
         raise NotImplementedError()
 
     @classmethod
-    def do_update(cls, object, validated_data):
+    def do_update(cls, instance, validated_data):
         raise NotImplementedError()
 
     @classmethod
@@ -226,13 +226,13 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
 
         template = cls.update_template
         schema = cls.update_schema
-        object = cls.get_object(request)
+        instance = cls.get_object(request)
         context = cls.get_global_context(request)
 
         if request.method == "GET":
-            values = cls.get_form_values_from_object(object)
+            values = cls.get_form_values_from_object(instance)
             form = cls.forms.Form(schema, values=values)
-            context.update({"form": form, "object": object})
+            context.update({"form": form, "object": instance})
             return cls.templates.TemplateResponse(template, context)
 
         data = await request.form()
@@ -240,10 +240,10 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
 
         if errors:
             form = cls.forms.Form(schema, values=data, errors=errors)
-            context.update({"form": form, "object": object})
+            context.update({"form": form, "object": instance})
             return cls.templates.TemplateResponse(template, context)
 
-        cls.do_update(object, validated_data)
+        cls.do_update(instance, validated_data)
         return RedirectResponse(request.url_for(cls.url_names()["list"]))
 
     @classmethod
@@ -253,13 +253,13 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
 
         template = cls.delete_template
         schema = cls.delete_schema
-        object = cls.get_object(request)
+        instance = cls.get_object(request)
         context = cls.get_global_context(request)
 
         if request.method == "GET":
-            values = cls.get_form_values_from_object(object)
+            values = cls.get_form_values_from_object(instance)
             form = cls.forms.Form(schema, values=values)
-            context.update({"form": form, "object": object})
+            context.update({"form": form, "object": instance})
             return cls.templates.TemplateResponse(template, context)
 
         data = await request.form()
@@ -267,10 +267,10 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
 
         if errors:
             form = cls.forms.Form(schema, values=data, errors=errors)
-            context.update({"form": form, "object": object})
+            context.update({"form": form, "object": instance})
             return cls.templates.TemplateResponse(template, context)
 
-        cls.do_delete(object, validated_data)
+        cls.do_delete(instance, validated_data)
         return RedirectResponse(request.url_for(cls.url_names()["list"]))
 
     @classmethod

@@ -77,19 +77,21 @@ class ModelAdmin(BaseAdmin):
 
     @classmethod
     def do_create(cls, validated_data):
-        object = cls.model_class()
+        instance = cls.model_class()
         for key in validated_data.keys():
-            if hasattr(object, key):
-                setattr(object, key, getattr(validated_data, key))
-        object.save()
+            if hasattr(instance, key):
+                setattr(instance, key, getattr(validated_data, key))
+        instance.save()
+        return instance
 
     @classmethod
-    def do_delete(cls, object, validated_data):
-        object.delete()
+    def do_delete(cls, instance, validated_data):
+        instance.delete()
 
     @classmethod
-    def do_update(cls, object, validated_data):
+    def do_update(cls, instance, validated_data):
         for key in validated_data.keys():
-            if hasattr(object, key):
-                setattr(object, key, getattr(validated_data, key))
-        object.save()
+            if hasattr(instance, key):
+                setattr(instance, key, getattr(validated_data, key))
+        instance.save()
+        return instance
