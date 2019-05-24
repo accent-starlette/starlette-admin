@@ -1,6 +1,7 @@
 import typing
 
 import typesystem
+from starlette.authentication import has_required_scope
 from starlette.datastructures import QueryParams
 from starlette.exceptions import HTTPException
 from starlette.responses import RedirectResponse
@@ -59,22 +60,28 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
         delete_schema:      The `typesystem.Schema` used to validate a deleted object.
     """
 
+    # general
     section_name: str = ""
     collection_name: str = ""
-    list_field_names: typing.List[str] = []
-    templates: Jinja2Templates = config.templates
-    forms: typesystem.Jinja2Forms = config.forms
+    # list view options
+    list_field_names: typing.Sequence[str] = []
     paginate_by: typing.Optional[int] = None
     paginator_class = Paginator
     search_enabled: bool = False
     order_enabled: bool = False
-    list_template: str = "starlette_admin/list.html"
+    # permissions
+    permission_scopes: typing.Sequence[str] = []
+    # templating
+    templates: Jinja2Templates = config.templates
+    forms: typesystem.Jinja2Forms = config.forms
     create_template: str = "starlette_admin/create.html"
-    update_template: str = "starlette_admin/update.html"
     delete_template: str = "starlette_admin/delete.html"
+    list_template: str = "starlette_admin/list.html"
+    update_template: str = "starlette_admin/update.html"
+    # schemas
     create_schema: typing.Type[typesystem.Schema]
-    update_schema: typing.Type[typesystem.Schema]
     delete_schema: typing.Type[typesystem.Schema]
+    update_schema: typing.Type[typesystem.Schema]
 
     # will be set via `AdminSite.register`
     app_name = ""
@@ -156,6 +163,9 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
 
     @classmethod
     async def list_view(cls, request):
+        if not has_required_scope(request, cls.permission_scopes):
+            raise HTTPException(403)
+
         context = cls.get_global_context(request)
         context.update(
             {
@@ -196,6 +206,9 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
 
     @classmethod
     async def create_view(cls, request):
+        if not has_required_scope(request, cls.permission_scopes):
+            raise HTTPException(403)
+
         if not cls.create_schema:
             raise MissingSchemaError()
 
@@ -221,6 +234,9 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
 
     @classmethod
     async def update_view(cls, request):
+        if not has_required_scope(request, cls.permission_scopes):
+            raise HTTPException(403)
+
         if not cls.update_schema:
             raise MissingSchemaError()
 
@@ -248,6 +264,9 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
 
     @classmethod
     async def delete_view(cls, request):
+        if not has_required_scope(request, cls.permission_scopes):
+            raise HTTPException(403)
+
         if not cls.delete_schema:
             raise MissingSchemaError()
 

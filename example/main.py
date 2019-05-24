@@ -14,7 +14,7 @@ db.create_all()
 
 
 # create an admin site
-adminsite = AdminSite(debug=DEBUG, name="admin")
+adminsite = AdminSite(name="admin", permission_scopes=[])
 # register admins
 adminsite.register(DemoAdmin)
 adminsite.register(DemoModelAdmin)
