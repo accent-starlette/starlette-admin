@@ -1,22 +1,12 @@
 import typesystem
 
-import uvicorn
 import sqlalchemy as sa
-from sqlalchemy_utils import database_exists
-from starlette.applications import Starlette
+from sqlalchemy import orm
 from starlette.exceptions import HTTPException
-from starlette.responses import PlainTextResponse
-from starlette.staticfiles import StaticFiles
-from starlette_admin import BaseAdmin, AdminSite, ModelAdmin
-from starlette_core.database import Database
-from starlette_core.middleware import DatabaseMiddleware
+from starlette_admin.admin import BaseAdmin, ModelAdmin
 from starlette_core.schemas import ModelSchemaGenerator
 
-from example_models import DemoModel
-
-
-db = Database('sqlite:///')
-db.create_all()
+from .models import DemoModel
 
 
 # objects using the base admin that must implement
@@ -31,17 +21,17 @@ class DemoObject(dict):
 
 objects = [
     DemoObject({"id": id, "name": f"Record {id:02d}", "description": "Some description"})
-    for id in range(1, 51)
+    for id in range(1, 16)
 ]
 
 
 class DemoSchema(typesystem.Schema):
     name = typesystem.String(title="Name")
-    description = typesystem.Text(title="Description")
+    description = typesystem.Text(title="Description", allow_null=True)
 
 
 class DemoAdmin(BaseAdmin):
-    section_name = "Base Examples"
+    section_name = "Basic"
     collection_name = "Demos"
     list_field_names = ["id", "name", "description"]
     paginate_by = 10
@@ -56,10 +46,10 @@ class DemoAdmin(BaseAdmin):
         list_objects = objects
 
         # if enabled, very basic search example
-        search = request.query_params.get("search")
+        search = request.query_params.get("search","").strip().lower()
         if cls.search_enabled and search:
             list_objects = list(
-                filter(lambda obj: search.lower() in obj["name"].lower(), list_objects)
+                filter(lambda obj: search in obj["name"].lower(), list_objects)
             )
 
         # if enabled, sort the results
@@ -112,40 +102,23 @@ class DemoModelSchema(ModelSchemaGenerator):
 
 
 class DemoModelAdmin(ModelAdmin):
-    section_name = "Model Examples"
+    section_name = "SQLAlchemy"
     collection_name = "Demos"
     model_class = DemoModel
     list_field_names = ["id", "name", "description"]
     paginate_by = 0
+    order_enabled = True
+    search_enabled = True
     create_schema = DemoModelSchema().schema()
     update_schema = DemoModelSchema().schema()
     delete_schema = typesystem.Schema
 
-
-# create admin site
-adminsite = AdminSite(debug=True, name="admin")
-# register admins
-adminsite.register(DemoAdmin)
-adminsite.register(DemoModelAdmin)
-
-# create app
-app = Starlette(debug=True)
-
-app.mount(
-    path="/static",
-    app=StaticFiles(directory="static", packages=["starlette_admin"]),
-    name="static"
-)
-
-app.add_middleware(DatabaseMiddleware)
-
-
-@app.route('/')
-async def homepage(request):
-    return PlainTextResponse("go to /admin to see the demo")
-
-# mount admin site
-app.mount(path="/admin", app=adminsite, name=adminsite.name)
-
-if __name__ == "__main__":
-    uvicorn.run("example:app", host="0.0.0.0", port=8000, debug=True)
+    @classmethod
+    def get_search_results(cls, qs: orm.Query, term: str) -> orm.Query:
+        return qs.filter(
+            sa.or_(
+                DemoModel.id == term,
+                DemoModel.name.like(f"%{term}%"),
+                DemoModel.description.like(f"%{term}%")
+            )
+        )
