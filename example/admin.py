@@ -106,7 +106,7 @@ class DemoModelAdmin(ModelAdmin):
     collection_name = "Demos"
     model_class = DemoModel
     list_field_names = ["id", "name", "description"]
-    paginate_by = 0
+    paginate_by = 10
     order_enabled = True
     search_enabled = True
     create_schema = DemoModelSchema().schema()

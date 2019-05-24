@@ -7,18 +7,20 @@ from starlette_core.middleware import DatabaseMiddleware
 from .admin import DemoAdmin, DemoModelAdmin
 
 
+DEBUG = True
+
 db = Database('sqlite:///')
 db.create_all()
 
 
-# create admin site
-adminsite = AdminSite(debug=True, name="admin")
+# create an admin site
+adminsite = AdminSite(debug=DEBUG, name="admin")
 # register admins
 adminsite.register(DemoAdmin)
 adminsite.register(DemoModelAdmin)
 
 # create app
-app = Starlette(debug=True)
+app = Starlette(debug=DEBUG)
 
 app.mount(
     path="/static",
