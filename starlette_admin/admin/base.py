@@ -16,8 +16,7 @@ class BaseAdminMetaclass(type):
     _registry: typing.List["BaseAdmin"] = []
 
     def __init__(cls, name, bases, dct):
-        if not cls.__module__.startswith("__"):
-            cls._registry.append(cls)
+        cls._registry.append(cls)
         return super().__init__(name, bases, dct)
 
     @classmethod
