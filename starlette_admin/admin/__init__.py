@@ -1,2 +1,2 @@
-from .base import BaseAdmin, BaseAdminMetaclass
+from .base import BaseAdmin
 from .model_admin import ModelAdmin

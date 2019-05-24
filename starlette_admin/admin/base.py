@@ -11,22 +11,10 @@ from starlette_core.paginator import InvalidPage, Paginator
 
 from ..config import config
 from ..exceptions import MissingSchemaError
+from ..site import AdminSite
 
 
-class BaseAdminMetaclass(type):
-    _registry: typing.List["BaseAdmin"] = []
-
-    def __init__(cls, name, bases, dct):
-        cls._registry.append(cls)
-        return super().__init__(name, bases, dct)
-
-    @classmethod
-    def get_admin_classes(cls, app_name):
-        for_admin = [c for c in cls._registry if c.app_name == app_name]
-        return sorted(for_admin, key=lambda k: (k.section_name, k.collection_name))
-
-
-class BaseAdmin(metaclass=BaseAdminMetaclass):
+class BaseAdmin:
     """
     The base admin class for crud operations.
 
@@ -84,14 +72,14 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
     update_schema: typing.Type[typesystem.Schema]
 
     # will be set via `AdminSite.register`
-    app_name = ""
+    site: AdminSite
 
     @classmethod
     def get_global_context(cls, request):
         return {
-            "base_url_name": cls.base_url_name(),
+            "base_url_name": cls.site.base_url_name,
             "url_names": cls.url_names(),
-            "admin_classes": cls.get_admin_classes(cls.app_name),
+            "registry": cls.site.registry(),
             "request": request,
             "collection_name": cls.collection_name,
             "section_name": cls.section_name,
@@ -309,17 +297,13 @@ class BaseAdmin(metaclass=BaseAdminMetaclass):
         return f"{cls.section_path()}_{cls.collection_path()}"
 
     @classmethod
-    def base_url_name(cls):
-        return f"{cls.app_name}:base"
-
-    @classmethod
     def url_names(cls):
         mount = cls.mount_name()
         return {
-            "list": f"{cls.app_name}:{mount}_list",
-            "create": f"{cls.app_name}:{mount}_create",
-            "update": f"{cls.app_name}:{mount}_update",
-            "delete": f"{cls.app_name}:{mount}_delete",
+            "list": f"{cls.site.name}:{mount}_list",
+            "create": f"{cls.site.name}:{mount}_create",
+            "update": f"{cls.site.name}:{mount}_update",
+            "delete": f"{cls.site.name}:{mount}_delete",
         }
 
     @classmethod

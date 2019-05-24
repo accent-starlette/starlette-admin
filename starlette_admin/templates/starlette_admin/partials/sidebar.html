@@ -1,4 +1,4 @@
-{% for section in admin_classes|groupby('section_name') %}
+{% for section in registry|groupby('section_name') %}
 <p class="top-line mb-h">{{ section.grouper }}</p>
 <ul class="list-style-none">
 {% for admin in section.list %}
