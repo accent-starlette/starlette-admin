@@ -46,7 +46,7 @@ class AdminSite(Router):
         return sorted(self._registry, key=lambda k: (k.section_name, k.collection_name))
 
     @property
-    def base_url_name(self):
+    def base_url_name(self) -> str:
         return f"{self.name}:base"
 
     async def root(self, request):
