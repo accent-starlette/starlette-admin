@@ -3,7 +3,7 @@
     <select id="{{ field_id }}" name="{{ field_name }}" {% if required %}required{% endif %}>
         <option value>Please Select...</option>
         {% for choice_value, choice_text in field.choices %}
-            <option value="{{ choice_value }}" {% if value == choice_value %}selected{% endif %}>{{ choice_text }}</option>
+            <option value="{{ choice_value|string }}" {% if value == choice_value|string %}selected{% endif %}>{{ choice_text }}</option>
         {% endfor %}
     </select>
     {% if error %}
