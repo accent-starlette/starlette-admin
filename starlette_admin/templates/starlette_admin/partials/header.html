@@ -5,8 +5,10 @@
                 <a href="{{ url_for(base_url_name) }}" class="h2 m-0 c-white d-block"><span class="f-semi">Starlette</span> <span class="f-lite">Admin</span></a>
             </div>
             <div class="col text-right">
-                <span class="mr-1 c-white">John Smith</span>
-                <a href="" class="button button-outline button-white small">Logout</a>
+                {% if is_auth_enabled and request.user.is_authenticated %}
+                <span class="c-white">{{ request.user.display_name }}</span>
+                {% if logout_url %}<a href="{{ logout_url }}" class="button button-outline button-white small ml-1">Logout</a>{% endif %}
+                {% endif %}
             </div>
         </div>
     </div>

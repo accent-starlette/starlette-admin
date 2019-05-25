@@ -75,16 +75,17 @@ class BaseAdmin:
     site: AdminSite
 
     @classmethod
-    def get_global_context(cls, request):
-        return {
-            "base_url_name": cls.site.base_url_name,
-            "url_names": cls.url_names(),
-            "registry": cls.site.registry(),
-            "request": request,
-            "collection_name": cls.collection_name,
-            "section_name": cls.section_name,
-            "query_params": cls.query_params,
-        }
+    def get_context(cls, request):
+        context = cls.site.get_context(request)
+        context.update(
+            {
+                "collection_name": cls.collection_name,
+                "query_params": cls.query_params,
+                "section_name": cls.section_name,
+                "url_names": cls.url_names(),
+            }
+        )
+        return context
 
     @classmethod
     def get_list_objects(cls, request):
@@ -154,7 +155,7 @@ class BaseAdmin:
         if not has_required_scope(request, cls.permission_scopes):
             raise HTTPException(403)
 
-        context = cls.get_global_context(request)
+        context = cls.get_context(request)
         context.update(
             {
                 "list_field_names": cls.list_field_names,
@@ -202,7 +203,7 @@ class BaseAdmin:
 
         template = cls.create_template
         schema = cls.create_schema
-        context = cls.get_global_context(request)
+        context = cls.get_context(request)
 
         if request.method == "GET":
             form = cls.forms.Form(schema)
@@ -231,7 +232,7 @@ class BaseAdmin:
         template = cls.update_template
         schema = cls.update_schema
         instance = cls.get_object(request)
-        context = cls.get_global_context(request)
+        context = cls.get_context(request)
 
         if request.method == "GET":
             values = cls.get_form_values_from_object(instance)
@@ -261,7 +262,7 @@ class BaseAdmin:
         template = cls.delete_template
         schema = cls.delete_schema
         instance = cls.get_object(request)
-        context = cls.get_global_context(request)
+        context = cls.get_context(request)
 
         if request.method == "GET":
             values = cls.get_form_values_from_object(instance)

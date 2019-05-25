@@ -45,6 +45,21 @@ class AdminSite(Router):
 
         return sorted(self._registry, key=lambda k: (k.section_name, k.collection_name))
 
+    def get_context(self, request) -> dict:
+        return {
+            "base_url_name": self.base_url_name,
+            "is_auth_enabled": self.is_auth_enabled(request),
+            "logout_url": config.logout_url,
+            "registry": self.registry(),
+            "request": request,
+        }
+
+    def is_auth_enabled(self, request) -> bool:
+        try:
+            return request.user is not None
+        except AssertionError:
+            return False
+
     @property
     def base_url_name(self) -> str:
         return f"{self.name}:base"
@@ -53,11 +68,6 @@ class AdminSite(Router):
         if not has_required_scope(request, self.permission_scopes):
             raise HTTPException(403)
 
+        context = self.get_context(request)
         template = "starlette_admin/root.html"
-        context = {
-            "registry": self.registry(),
-            "base_url_name": self.base_url_name,
-            "request": request,
-        }
-
         return config.templates.TemplateResponse(template, context)

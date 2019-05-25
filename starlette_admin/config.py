@@ -7,8 +7,9 @@ templates_directory = join(dirname(realpath(__file__)), "templates")
 
 
 class AppConfig:
-    templates: Jinja2Templates = Jinja2Templates(directory=templates_directory)
     forms: Jinja2Forms = Jinja2Forms(directory=templates_directory)
+    logout_url = ""
+    templates: Jinja2Templates = Jinja2Templates(directory=templates_directory)
 
 
 config = AppConfig()
