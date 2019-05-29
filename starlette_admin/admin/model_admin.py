@@ -63,9 +63,9 @@ class ModelAdmin(BaseAdmin):
             qs = cls.get_search_results(qs, search)
 
         # if enabled, sort the results
-        if cls.order_enabled:
-            order_by = request.query_params.get("order_by", "id")
-            order_direction = request.query_params.get("order_direction", "asc")
+        order_by = request.query_params.get("order_by")
+        order_direction = request.query_params.get("order_direction")
+        if cls.order_enabled and order_by and order_direction:
             qs = cls.get_ordered_results(qs, order_by, order_direction)
 
         return qs.all()

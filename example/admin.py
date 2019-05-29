@@ -33,7 +33,7 @@ class DemoSchema(typesystem.Schema):
 class DemoAdmin(BaseAdmin):
     section_name = "Basic"
     collection_name = "Demos"
-    list_field_names = ["id", "name", "description"]
+    list_field_names = ["name", "description"]
     paginate_by = 10
     order_enabled = True
     search_enabled = True
@@ -54,7 +54,7 @@ class DemoAdmin(BaseAdmin):
 
         # if enabled, sort the results
         if cls.order_enabled:
-            order_by = request.query_params.get("order_by", "id")
+            order_by = request.query_params.get("order_by", "name")
             order_direction = request.query_params.get("order_direction", "asc")
             list_objects = sorted(
                 list_objects, key=lambda k: k[order_by], reverse=order_direction=="desc"
@@ -105,7 +105,7 @@ class DemoModelAdmin(ModelAdmin):
     section_name = "SQLAlchemy"
     collection_name = "Demos"
     model_class = DemoModel
-    list_field_names = ["id", "name", "description"]
+    list_field_names = ["name", "description"]
     paginate_by = 10
     order_enabled = True
     search_enabled = True
@@ -117,7 +117,6 @@ class DemoModelAdmin(ModelAdmin):
     def get_search_results(cls, qs: orm.Query, term: str) -> orm.Query:
         return qs.filter(
             sa.or_(
-                DemoModel.id == term,
                 DemoModel.name.like(f"%{term}%"),
                 DemoModel.description.like(f"%{term}%")
             )
