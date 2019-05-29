@@ -38,6 +38,10 @@ class ModelAdmin(BaseAdmin):
     model_class: Base
 
     @classmethod
+    def get_default_ordering(cls, qs: orm.Query) -> orm.Query:
+        return qs.order_by("id")
+
+    @classmethod
     def get_search_results(cls, qs: orm.Query, term: str) -> orm.Query:
         raise NotImplementedError()
 
@@ -67,6 +71,8 @@ class ModelAdmin(BaseAdmin):
         order_direction = request.query_params.get("order_direction")
         if cls.order_enabled and order_by and order_direction:
             qs = cls.get_ordered_results(qs, order_by, order_direction)
+        else:
+            qs = cls.get_default_ordering(qs)
 
         return qs.all()
 

@@ -114,6 +114,10 @@ class DemoModelAdmin(ModelAdmin):
     delete_schema = typesystem.Schema
 
     @classmethod
+    def get_default_ordering(cls, qs: orm.Query) -> orm.Query:
+        return qs.order_by("name")
+
+    @classmethod
     def get_search_results(cls, qs: orm.Query, term: str) -> orm.Query:
         return qs.filter(
             sa.or_(
