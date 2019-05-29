@@ -4,7 +4,7 @@ from starlette.middleware.authentication import AuthenticationMiddleware
 from starlette.staticfiles import StaticFiles
 from starlette_admin.config import config
 from starlette_admin.site import AdminSite
-from starlette_core.database import Database
+from starlette_core.database import Database, DatabaseURL
 from starlette_core.middleware import DatabaseMiddleware
 
 from .admin import DemoAdmin, DemoModelAdmin
@@ -17,7 +17,9 @@ class DummyAuthBackend(AuthenticationBackend):
 
 DEBUG = True
 
-db = Database('sqlite:///')
+url = DatabaseURL("sqlite:///:memory:")
+
+db = Database(url)
 db.create_all()
 
 # config
