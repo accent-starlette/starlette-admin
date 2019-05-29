@@ -1,11 +1,9 @@
-import typesystem
-
 import sqlalchemy as sa
 from sqlalchemy import orm
 from starlette.exceptions import HTTPException
 from starlette_admin.admin import BaseAdmin, ModelAdmin
-from starlette_core.schemas import ModelSchemaGenerator
-
+from wtforms import fields, form, validators
+from wtforms.ext.sqlalchemy.orm import model_form
 from .models import DemoModel
 
 
@@ -25,9 +23,9 @@ objects = [
 ]
 
 
-class DemoSchema(typesystem.Schema):
-    name = typesystem.String(title="Name")
-    description = typesystem.Text(title="Description", allow_null=True)
+class DemoForm(form.Form):
+    name = fields.TextField(validators=[validators.required()])
+    description = fields.TextAreaField()
 
 
 class DemoAdmin(BaseAdmin):
@@ -37,9 +35,9 @@ class DemoAdmin(BaseAdmin):
     paginate_by = 10
     order_enabled = True
     search_enabled = True
-    create_schema = DemoSchema
-    update_schema = DemoSchema
-    delete_schema = typesystem.Schema
+    create_form = DemoForm
+    update_form = DemoForm
+    delete_form = form.Form
 
     @classmethod
     def get_list_objects(cls, request):
@@ -71,34 +69,27 @@ class DemoAdmin(BaseAdmin):
             raise HTTPException(404)
 
     @classmethod
-    def do_create(cls, validated_data):
+    def do_create(cls, form):
         next_id = objects[-1]["id"] + 1 if objects else 1
-        new_object = DemoObject(validated_data)
+        new_object = DemoObject(form.data)
         new_object["id"] = next_id
         objects.append(new_object)
 
     @classmethod
-    def do_update(cls, instance, validated_data):
+    def do_update(cls, instance, form):
         index = objects.index(instance)
-        for k, v in validated_data.items():
+        for k, v in form.data.items():
             instance[k] = v
         objects[index] = instance
 
     @classmethod
-    def do_delete(cls, instance, validated_data):
+    def do_delete(cls, instance, form):
         index = objects.index(instance)
         objects.pop(index)
 
 
 # objects using the model admin
 ####################################################################
-
-class DemoModelSchema(ModelSchemaGenerator):
-    model = DemoModel
-    model_fields = [
-        "name",
-        "description",
-    ]
 
 
 class DemoModelAdmin(ModelAdmin):
@@ -109,9 +100,9 @@ class DemoModelAdmin(ModelAdmin):
     paginate_by = 10
     order_enabled = True
     search_enabled = True
-    create_schema = DemoModelSchema().schema()
-    update_schema = DemoModelSchema().schema()
-    delete_schema = typesystem.Schema
+    create_form = model_form(DemoModel)
+    update_form = model_form(DemoModel)
+    delete_form = form.Form
 
     @classmethod
     def get_default_ordering(cls, qs: orm.Query) -> orm.Query:

@@ -1,6 +1,5 @@
 import typing
 
-import typesystem
 from starlette.authentication import has_required_scope
 from starlette.datastructures import QueryParams
 from starlette.exceptions import HTTPException
@@ -8,45 +7,15 @@ from starlette.responses import RedirectResponse
 from starlette.routing import Route, Router
 from starlette.templating import Jinja2Templates
 from starlette_core.paginator import InvalidPage, Paginator
+from wtforms.form import Form
 
 from ..config import config
-from ..exceptions import MissingSchemaError
+from ..exceptions import MissingFormError
 from ..site import AdminSite
 
 
 class BaseAdmin:
-    """
-    The base admin class for crud operations.
-
-    Methods that require implementing:
-    * get_list_objects
-    * get_object
-    * do_create
-    * do_update
-    * do_delete
-
-    Variables:
-        section_name:       The section/app name the model would natually live in.
-        collection_name:    The collection/model name.
-        list_field_names:   The list of fields to show on the main listing.
-        templates:          Instance of `starlette.templating.Jinja2Templates` to load templates from.
-        forms:              Instance of `typesystem.Jinja2Forms` to load form templates from.
-        paginate_by:        The number of objects to show per page, set to `None` to disable pagination.
-        paginator_class:    Built in pagination class.
-        search_enabled:     Whether to show the search form at the top of the list view.
-                            Seaching those objects is your responsibility within the 
-                            `cls.get_list_objects` method.
-        order_enabled:      Whether to render the list table headers as anchors that can be
-                            clicked to toggle search order and direction. Ordering those objects
-                            is your responsibility within the `cls.get_list_objects` method.
-        list_template:      List template path.
-        create_template:    Create template path.
-        update_template:    Update template path.
-        delete_template:    Delete template path.
-        create_schema:      The `typesystem.Schema` used to validate a new object.
-        update_schema:      The `typesystem.Schema` used to validate an existing object.
-        delete_schema:      The `typesystem.Schema` used to validate a deleted object.
-    """
+    """ The base admin class for crud operations. """
 
     # general
     section_name: str = ""
@@ -61,15 +30,14 @@ class BaseAdmin:
     permission_scopes: typing.Sequence[str] = []
     # templating
     templates: Jinja2Templates = config.templates
-    forms: typesystem.Jinja2Forms = config.forms
     create_template: str = "starlette_admin/create.html"
     delete_template: str = "starlette_admin/delete.html"
     list_template: str = "starlette_admin/list.html"
     update_template: str = "starlette_admin/update.html"
-    # schemas
-    create_schema: typing.Type[typesystem.Schema]
-    delete_schema: typing.Type[typesystem.Schema]
-    update_schema: typing.Type[typesystem.Schema]
+    # forms
+    create_form: Form
+    delete_form: Form
+    update_form: Form
 
     # will be set via `AdminSite.register`
     site: AdminSite
@@ -123,15 +91,15 @@ class BaseAdmin:
         raise Exception("Form values must be a dict or implement a method `to_json`")
 
     @classmethod
-    def do_create(cls, validated_data):
+    def do_create(cls, form):
         raise NotImplementedError()
 
     @classmethod
-    def do_delete(cls, instance, validated_data):
+    def do_delete(cls, instance, form):
         raise NotImplementedError()
 
     @classmethod
-    def do_update(cls, instance, validated_data):
+    def do_update(cls, instance, form):
         raise NotImplementedError()
 
     @classmethod
@@ -198,27 +166,24 @@ class BaseAdmin:
         if not has_required_scope(request, cls.permission_scopes):
             raise HTTPException(403)
 
-        if not cls.create_schema:
-            raise MissingSchemaError()
+        if not cls.create_form:
+            raise MissingFormError()
 
-        template = cls.create_template
-        schema = cls.create_schema
         context = cls.get_context(request)
 
         if request.method == "GET":
-            form = cls.forms.Form(schema)
+            form = cls.create_form()
             context.update({"form": form})
-            return cls.templates.TemplateResponse(template, context)
+            return cls.templates.TemplateResponse(cls.create_template, context)
 
         data = await request.form()
-        validated_data, errors = schema.validate_or_error(data)
+        form = cls.create_form(data)
 
-        if errors:
-            form = cls.forms.Form(schema, values=data, errors=errors)
+        if not form.validate():
             context.update({"form": form})
-            return cls.templates.TemplateResponse(template, context)
+            return cls.templates.TemplateResponse(cls.create_template, context)
 
-        cls.do_create(validated_data)
+        cls.do_create(form)
         return RedirectResponse(request.url_for(cls.url_names()["list"]))
 
     @classmethod
@@ -226,29 +191,28 @@ class BaseAdmin:
         if not has_required_scope(request, cls.permission_scopes):
             raise HTTPException(403)
 
-        if not cls.update_schema:
-            raise MissingSchemaError()
+        if not cls.update_form:
+            raise MissingFormError()
 
-        template = cls.update_template
-        schema = cls.update_schema
         instance = cls.get_object(request)
         context = cls.get_context(request)
 
         if request.method == "GET":
-            values = cls.get_form_values_from_object(instance)
-            form = cls.forms.Form(schema, values=values)
+            if isinstance(instance, dict):
+                form = cls.update_form(data=instance)
+            else:
+                form = cls.update_form(obj=instance)
             context.update({"form": form, "object": instance})
-            return cls.templates.TemplateResponse(template, context)
+            return cls.templates.TemplateResponse(cls.update_template, context)
 
         data = await request.form()
-        validated_data, errors = schema.validate_or_error(data)
+        form = cls.update_form(data, obj=instance)
 
-        if errors:
-            form = cls.forms.Form(schema, values=data, errors=errors)
+        if not form.validate():
             context.update({"form": form, "object": instance})
-            return cls.templates.TemplateResponse(template, context)
+            return cls.templates.TemplateResponse(cls.update_template, context)
 
-        cls.do_update(instance, validated_data)
+        cls.do_update(instance, form)
         return RedirectResponse(request.url_for(cls.url_names()["list"]))
 
     @classmethod
@@ -256,29 +220,28 @@ class BaseAdmin:
         if not has_required_scope(request, cls.permission_scopes):
             raise HTTPException(403)
 
-        if not cls.delete_schema:
-            raise MissingSchemaError()
+        if not cls.delete_form:
+            raise MissingFormError()
 
-        template = cls.delete_template
-        schema = cls.delete_schema
         instance = cls.get_object(request)
         context = cls.get_context(request)
 
         if request.method == "GET":
-            values = cls.get_form_values_from_object(instance)
-            form = cls.forms.Form(schema, values=values)
+            if isinstance(instance, dict):
+                form = cls.delete_form(data=instance)
+            else:
+                form = cls.delete_form(obj=instance)
             context.update({"form": form, "object": instance})
-            return cls.templates.TemplateResponse(template, context)
+            return cls.templates.TemplateResponse(cls.delete_template, context)
 
         data = await request.form()
-        validated_data, errors = schema.validate_or_error(data)
+        form = cls.delete_form(data, obj=instance)
 
-        if errors:
-            form = cls.forms.Form(schema, values=data, errors=errors)
+        if not form.validate():
             context.update({"form": form, "object": instance})
-            return cls.templates.TemplateResponse(template, context)
+            return cls.templates.TemplateResponse(cls.delete_template, context)
 
-        cls.do_delete(instance, validated_data)
+        cls.do_delete(instance, form)
         return RedirectResponse(request.url_for(cls.url_names()["list"]))
 
     @classmethod

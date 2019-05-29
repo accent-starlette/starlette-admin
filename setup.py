@@ -69,6 +69,7 @@ setup(
         'itsdangerous',
         'jinja2',
         'python-multipart',
+        'wtforms',
         'starlette-core @ git+https://github.com/accent-starlette/starlette-core@master'
     ],
     classifiers=[

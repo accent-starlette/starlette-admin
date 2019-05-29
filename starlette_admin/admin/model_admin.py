@@ -5,35 +5,7 @@ from .base import BaseAdmin
 
 
 class ModelAdmin(BaseAdmin):
-    """
-    The base admin class for sqlalchemy crud operations.
-
-    Methods that require implementing:
-    * get_search_results (if `cls.search_enabled = True`)
-
-    Variables:
-        section_name:       The section/app name the model would natually live in.
-        collection_name:    The collection/model name.
-        model_class:        The declarative base model class.
-        list_field_names:   The list of fields to show on the main listing.
-        templates:          Instance of `starlette.templating.Jinja2Templates` to load templates from.
-        forms:              Instance of `typesystem.Jinja2Forms` to load form templates from.
-        paginate_by:        The number of objects to show per page, set to `None` to disable pagination.
-        paginator_class:    Built in pagination class.
-        search_enabled:     Whether to show the search form at the top of the list view.
-                            Seaching those objects is your responsibility within the 
-                            `cls.get_list_objects` method.
-        order_enabled:      Whether to render the list table headers as anchors that can be
-                            clicked to toggle search order and direction. Ordering those objects
-                            is your responsibility within the `cls.get_list_objects` method.
-        list_template:      List template path.
-        create_template:    Create template path.
-        update_template:    Update template path.
-        delete_template:    Delete template path.
-        create_schema:      The `typesystem.Schema` used to validate a new object.
-        update_schema:      The `typesystem.Schema` used to validate an existing object.
-        delete_schema:      The `typesystem.Schema` used to validate a deleted object.
-    """
+    """ The base admin class for sqlalchemy crud operations. """
 
     model_class: Base
 
@@ -82,22 +54,18 @@ class ModelAdmin(BaseAdmin):
         return cls.model_class.query.get_or_404(id)
 
     @classmethod
-    def do_create(cls, validated_data):
+    def do_create(cls, form):
         instance = cls.model_class()
-        for key in validated_data.keys():
-            if hasattr(instance, key):
-                setattr(instance, key, getattr(validated_data, key))
+        form.populate_obj(instance)
         instance.save()
         return instance
 
     @classmethod
-    def do_delete(cls, instance, validated_data):
+    def do_delete(cls, instance, form):
         instance.delete()
 
     @classmethod
-    def do_update(cls, instance, validated_data):
-        for key in validated_data.keys():
-            if hasattr(instance, key):
-                setattr(instance, key, getattr(validated_data, key))
+    def do_update(cls, instance, form):
+        form.populate_obj(instance)
         instance.save()
         return instance

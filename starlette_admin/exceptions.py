@@ -1,2 +1,2 @@
-class MissingSchemaError(Exception):
+class MissingFormError(Exception):
     pass
