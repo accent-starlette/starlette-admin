@@ -83,14 +83,6 @@ class BaseAdmin:
         raise NotImplementedError()
 
     @classmethod
-    def get_form_values_from_object(cls, instance):
-        if isinstance(instance, dict):
-            return instance
-        elif hasattr(instance, "to_json"):
-            return instance.to_json()
-        raise Exception("Form values must be a dict or implement a method `to_json`")
-
-    @classmethod
     def do_create(cls, form):
         raise NotImplementedError()
 
