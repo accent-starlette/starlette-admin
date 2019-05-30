@@ -8,10 +8,3 @@ class DemoModel(Base):
 
     def __str__(self):
         return self.name
-
-    def to_json(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "description": self.description
-        }
