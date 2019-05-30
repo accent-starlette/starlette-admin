@@ -4,16 +4,20 @@ language: python
 cache: pip
 
 python:
-    - "3.6"
-    - "3.7"
-    - "3.8-dev"
+- "3.6"
+- "3.7"
+- "3.8-dev"
+
+matrix:
+  allow_failures:
+  - python: "3.8-dev"
 
 install:
-    - pip install -U -r requirements.txt
+- pip install -U -r requirements.txt
 
 script:
-    - scripts/test
+- scripts/test
 
 after_script:
-    - pip install codecov
-    - codecov
+- pip install codecov
+- codecov
