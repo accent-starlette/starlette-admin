@@ -111,6 +111,10 @@ class BaseAdmin:
             raise HTTPException(404, f"Invalid page {page_number}: {str(e)}")
 
     @classmethod
+    def get_form(cls, form_cls: Form, **kwargs: typing.Any):
+        return form_cls(**kwargs)
+
+    @classmethod
     async def list_view(cls, request):
         if not has_required_scope(request, cls.permission_scopes):
             raise HTTPException(403)
@@ -164,12 +168,12 @@ class BaseAdmin:
         context = cls.get_context(request)
 
         if request.method == "GET":
-            form = cls.create_form()
+            form = cls.get_form(cls.create_form)
             context.update({"form": form})
             return cls.templates.TemplateResponse(cls.create_template, context)
 
         data = await request.form()
-        form = cls.create_form(data)
+        form = cls.get_form(cls.create_form, formdata=data)
 
         if not form.validate():
             context.update({"form": form})
@@ -188,17 +192,19 @@ class BaseAdmin:
 
         instance = cls.get_object(request)
         context = cls.get_context(request)
+        form_kwargs = {
+            "form_cls": cls.update_form,
+            "data": instance if isinstance(instance, dict) else None,
+            "obj": instance if not isinstance(instance, dict) else None,
+        }
 
         if request.method == "GET":
-            if isinstance(instance, dict):
-                form = cls.update_form(data=instance)
-            else:
-                form = cls.update_form(obj=instance)
+            form = cls.get_form(**form_kwargs)
             context.update({"form": form, "object": instance})
             return cls.templates.TemplateResponse(cls.update_template, context)
 
         data = await request.form()
-        form = cls.update_form(data, obj=instance)
+        form = cls.get_form(**form_kwargs, formdata=data)
 
         if not form.validate():
             context.update({"form": form, "object": instance})
@@ -217,17 +223,19 @@ class BaseAdmin:
 
         instance = cls.get_object(request)
         context = cls.get_context(request)
+        form_kwargs = {
+            "form_cls": cls.delete_form,
+            "data": instance if isinstance(instance, dict) else None,
+            "obj": instance if not isinstance(instance, dict) else None,
+        }
 
         if request.method == "GET":
-            if isinstance(instance, dict):
-                form = cls.delete_form(data=instance)
-            else:
-                form = cls.delete_form(obj=instance)
+            form = cls.get_form(**form_kwargs)
             context.update({"form": form, "object": instance})
             return cls.templates.TemplateResponse(cls.delete_template, context)
 
         data = await request.form()
-        form = cls.delete_form(data, obj=instance)
+        form = cls.get_form(**form_kwargs, formdata=data)
 
         if not form.validate():
             context.update({"form": form, "object": instance})
