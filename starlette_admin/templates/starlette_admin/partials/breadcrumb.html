@@ -1,6 +1,6 @@
 <p>
-    Home
-    {% if section_name %} <i class="icon-angle-right c-silverchalice"></i> {{ section_name }}{% endif %}
-    {% if collection_name %} <i class="icon-angle-right c-silverchalice"></i> {{ collection_name }}{% endif %}
-    {% if object %} <i class="icon-angle-right c-silverchalice"></i> <span class="c-silverchalice">{{ object }}</span>{% endif %}
+    <a href="{{ url_for(base_url_name) }}">Home</a>
+    {% if section_name %}<a><i class="icon-angle-right c-silverchalice"></i> {{ section_name }}</a>{% endif %}
+    {% if collection_name %}<a href="{{ url_for(url_names['list']) }}"><i class="icon-angle-right c-silverchalice"></i> {{ collection_name }}</a>{% endif %}
+    {% if object %}<a href="{{ url_for(url_names['update'], id=object.id) }}"><i class="icon-angle-right c-silverchalice"></i> <span class="c-silverchalice">{{ object }}</span></a>{% endif %}
 </p>
