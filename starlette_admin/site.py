@@ -1,6 +1,7 @@
 import typing
 
 from starlette.authentication import has_required_scope
+from starlette.exceptions import HTTPException
 from starlette.routing import Router
 
 from .config import config
