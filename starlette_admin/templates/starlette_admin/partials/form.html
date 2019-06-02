@@ -1,8 +1,15 @@
 <form method="post" novalidate>
     {% for field in form %}
     <div {% if field.errors %}class="text-error"{% endif %}>
-        {{ field.label }}
-        {{ field }}
+        {% if field.type == "BooleanField" %}
+            {{ field.label }}
+            <div class="checkbox">
+                <label>{{ field }}<span></span> &nbsp;</label> 
+            </div>
+        {% else %}
+            {{ field.label }}
+            {{ field }}
+        {% endif %}
         {% if field.errors %}
         <cite>{{ field.errors|join(' ') }}</cite>
         {% elif field.description %}
