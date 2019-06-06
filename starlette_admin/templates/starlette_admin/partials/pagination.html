@@ -2,15 +2,15 @@
 <div class="row">
     <div class="col-4 text-left">
     {% if page_obj.has_previous %}
-        <a class="button button-silver button-outline" href="?{{ query_params(request.query_params, page=1) }}"><i class="icon-angle-double-left"></i>First</a>
-        <a class="button button-silver button-outline" href="?{{ query_params(request.query_params, page=page_obj.previous_page_number) }}"><i class="icon-angle-left"></i>Previous</a>
+        <a class="button button-primary button-outline" href="?{{ query_params(request.query_params, page=1) }}"><i class="icon-angle-double-left"></i>First</a>
+        <a class="button button-primary button-outline" href="?{{ query_params(request.query_params, page=page_obj.previous_page_number) }}"><i class="icon-angle-left"></i>Previous</a>
     {% endif %}
     </div>
     <div class="col-4 text-center muted">Page {{ page_obj.number }} of {{ paginator.num_pages }} - {{ paginator.count }} record{% if paginator.count != 1 %}s{% endif %}</div>
     <div class="col-4 text-right">
     {% if page_obj.has_next %}
-        <a class="button button-silver button-outline" href="?{{ query_params(request.query_params, page=page_obj.next_page_number) }}">Next<i class="icon-angle-right"></i></a>
-        <a class="button button-silver button-outline" href="?{{ query_params(request.query_params, page=paginator.num_pages) }}">Last<i class="icon-angle-double-right"></i></a>
+        <a class="button button-primary button-outline" href="?{{ query_params(request.query_params, page=page_obj.next_page_number) }}">Next<i class="icon-angle-right"></i></a>
+        <a class="button button-primary button-outline" href="?{{ query_params(request.query_params, page=paginator.num_pages) }}">Last<i class="icon-angle-double-right"></i></a>
     {% endif %}
     </div>
 </div>

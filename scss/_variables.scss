@@ -35,7 +35,6 @@ $buttons: (
   red:                          map-get($colors, "red")             map-get($colors, "white"),
   primary:                      map-get($colors, "primary")         map-get($colors, "white"),
   white:                        map-get($colors, "white")           map-get($colors, "black"),
-  silver:                       map-get($colors, "silverchalice")   map-get($colors, "white"),
 );
 $button-padding-y:              .4rem !default;
 $button-padding-x:              1rem !default;

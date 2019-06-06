@@ -1166,45 +1166,6 @@ button,
   outline: 0;
 }
 
-.button.button-silver {
-  color: white;
-  background-color: #9d9d9d;
-  border-color: #909090;
-}
-
-.button.button-silver:hover, .button.button-silver:focus {
-  color: white;
-  background-color: #848484;
-  border-color: #777777;
-  outline: 0;
-}
-
-.button.button-outline.button-silver {
-  color: #9d9d9d;
-  background-color: transparent;
-  border-color: #9d9d9d;
-}
-
-.button.button-outline.button-silver:hover, .button.button-outline.button-silver:focus {
-  color: #848484;
-  background-color: transparent;
-  border-color: #848484;
-  outline: 0;
-}
-
-.button.button-clear.button-silver {
-  color: #9d9d9d;
-  background-color: transparent;
-  border-color: transparent;
-}
-
-.button.button-clear.button-silver:hover, .button.button-clear.button-silver:focus {
-  color: #848484;
-  background-color: transparent;
-  border-color: transparent;
-  outline: 0;
-}
-
 code,
 kbd,
 pre,
