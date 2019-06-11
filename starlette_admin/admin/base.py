@@ -1,7 +1,6 @@
 import typing
 
 from starlette.authentication import has_required_scope
-from starlette.datastructures import QueryParams
 from starlette.exceptions import HTTPException
 from starlette.responses import RedirectResponse
 from starlette.routing import Route, Router
@@ -48,7 +47,6 @@ class BaseAdmin:
         context.update(
             {
                 "collection_name": cls.collection_name,
-                "query_params": cls.query_params,
                 "section_name": cls.section_name,
                 "url_names": cls.url_names(),
             }
@@ -298,19 +296,3 @@ class BaseAdmin:
                 ),
             ]
         )
-
-    @classmethod
-    def query_params(cls, initial: QueryParams, **kwargs):
-        """
-        Update a `starlette.datastructures.QueryParams` objects
-        with new values passed into kwargs.
-
-        Usage:
-            if url is `/?search=foo&page=1`
-            {{ urlencode(request.query_params, page=2) }}
-            would return `search=foo&page=2`
-        """
-
-        values = dict(initial)
-        values.update(kwargs)
-        return QueryParams(**values)

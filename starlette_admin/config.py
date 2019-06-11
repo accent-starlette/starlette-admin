@@ -1,13 +1,10 @@
-from os.path import dirname, join, realpath
-
-from starlette.templating import Jinja2Templates
-
-templates_directory = join(dirname(realpath(__file__)), "templates")
+import jinja2
+from starlette_core.templating import Jinja2Templates
 
 
 class AppConfig:
     logout_url = ""
-    templates: Jinja2Templates = Jinja2Templates(directory=templates_directory)
+    templates: Jinja2Templates = Jinja2Templates(loader=jinja2.PackageLoader("starlette_admin"))
 
 
 config = AppConfig()
