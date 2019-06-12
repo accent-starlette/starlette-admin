@@ -4,8 +4,8 @@ from starlette.authentication import has_required_scope
 from starlette.exceptions import HTTPException
 from starlette.responses import RedirectResponse
 from starlette.routing import Route, Router
-from starlette.templating import Jinja2Templates
 from starlette_core.paginator import InvalidPage, Paginator
+from starlette_core.templating import Jinja2Templates
 from wtforms.form import Form
 
 from ..config import config
