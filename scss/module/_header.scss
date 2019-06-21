@@ -1,0 +1,17 @@
+/* header */
+
+header {
+  @include position($top: 0, $position: fixed);
+  z-index: zindex("header");
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  width: 100%;
+  transition: top .1s;
+  background: color("primary");
+}
+
+header.up {
+  top: -57px;
+}
+

@@ -1,9 +1,11 @@
 {% extends "starlette_admin/base.html" %}
 
 {% block content %}
-{% include "starlette_admin/partials/breadcrumb.html" %}
-<h1 class="f-lite">Update</h1>
-{% with button_name='update', show_delete_link=True %}
-{% include "starlette_admin/partials/form.html" %}
-{% endwith %}
+<div class="container-fluid mt-header">
+    {% include "starlette_admin/partials/breadcrumb.html" %}
+    <h1 class="f-lite">Update</h1>
+    {% with button_name='update', show_delete_link=True %}
+    {% include "starlette_admin/partials/form.html" %}
+    {% endwith %}
+</div>
 {% endblock %}

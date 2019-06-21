@@ -17,11 +17,13 @@
 /* add your custom modules here */
 @import "fontello/css/fontello";
 @import "module/anchor";
+@import "module/breadcrumb";
 @import "module/button";
 @import "module/form";
-@import "module/layout";
+@import "module/header";
+@import "module/menu";
 @import "module/panel";
-@import "module/tab";
+@import "module/svg";
 @import "module/utils";
 
 /* karma-css utilities */

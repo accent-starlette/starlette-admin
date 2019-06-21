@@ -1,4 +1,4 @@
-<table class="table-striped">
+<table class="table table-headed">
     <thead>
         <tr>
         {% for name in list_field_names -%}
@@ -31,7 +31,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <td class="py-1" colspan="{{ list_field_names|length }}">
+            <td class="py-1h" colspan="{{ list_field_names|length }}">
                 {% if is_paginated %}
                     {% include "starlette_admin/partials/pagination.html" %}
                 {% else %}

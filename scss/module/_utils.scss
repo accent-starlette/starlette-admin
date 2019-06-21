@@ -18,6 +18,10 @@ $spacers: (
   }
 }
 
+.mt-header {
+  margin-top: 6rem;
+}
+
 .f-lite {
   font-weight: 300;
 }
@@ -29,8 +33,4 @@ $spacers: (
 .top-line {
   border-top: 2px solid color("seashell");
   padding-top: 4px;
-}
-
-.highlight {
-  background: color-lighten("primary", 38%);
 }

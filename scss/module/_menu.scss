@@ -1,0 +1,43 @@
+/* menu */
+
+.menu {
+    @include position($top: 0, $position: fixed);
+    z-index: zindex("menu");
+    width: 290px;
+    height: 100vh;
+    overflow-y: auto;
+    left: -290px;
+    background: color("seashell");
+    transition: left ease-out .2s;
+  }
+  
+  .menu.active {
+    left: 0;
+  }
+  
+  .menu-header {
+    @include position($top: 0, $position: sticky);
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: color("seashell");
+  }
+  
+  .menu ul {
+    list-style: none;
+  }
+  
+  .menu li a {
+    display: block;
+    padding: .5rem 1rem;
+    margin-bottom: 1rem;
+    background: color("white");
+    color: color("dovegray");
+    font-weight: 600;
+    border-radius: $global-radius;
+  }
+  
+  .menu hr {
+    margin: 2rem 0;
+  }
+  

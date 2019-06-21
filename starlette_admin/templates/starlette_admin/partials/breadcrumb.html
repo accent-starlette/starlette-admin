@@ -1,6 +1,6 @@
-<p>
-    <a href="{{ url_for(base_url_name) }}">Home</a>
-    {% if section_name %}<a><i class="icon-angle-right c-silverchalice"></i> {{ section_name }}</a>{% endif %}
-    {% if collection_name %}<a href="{{ url_for(url_names['list']) }}"><i class="icon-angle-right c-silverchalice"></i> {{ collection_name }}</a>{% endif %}
-    {% if object %}<a href="{{ url_for(url_names['update'], id=object.id) }}"><i class="icon-angle-right c-silverchalice"></i> <span class="c-silverchalice">{{ object }}</span></a>{% endif %}
-</p>
+<ul class="breadcrumb">
+    <li><a href="{{ url_for(base_url_name) }}">Home</a></li>
+    {% if section_name %}<li><a>{{ section_name }}</a></li>{% endif %}
+    {% if collection_name %}<li><a href="{{ url_for(url_names['list']) }}">{{ collection_name }}</a></li>{% endif %}
+    {% if object %}<li><a href="{{ url_for(url_names['update'], id=object.id) }}">{{ object }}</a></li>{% endif %}
+</ul>

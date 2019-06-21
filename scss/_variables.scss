@@ -3,12 +3,12 @@
 // typography
 $base-font-family:              "Source Sans Pro", sans-serif;
 $code-font-family:              "Inconsolata", monospace;
-$base-font-size:                14px !default;
-$table-font-size:               1.4rem !default;
+$base-font-size:                14px;
+$table-font-size:               1.4rem;
 
 /* colors */
 $colors: (
-  "primary":                    rgb(103, 175, 194),
+  "primary":                    rgb(26, 162, 220),
   "black":                      rgb(0, 0, 0),
   "white":                      rgb(255, 255, 255),
   "red":                        rgb(170, 4, 3),
@@ -18,10 +18,9 @@ $colors: (
   "silverchalice":              rgb(157, 157, 157),
 );
 
-$body-background:               map-get($colors, "white") !default;
-$header-font-color:             map-get($colors, "primary") !default;
-$font-color:                    map-get($colors, "dovegray") !default;
-$link-color:                    map-get($colors, "primary") !default;
+$body-background:               map-get($colors, "white");
+$font-color:                    map-get($colors, "dovegray");
+$link-color:                    map-get($colors, "primary");
 
 /* misc */
 $global-radius:                 .25rem;
@@ -36,6 +35,12 @@ $buttons: (
   primary:                      map-get($colors, "primary")         map-get($colors, "white"),
   white:                        map-get($colors, "white")           map-get($colors, "black"),
 );
-$button-padding-y:              .4rem !default;
-$button-padding-x:              1rem !default;
-$button-font-size:              1.4rem !default;
+$button-padding-y:              .4rem;
+$button-padding-x:              1rem;
+$button-font-size:              1.4rem;
+
+// z-indexes
+$z-layers: (
+  "header": 1,
+  "menu": 2
+);

@@ -1,0 +1,12 @@
+/* svg */
+
+.logo,
+.toggle-menu {
+    path {
+        fill: color("white");
+    }
+
+    &.fill-primary path {
+        fill: color("primary");
+    }
+}

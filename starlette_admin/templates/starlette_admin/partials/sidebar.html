@@ -1,8 +1,17 @@
-{% for section in registry|groupby('section_name') %}
-<p class="top-line mb-h">{{ section.grouper }}</p>
-<ul class="list-style-none">
-{% for admin in section.list %}
-    <li><a href="{{ url_for(admin.url_names().list) }}">{{ admin.collection_name }}</a></li>
-{% endfor %}
-</ul>
-{% endfor %}
+<nav class="menu">
+    <div class="menu-header">
+        <a href="{{ url_for(base_url_name) }}"><div class="logo fill-primary">{% include "starlette_admin/partials/svg/logo.svg" %}</div></a>
+        <div class="ml-auto"><div class="toggle-menu fill-primary pointer">{% include "starlette_admin/partials/svg/menu.svg" %}</div></div>
+    </div>
+    <div class="mt-1 p-1">
+        {% for section in registry|groupby('section_name') %}
+        <p class="muted mb-h">{{ section.grouper }}</p>
+        <ul>
+        {% for admin in section.list %}
+            <li><a href="{{ url_for(admin.url_names().list) }}">{{ admin.collection_name }}</a></li>
+        {% endfor %}
+        </ul>
+        <hr>
+        {% endfor %}
+    </div>
+</nav>

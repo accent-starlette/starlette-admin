@@ -1,0 +1,35 @@
+/* breadcrumb */ 
+
+.breadcrumb {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.breadcrumb li:first-child {
+  padding-left: 0;
+}
+
+.breadcrumb li {
+  display: inline-block;
+  padding: .5em;
+  position: relative;
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 1.5em;
+}
+
+.breadcrumb li+li:before {
+  position: relative;
+  display: inline-block;
+  padding: .5em 0;
+  margin-right: 1em;
+  font-family: fontello;
+  content: '\f105';
+  color: color("silverchalice");
+  font-size: 1.8rem;
+  line-height: 1.5rem;
+}
+
+.breadcrumb li:last-child a {
+  color: $font-color;
+}

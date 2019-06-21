@@ -1,6 +1,10 @@
-// Button
-// ––––––––––––––––––––––––––––––––––––––––––––––––––
+/* button */
 
 .button {
   text-transform: uppercase;
+}
+
+.button.button-small {
+  font-size: 80%;
+  padding: $button-padding-y * .5 $button-padding-x;
 }
