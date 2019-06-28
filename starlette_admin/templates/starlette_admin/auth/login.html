@@ -1,0 +1,22 @@
+{% extends "starlette_admin/base.html" %}
+
+{% block header %}{% endblock %}
+{% block sidebar %}{% endblock %}
+
+{% block content %}
+<div class="full-visual-height d-flex align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div>
+                    <div class="mb-1h"><a href="/" class="logo fill-primary">{% include "starlette_admin/partials/svg/logo.svg" %}</a></div>
+                    <p>Please login to get started.</p>
+                    {% with button_name='login' %}
+                    {% include "starlette_admin/partials/form.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
