@@ -1,4 +1,4 @@
-<form method="post" novalidate>
+<form method="post" enctype="multipart/form-data" novalidate>
     {% for field in form %}
     <div {% if field.errors %}class="text-error"{% endif %}>
         {% if field.type == "BooleanField" %}
