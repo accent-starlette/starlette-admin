@@ -178,7 +178,9 @@ class BaseAdmin:
             return cls.templates.TemplateResponse(cls.create_template, context)
 
         cls.do_create(form)
-        return RedirectResponse(request.url_for(cls.url_names()["list"]))
+        return RedirectResponse(
+            url=request.url_for(cls.url_names()["list"]), status_code=302
+        )
 
     @classmethod
     async def update_view(cls, request):
@@ -209,7 +211,9 @@ class BaseAdmin:
             return cls.templates.TemplateResponse(cls.update_template, context)
 
         cls.do_update(instance, form)
-        return RedirectResponse(request.url_for(cls.url_names()["list"]))
+        return RedirectResponse(
+            url=request.url_for(cls.url_names()["list"]), status_code=302
+        )
 
     @classmethod
     async def delete_view(cls, request):
@@ -240,7 +244,9 @@ class BaseAdmin:
             return cls.templates.TemplateResponse(cls.delete_template, context)
 
         cls.do_delete(instance, form)
-        return RedirectResponse(request.url_for(cls.url_names()["list"]))
+        return RedirectResponse(
+            url=request.url_for(cls.url_names()["list"]), status_code=302
+        )
 
     @classmethod
     def section_path(cls):
