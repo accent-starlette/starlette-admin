@@ -81,15 +81,15 @@ class BaseAdmin:
         raise NotImplementedError()
 
     @classmethod
-    def do_create(cls, form):
+    async def do_create(cls, form):
         raise NotImplementedError()
 
     @classmethod
-    def do_delete(cls, instance, form):
+    async def do_delete(cls, instance, form):
         raise NotImplementedError()
 
     @classmethod
-    def do_update(cls, instance, form):
+    async def do_update(cls, instance, form):
         raise NotImplementedError()
 
     @classmethod
@@ -177,7 +177,8 @@ class BaseAdmin:
             context.update({"form": form})
             return cls.templates.TemplateResponse(cls.create_template, context)
 
-        cls.do_create(form)
+        await cls.do_create(form)
+
         return RedirectResponse(
             url=request.url_for(cls.url_names()["list"]), status_code=302
         )
@@ -210,7 +211,8 @@ class BaseAdmin:
             context.update({"form": form, "object": instance})
             return cls.templates.TemplateResponse(cls.update_template, context)
 
-        cls.do_update(instance, form)
+        await cls.do_update(instance, form)
+
         return RedirectResponse(
             url=request.url_for(cls.url_names()["list"]), status_code=302
         )
@@ -243,7 +245,8 @@ class BaseAdmin:
             context.update({"form": form, "object": instance})
             return cls.templates.TemplateResponse(cls.delete_template, context)
 
-        cls.do_delete(instance, form)
+        await cls.do_delete(instance, form)
+
         return RedirectResponse(
             url=request.url_for(cls.url_names()["list"]), status_code=302
         )

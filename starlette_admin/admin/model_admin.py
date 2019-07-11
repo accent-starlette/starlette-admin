@@ -54,18 +54,18 @@ class ModelAdmin(BaseAdmin):
         return cls.model_class.query.get_or_404(id)
 
     @classmethod
-    def do_create(cls, form):
+    async def do_create(cls, form):
         instance = cls.model_class()
         form.populate_obj(instance)
         instance.save()
         return instance
 
     @classmethod
-    def do_delete(cls, instance, form):
+    async def do_delete(cls, instance, form):
         instance.delete()
 
     @classmethod
-    def do_update(cls, instance, form):
+    async def do_update(cls, instance, form):
         form.populate_obj(instance)
         instance.save()
         return instance
