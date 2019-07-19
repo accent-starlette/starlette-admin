@@ -5,7 +5,6 @@ from starlette.exceptions import HTTPException
 from starlette.responses import RedirectResponse
 from starlette.routing import Route, Router
 from starlette_core.paginator import InvalidPage, Paginator
-from starlette_core.templating import Jinja2Templates
 from wtforms.form import Form
 
 from ..config import config
@@ -28,7 +27,6 @@ class BaseAdmin:
     # permissions
     permission_scopes: typing.Sequence[str] = []
     # templating
-    templates: Jinja2Templates = config.templates
     create_template: str = "starlette_admin/create.html"
     delete_template: str = "starlette_admin/delete.html"
     list_template: str = "starlette_admin/list.html"
@@ -153,7 +151,7 @@ class BaseAdmin:
                 }
             )
 
-        return cls.templates.TemplateResponse(cls.list_template, context)
+        return config.templates.TemplateResponse(cls.list_template, context)
 
     @classmethod
     async def create_view(cls, request):
@@ -168,14 +166,14 @@ class BaseAdmin:
         if request.method == "GET":
             form = cls.get_form(cls.create_form)
             context.update({"form": form})
-            return cls.templates.TemplateResponse(cls.create_template, context)
+            return config.templates.TemplateResponse(cls.create_template, context)
 
         data = await request.form()
         form = cls.get_form(cls.create_form, formdata=data)
 
         if not form.validate():
             context.update({"form": form})
-            return cls.templates.TemplateResponse(cls.create_template, context)
+            return config.templates.TemplateResponse(cls.create_template, context)
 
         await cls.do_create(form)
 
@@ -202,14 +200,14 @@ class BaseAdmin:
         if request.method == "GET":
             form = cls.get_form(**form_kwargs)
             context.update({"form": form, "object": instance})
-            return cls.templates.TemplateResponse(cls.update_template, context)
+            return config.templates.TemplateResponse(cls.update_template, context)
 
         data = await request.form()
         form = cls.get_form(**form_kwargs, formdata=data)
 
         if not form.validate():
             context.update({"form": form, "object": instance})
-            return cls.templates.TemplateResponse(cls.update_template, context)
+            return config.templates.TemplateResponse(cls.update_template, context)
 
         await cls.do_update(instance, form)
 
@@ -236,14 +234,14 @@ class BaseAdmin:
         if request.method == "GET":
             form = cls.get_form(**form_kwargs)
             context.update({"form": form, "object": instance})
-            return cls.templates.TemplateResponse(cls.delete_template, context)
+            return config.templates.TemplateResponse(cls.delete_template, context)
 
         data = await request.form()
         form = cls.get_form(**form_kwargs, formdata=data)
 
         if not form.validate():
             context.update({"form": form, "object": instance})
-            return cls.templates.TemplateResponse(cls.delete_template, context)
+            return config.templates.TemplateResponse(cls.delete_template, context)
 
         await cls.do_delete(instance, form)
 
