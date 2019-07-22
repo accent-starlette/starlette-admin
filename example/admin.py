@@ -69,14 +69,14 @@ class DemoAdmin(BaseAdmin):
             raise HTTPException(404)
 
     @classmethod
-    async def do_create(cls, form):
+    async def do_create(cls, form, request):
         next_id = objects[-1]["id"] + 1 if objects else 1
         new_object = DemoObject(form.data)
         new_object["id"] = next_id
         objects.append(new_object)
 
     @classmethod
-    async def do_update(cls, instance, form):
+    async def do_update(cls, instance, form, request):
         index = objects.index(instance)
         for k, v in form.data.items():
             instance[k] = v
@@ -84,7 +84,7 @@ class DemoAdmin(BaseAdmin):
         print('world')
 
     @classmethod
-    async def do_delete(cls, instance, form):
+    async def do_delete(cls, instance, form, request):
         index = objects.index(instance)
         objects.pop(index)
 
