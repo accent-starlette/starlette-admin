@@ -2031,6 +2031,10 @@ textarea[disabled] {
   color: #aa0403;
 }
 
+input[type="file"] {
+  margin-bottom: 1.5rem;
+}
+
 /* header */
 header {
   position: fixed;

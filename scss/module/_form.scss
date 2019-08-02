@@ -22,3 +22,7 @@ textarea[disabled] {
     color: color("red");
   }
 }
+
+input[type="file"] {
+  margin-bottom: $input-margin-bottom;
+}
