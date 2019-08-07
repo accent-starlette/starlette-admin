@@ -6,6 +6,13 @@
             <div class="checkbox">
                 <label>{{ field }}<span></span> &nbsp;</label> 
             </div>
+        {% elif field.type == "FileField" or field.type == "MultipleFileField" %}
+            {{ field.label }}
+            <label class="file-field input-group">
+                <div class="info">Choose file(s)</div>
+                {{ field }}
+                <span class="button button-secondary input-group-addon">Browse</span>
+            </label>
         {% else %}
             {{ field.label }}
             {{ field }}

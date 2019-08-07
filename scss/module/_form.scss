@@ -11,10 +11,10 @@ textarea[disabled] {
 
   input,
   select,
-  textarea {
+  textarea,
+  .file-field {
     margin-bottom: .25rem;
-    border-color: color("red");
-    border-width: 2px;
+    border: 2px solid color("red");
   }
 
   cite {
@@ -23,6 +23,15 @@ textarea[disabled] {
   }
 }
 
-input[type="file"] {
-  margin-bottom: $input-margin-bottom;
+.file-field {
+  .info {
+    @include input;
+    @include input-size;
+    @include input-width;
+    color: $input-placeholder-color;
+  }
+  input {
+    position: absolute;
+    visibility: hidden;
+  }
 }

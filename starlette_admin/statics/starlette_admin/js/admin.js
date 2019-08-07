@@ -44,4 +44,29 @@ document.addEventListener("DOMContentLoaded", function(){
         menu.classList.toggle('active');
     }
 
+    // set custom file input events
+    var filefields = document.querySelectorAll('.file-field');
+
+    Array.prototype.forEach.call(filefields, function( filefield ) {
+        var info = filefield.querySelector('.info'),
+            infoVal = info.innerHTML,
+            input = filefield.querySelector('input');
+
+        input.addEventListener('change', function( e ) {
+            var fileName = '';
+
+            if ( this.files && this.files.length > 1 ) {
+                fileName = this.files.length + " file(s) selected";
+            } else {
+                fileName = e.target.value.split( '\\' ).pop();
+            }
+
+            if ( fileName ) {
+                info.innerHTML = fileName;
+            } else {
+                info.innerHTML = infoVal;
+            }
+        });
+    });
+
 });
