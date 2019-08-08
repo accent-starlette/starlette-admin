@@ -1,29 +1,10 @@
 <form method="post" novalidate {% if is_multipart(form) %}enctype="multipart/form-data"{% endif %}>
+
+    {% from "starlette_admin/helpers/_form_helpers.html" import render_field %}
     {% for field in form %}
-    <div {% if field.errors %}class="text-error"{% endif %}>
-        {% if field.type == "BooleanField" %}
-            {{ field.label }}
-            <div class="checkbox">
-                <label>{{ field }}<span></span> &nbsp;</label> 
-            </div>
-        {% elif field.type == "FileField" or field.type == "MultipleFileField" %}
-            {{ field.label }}
-            <label class="file-field input-group">
-                <div class="info">Choose file(s)</div>
-                {{ field }}
-                <span class="button button-secondary input-group-addon">Browse</span>
-            </label>
-        {% else %}
-            {{ field.label }}
-            {{ field }}
-        {% endif %}
-        {% if field.errors %}
-        <cite>{{ field.errors|join(' ') }}</cite>
-        {% elif field.description %}
-        <cite>{{ field.description }}</cite>
-        {% endif %}
-    </div>
+        {{ render_field(field) }}
     {% endfor %}
+
     <div class="mb-1">
         <button class="button button-outline {{ button_class|default('button-primary') }}">{{ button_name|default('save') }}</button>
         {% if show_delete_link %}

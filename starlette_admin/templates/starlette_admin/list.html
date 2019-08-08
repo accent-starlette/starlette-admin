@@ -5,7 +5,10 @@
     {% include "starlette_admin/partials/breadcrumb.html" %}
     <a href="{{ url_for(url_names.create) }}" class="button button-primary pull-right">New Record</a>
     <h1 class="f-lite">{{ collection_name }}</h1>
-    {% if search_enabled %}{% include "starlette_admin/partials/search_form.html" %}{% endif %}
+    {% if search_enabled %}
+        {% from "starlette_admin/helpers/_list_helpers.html" import render_search_form %}
+        {{ render_search_form(search) }}
+    {% endif %}
     {% include "starlette_admin/partials/table.html" %}
 </div>
 {% endblock %}

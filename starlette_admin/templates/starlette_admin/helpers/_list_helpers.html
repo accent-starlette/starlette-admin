@@ -1,0 +1,30 @@
+{% macro render_paginator(request, paginator, page) %}
+<div class="row">
+    <div class="col-4 text-left">
+    {% if page.has_previous %}
+        <a class="button button-primary button-outline" href="?{{ url_params_update(request.query_params, page=1) }}"><i class="icon-angle-double-left"></i>First</a>
+        <a class="button button-primary button-outline" href="?{{ url_params_update(request.query_params, page=page.previous_page_number) }}"><i class="icon-angle-left"></i>Previous</a>
+    {% endif %}
+    </div>
+    <div class="col-4 text-center muted">Page {{ page.number }} of {{ paginator.num_pages }} - {{ paginator.count }} record{% if paginator.count != 1 %}s{% endif %}</div>
+    <div class="col-4 text-right">
+    {% if page.has_next %}
+        <a class="button button-primary button-outline" href="?{{ url_params_update(request.query_params, page=page.next_page_number) }}">Next<i class="icon-angle-right"></i></a>
+        <a class="button button-primary button-outline" href="?{{ url_params_update(request.query_params, page=paginator.num_pages) }}">Last<i class="icon-angle-double-right"></i></a>
+    {% endif %}
+    </div>
+</div>
+{% endmacro %}
+
+{% macro render_search_form(term) %}
+<form method="get">
+    <div class="input-group mb-0">
+        <div class="icon-input">
+            <input type="text" id="search" name="search" placeholder="Search" {% if term %}value="{{ term }}"{% endif %}>
+            <span class="icon-search"></span>
+        </div>
+        <button type="submit" class="d-hidden"></button>
+    </div>
+</form>
+<script>document.getElementById("search").focus();</script>
+{% endmacro %}
