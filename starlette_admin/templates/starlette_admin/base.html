@@ -23,5 +23,9 @@
 
     <script src="{{ url_for('static', path='/starlette_admin/js/admin.min.js') }}"></script>
     {% block extra_js %}{% endblock %}
+
+    {% from "starlette_admin/helpers/_messages.html" import render_messages with context %}
+    {{ render_messages() }}
+
     </body>
 </html>

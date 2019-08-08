@@ -2162,6 +2162,27 @@ header.up {
   fill: #1aa2dc;
 }
 
+/* toastify */
+.toastify.toastify-default {
+  background: black;
+}
+
+.toastify.toastify-success {
+  background: #3d9970;
+}
+
+.toastify.toastify-error {
+  background: #aa0403;
+}
+
+.toastify.toastify-info {
+  background: #1aa2dc;
+}
+
+.toastify.toastify-warning {
+  background: #ff851b;
+}
+
 /* utils */
 .p-0 {
   padding: 0 !important;

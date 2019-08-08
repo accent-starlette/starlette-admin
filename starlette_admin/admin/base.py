@@ -4,6 +4,7 @@ from starlette.authentication import has_required_scope
 from starlette.exceptions import HTTPException
 from starlette.responses import RedirectResponse
 from starlette.routing import Route, Router
+from starlette_core.messages import message
 from starlette_core.paginator import InvalidPage, Paginator
 from wtforms.form import Form
 
@@ -177,6 +178,8 @@ class BaseAdmin:
 
         await cls.do_create(form, request)
 
+        message(request, "Created successfully", "success")
+
         return RedirectResponse(
             url=request.url_for(cls.url_names()["list"]), status_code=302
         )
@@ -211,6 +214,8 @@ class BaseAdmin:
 
         await cls.do_update(instance, form, request)
 
+        message(request, "Updated successfully", "success")
+
         return RedirectResponse(
             url=request.url_for(cls.url_names()["list"]), status_code=302
         )
@@ -244,6 +249,8 @@ class BaseAdmin:
             return config.templates.TemplateResponse(cls.delete_template, context)
 
         await cls.do_delete(instance, form, request)
+
+        message(request, "Deleted successfully", "success")
 
         return RedirectResponse(
             url=request.url_for(cls.url_names()["list"]), status_code=302

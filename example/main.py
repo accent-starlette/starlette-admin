@@ -1,6 +1,7 @@
 from starlette.applications import Starlette
 from starlette.authentication import AuthCredentials, AuthenticationBackend, SimpleUser
 from starlette.middleware.authentication import AuthenticationMiddleware
+from starlette.middleware.sessions import SessionMiddleware
 from starlette.staticfiles import StaticFiles
 from starlette_admin.config import config
 from starlette_admin.site import AdminSite
@@ -41,6 +42,7 @@ app.mount(
 )
 
 app.add_middleware(AuthenticationMiddleware, backend=DummyAuthBackend())
+app.add_middleware(SessionMiddleware, secret_key="secret")
 app.add_middleware(DatabaseMiddleware)
 
 # mount admin site
