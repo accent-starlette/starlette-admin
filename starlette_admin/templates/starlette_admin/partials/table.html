@@ -21,13 +21,25 @@
         </tr>
     </thead>
     <tbody>
-    {% for object in list_objects -%}
+    {%- for object in list_objects -%}
         <tr>
-        {% for name in list_field_names -%}
-            <td>{% if loop.index == 1 %}<a href="{{ object.id }}/update">{{ object[name] }}</a>{% else %}{{ object[name] or "-" }}{% endif %}</td>
-        {%- endfor %}
+        {%- for name in list_field_names -%}
+            <td>
+                {%- if loop.index == 1 -%}
+                <a href="{{ object.id }}/update">{{ object[name] }}</a>
+                {%- else -%}
+                    {%- if object[name] is sameas true -%}
+                    <i class="icon-ok-circled c-olive"></i>
+                    {%- elif object[name] is sameas false -%}
+                    <i class="icon-cancel-circled c-red"></i>
+                    {%- else -%}
+                    {{ object[name] or "-" }}
+                    {%- endif %}
+                {%- endif -%}
+            </td>
+        {%- endfor -%}
         </tr>
-    {%- endfor %}
+    {%- endfor -%}
     </tbody>
     <tfoot>
         <tr>

@@ -1,6 +1,8 @@
 
 .icon-down-dir:before { content: '\e800'; } /* '' */
 .icon-up-dir:before { content: '\e801'; } /* '' */
+.icon-cancel-circled:before { content: '\e802'; } /* '' */
+.icon-ok-circled:before { content: '\e803'; } /* '' */
 .icon-search:before { content: '\e806'; } /* '' */
 .icon-angle-double-left:before { content: '\f100'; } /* '' */
 .icon-angle-double-right:before { content: '\f101'; } /* '' */
