@@ -81,7 +81,6 @@ class DemoAdmin(BaseAdmin):
         for k, v in form.data.items():
             instance[k] = v
         objects[index] = instance
-        print('world')
 
     @classmethod
     async def do_delete(cls, instance, form, request):
