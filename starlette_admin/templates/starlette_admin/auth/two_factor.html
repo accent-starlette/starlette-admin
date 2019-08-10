@@ -1,0 +1,43 @@
+{% extends "starlette_admin/base.html" %}
+
+{% block header %}{% endblock %}
+{% block sidebar %}{% endblock %}
+
+{% block content %}
+<div class="full-visual-height d-flex align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div>
+                    <div class="mb-1h"><a href="/" class="logo fill-primary">{% include "starlette_admin/partials/svg/logo.svg" %}</a></div>
+                    {% if not request.user.two_factor_verified %}
+                    <p>Scan the below with a compatible app like Google Authenticator or Authy. Your authentication code is <strong>{{ request.user.two_factor_secret }}</strong>.</p>
+                    <canvas id="qrcode" class="mb-1h" style="border: 1px solid #e6e6e6;"></canvas>
+                    {% else %}
+                    <p>Please enter your authentication code.</p>
+                    {% endif %}
+                    {% with button_name='confirm' %}
+                    {% include "starlette_admin/partials/form.html" %}
+                    {% endwith %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{% if not request.user.two_factor_verified %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+<script>
+    (function() {
+        var qr = new QRious({
+            element: document.getElementById('qrcode'),
+            level: 'H',
+            size: 250,
+            value: '{{ request.user.two_factor_provisioning_uri }}'
+        });
+    })();
+</script>
+{% endif %}
+{% endblock %}
