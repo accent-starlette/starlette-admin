@@ -3,7 +3,8 @@ from sqlalchemy import orm
 from starlette.exceptions import HTTPException
 from starlette_admin.admin import BaseAdmin, ModelAdmin
 from wtforms import fields, form, validators
-from wtforms.ext.sqlalchemy.orm import model_form
+from wtforms_alchemy import ModelForm
+
 from .models import DemoModel
 
 
@@ -92,6 +93,16 @@ class DemoAdmin(BaseAdmin):
 ####################################################################
 
 
+class DemoModelForm(ModelForm):
+    class Meta:
+        model = DemoModel
+
+    @classmethod
+    def get_session(cls):
+        from starlette_core.database import Session
+        return Session()
+
+
 class DemoModelAdmin(ModelAdmin):
     section_name = "SQLAlchemy"
     collection_name = "Demos"
@@ -100,8 +111,8 @@ class DemoModelAdmin(ModelAdmin):
     paginate_by = 10
     order_enabled = True
     search_enabled = True
-    create_form = model_form(DemoModel)
-    update_form = model_form(DemoModel)
+    create_form = DemoModelForm
+    update_form = DemoModelForm
     delete_form = form.Form
 
     @classmethod

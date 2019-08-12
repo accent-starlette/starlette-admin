@@ -13,3 +13,4 @@ requests
 
 # Example
 uvicorn
+wtforms-alchemy
