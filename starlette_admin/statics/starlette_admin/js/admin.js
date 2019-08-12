@@ -32,18 +32,14 @@ document.addEventListener("DOMContentLoaded", function(){
     }
     
     // toggle menu
-    var togglemenuclosed = document.querySelector('header .toggle-menu');
-    var togglemenuopened = document.querySelector('nav .toggle-menu');
+    var toggleMenuButtons = document.querySelectorAll('.toggle-menu');
     var menu = document.querySelector('.menu');
-
-    togglemenuclosed.onclick = function(){
-        menu.classList.toggle('active');
-    }
-
-    togglemenuopened.onclick = function(){
-        menu.classList.toggle('active');
-    }
-
+    Array.prototype.forEach.call(toggleMenuButtons, function( btn ) {
+        btn.addEventListener('click', function(event) {
+            menu.classList.toggle('active');
+        })
+    });
+    
     // set custom file input events
     var filefields = document.querySelectorAll('.file-field');
 
