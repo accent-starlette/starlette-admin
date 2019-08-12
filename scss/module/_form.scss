@@ -29,6 +29,7 @@ textarea[disabled] {
     @include input-size;
     @include input-width;
     color: $input-placeholder-color;
+    font-weight: 400;
   }
   input {
     position: absolute;
