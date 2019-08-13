@@ -26,7 +26,7 @@
         {%- for name in list_field_names -%}
             <td>
                 {%- if loop.index == 1 -%}
-                <a href="{{ object.id }}/update">{{ object[name] }}</a>
+                <a href="{{ url_for(url_names.edit, id=object.id) }}">{{ object[name] }}</a>
                 {%- else -%}
                     {%- if object[name] is sameas true -%}
                     <i class="icon-ok-circled c-olive"></i>

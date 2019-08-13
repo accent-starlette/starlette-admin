@@ -278,7 +278,7 @@ class BaseAdmin:
         return {
             "list": f"{cls.site.name}:{mount}_list",
             "create": f"{cls.site.name}:{mount}_create",
-            "update": f"{cls.site.name}:{mount}_update",
+            "edit": f"{cls.site.name}:{mount}_edit",
             "delete": f"{cls.site.name}:{mount}_delete",
         }
 
@@ -297,10 +297,10 @@ class BaseAdmin:
                     name=f"{mount}_create",
                 ),
                 Route(
-                    "/{id:int}/update",
+                    "/{id:int}/edit",
                     endpoint=cls.update_view,
                     methods=["GET", "POST"],
-                    name=f"{mount}_update",
+                    name=f"{mount}_edit",
                 ),
                 Route(
                     "/{id:int}/delete",

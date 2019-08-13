@@ -1,6 +1,6 @@
 <ul class="breadcrumb">
     <li><a href="{{ url_for(base_url_name) }}">Home</a></li>
     {% if section_name %}<li><a>{{ section_name }}</a></li>{% endif %}
-    {% if collection_name %}<li><a href="{{ url_for(url_names['list']) }}">{{ collection_name }}</a></li>{% endif %}
-    {% if object %}<li><a href="{{ url_for(url_names['update'], id=object.id) }}">{{ object }}</a></li>{% endif %}
+    {% if collection_name %}<li><a href="{{ url_for(url_names.list) }}">{{ collection_name }}</a></li>{% endif %}
+    {% if object %}<li><a href="{{ url_for(url_names.edit, id=object.id) }}">{{ object }}</a></li>{% endif %}
 </ul>
