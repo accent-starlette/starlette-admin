@@ -2081,7 +2081,7 @@ header {
   display: flex;
   -ms-flex-align: center;
   align-items: center;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem;
   width: 100%;
   transition: top .1s;
   background: #1aa2dc;

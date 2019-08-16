@@ -5,7 +5,7 @@
     </a>
     {% if is_auth_enabled and request.user.is_authenticated %}
     <div class="ml-auto">
-        <span class="c-white mr-1">{{ request.user.display_name }}</span>
+        <span class="hidden-xs-down c-white mr-1">{{ request.user.display_name }}</span>
         <a class="button button-outline button-white button-small" href="{{ logout_url }}">Logout</a>
     </div>
     {% endif %}

@@ -43,7 +43,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <td class="py-1h" colspan="{{ list_field_names|length }}">
+            <td class="px-0 py-1h" colspan="{{ list_field_names|length }}">
                 {% if is_paginated %}
                     {% from "starlette_admin/helpers/_list_helpers.html" import render_paginator %}
                     {{ render_paginator(request, paginator, page_obj) }}
