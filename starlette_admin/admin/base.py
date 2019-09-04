@@ -1,5 +1,6 @@
 import typing
 
+from sqlalchemy.exc import IntegrityError
 from starlette.authentication import has_required_scope
 from starlette.exceptions import HTTPException
 from starlette.responses import RedirectResponse
@@ -248,9 +249,15 @@ class BaseAdmin:
             context.update({"form": form, "object": instance})
             return config.templates.TemplateResponse(cls.delete_template, context)
 
-        await cls.do_delete(instance, form, request)
-
-        message(request, "Deleted successfully", "success")
+        try:
+            await cls.do_delete(instance, form, request)
+            message(request, "Deleted successfully", "success")
+        except IntegrityError:
+            message(
+                request,
+                "Could not be deleted due to being referenced by a related object",
+                "error",
+            )
 
         return RedirectResponse(
             url=request.url_for(cls.url_names()["list"]), status_code=302
