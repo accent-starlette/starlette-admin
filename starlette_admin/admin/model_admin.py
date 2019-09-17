@@ -31,7 +31,7 @@ class ModelAdmin(BaseAdmin):
 
     @classmethod
     def get_list_objects(cls, request):
-        qs = cls.model_class.query
+        qs = cls.get_queryset()
 
         # if enabled, call `cls.get_search_results`
         search = request.query_params.get("search", "").strip().lower()
@@ -49,9 +49,13 @@ class ModelAdmin(BaseAdmin):
         return qs.all()
 
     @classmethod
+    def get_queryset(cls) -> orm.Query:
+        return cls.model_class.query
+
+    @classmethod
     def get_object(cls, request):
         id = request.path_params["id"]
-        return cls.model_class.query.get_or_404(id)
+        return cls.get_queryset().get_or_404(id)
 
     @classmethod
     async def do_create(cls, form, request):
