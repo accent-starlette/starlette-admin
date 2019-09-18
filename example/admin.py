@@ -1,11 +1,13 @@
 import sqlalchemy as sa
 from sqlalchemy import orm
 from starlette.exceptions import HTTPException
+from starlette.responses import RedirectResponse
+from starlette.routing import Route, Router
 from starlette_admin.admin import BaseAdmin, ModelAdmin
 from wtforms import fields, form, validators
 from wtforms_alchemy import ModelForm
 
-from .models import DemoModel
+from .models import DemoModel, SystemSettingsModel
 
 
 # objects using the base admin that must implement
@@ -126,4 +128,39 @@ class DemoModelAdmin(ModelAdmin):
                 DemoModel.name.like(f"%{term}%"),
                 DemoModel.description.like(f"%{term}%")
             )
+        )
+
+
+# objects using the model admin - that act as a setting model
+# there is expected to only have a single object in existance.
+# here the list url acts as a redirect to a single object
+####################################################################
+
+
+class SystemSettingsModelForm(ModelForm):
+    class Meta:
+        model = SystemSettingsModel
+
+
+class SystemSettingsModelAdmin(ModelAdmin):
+    section_name = "Settings"
+    collection_name = "System Settings"
+    model_class = SystemSettingsModel
+    update_form = SystemSettingsModelForm
+    delete_form = form.Form
+
+    @classmethod
+    def get_object(cls, request):
+        obj = cls.get_queryset().first()
+        if not obj:
+            obj = cls.model_class()
+            obj.save()
+        return obj
+
+    @classmethod
+    async def list_view(cls, request):
+        instance = cls.get_object(request)
+        return RedirectResponse(
+            url=request.url_for(cls.url_names()["edit"], id=instance.id),
+            status_code=302
         )

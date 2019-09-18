@@ -8,3 +8,13 @@ class DemoModel(Base):
 
     def __str__(self):
         return self.name
+
+
+class SystemSettingsModel(Base):
+    setting_1 = sa.Column(sa.String(), nullable=True)
+    setting_2 = sa.Column(sa.String(), nullable=True)
+    setting_3 = sa.Column(sa.String(), nullable=True)
+    setting_4 = sa.Column(sa.String(), nullable=True)
+
+    def __str__(self):
+        return "Update System Settings"

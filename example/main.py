@@ -8,7 +8,7 @@ from starlette_admin.site import AdminSite
 from starlette_core.database import Database, DatabaseURL
 from starlette_core.middleware import DatabaseMiddleware
 
-from .admin import DemoAdmin, DemoModelAdmin
+from .admin import DemoAdmin, DemoModelAdmin, SystemSettingsModelAdmin
 
 
 class DummyAuthBackend(AuthenticationBackend):
@@ -31,6 +31,7 @@ adminsite = AdminSite(name="admin", permission_scopes=["authenticated"])
 # register admins
 adminsite.register(DemoAdmin)
 adminsite.register(DemoModelAdmin)
+adminsite.register(SystemSettingsModelAdmin)
 
 # create app
 app = Starlette(debug=DEBUG)
