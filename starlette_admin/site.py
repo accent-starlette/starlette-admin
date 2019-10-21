@@ -2,7 +2,7 @@ import typing
 
 from starlette.authentication import has_required_scope
 from starlette.exceptions import HTTPException
-from starlette.routing import Router
+from starlette.routing import NoMatchFound, Router
 
 from .config import config
 
@@ -46,11 +46,17 @@ class AdminSite(Router):
 
         return sorted(self._registry, key=lambda k: (k.section_name, k.collection_name))
 
+    def get_logout_url(self, request):
+        try:
+            return request.url_for("auth:logout")
+        except NoMatchFound:
+            return ""
+
     def get_context(self, request) -> dict:
         return {
             "base_url_name": self.base_url_name,
             "is_auth_enabled": self.is_auth_enabled(request),
-            "logout_url": config.logout_url,
+            "logout_url": self.get_logout_url(request),
             "registry": self.registry(),
             "request": request,
         }
