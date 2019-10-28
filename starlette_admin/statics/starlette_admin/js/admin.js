@@ -1,9 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(){
     
-    var header = document.getElementsByTagName('header')[0];
-
-    // scrolling variables
-    var scrolling = false,
+    var header = document.querySelector('header'),
+    scrolling = false,
     previousTop = 0,
     scrollDelta = 10,
     scrollOffset = 150;
@@ -34,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function(){
     // toggle menu
     var toggleMenuButtons = document.querySelectorAll('.toggle-menu');
     var menu = document.querySelector('.menu');
+
     Array.prototype.forEach.call(toggleMenuButtons, function( btn ) {
         btn.addEventListener('click', function(event) {
             menu.classList.toggle('active');
@@ -65,4 +64,12 @@ document.addEventListener("DOMContentLoaded", function(){
         });
     });
 
+    // initialize flatpickrs
+    var flatpickrs = document.querySelectorAll('[data-flatpickr]');
+
+    Array.prototype.forEach.call(flatpickrs, function( pkr ) {
+        var opts = JSON.parse(pkr.dataset.flatpickr);
+        flatpickr(pkr, opts);
+    });
+    
 });

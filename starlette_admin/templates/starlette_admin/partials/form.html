@@ -9,7 +9,7 @@
         {% if show_password_reset_link %}
         <a href="{{ url_for('auth:password_reset') }}" class="pull-right">Forgotton Password?</a>
         {% endif %}
-        <button class="button button-outline {{ button_class|default('button-primary') }}">{{ button_name|default('save') }}</button>
+        <button class="button {{ button_class|default('button-primary') }}">{{ button_name|default('save') }}</button>
         {% if show_delete_link %}
         <a href="{{ url_for(url_names.delete, id=object.id) }}" class="button button-clear button-red">delete</a>
         {% endif %}

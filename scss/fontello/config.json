@@ -59,6 +59,18 @@
       "css": "ok-circled",
       "code": 59395,
       "src": "fontawesome"
+    },
+    {
+      "uid": "818981e2ad316f18ae61cfa805d41309",
+      "css": "user-circle",
+      "code": 62141,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "c1f1975c885aa9f3dad7810c53b82074",
+      "css": "lock",
+      "code": 59396,
+      "src": "fontawesome"
     }
   ]
 }
