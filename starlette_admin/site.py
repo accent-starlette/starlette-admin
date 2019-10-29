@@ -37,7 +37,7 @@ class AdminSite(Router):
         self.mount(model_admin.mount_point(), model_admin.routes())
 
     def registry(
-        self
+        self,
     ) -> typing.List["starlette_admin.admin.BaseAdmin"]:  # type: ignore
         """
         Returns a sorted list of `starlette_admin.admin.BaseAdmin` classes
