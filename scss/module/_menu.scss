@@ -1,43 +1,62 @@
 /* menu */
 
 .menu {
-    @include position($top: 0, $position: fixed);
-    z-index: zindex("menu");
-    width: 290px;
-    height: 100vh;
-    overflow-y: auto;
-    left: -290px;
-    background: color("seashell");
-    transition: left ease-out .2s;
+  @include position($top: 0, $left: 0, $position: fixed);
+  z-index: zindex("menu");
+  width: 290px;
+  max-width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform ease-in-out $animation-speed-fast;
+  background-color: color-a("valhalla", .95);
+  backdrop-filter: blur(10px);
+
+  &.active {
+    transform: translateX(0);
   }
   
-  .menu.active {
-    left: 0;
-  }
+}
+
+.menu .menu-header {
+  @include position($top: 0, $position: sticky);
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+
+  .toggle-menu {
+    line-height: 5rem;
+    padding: 0 1.5rem;
+    transition: background-color linear $animation-speed-fast;
   
-  .menu-header {
-    @include position($top: 0, $position: sticky);
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    background: color("seashell");
-  }
+    &:hover {
+      background-color: color-darken("valhalla", $darken-hover-percent);
+    }
   
-  .menu ul {
-    list-style: none;
   }
-  
-  .menu li a {
-    display: block;
-    padding: .5rem 1rem;
-    margin-bottom: 1rem;
-    background: color("white");
-    color: color("dovegray");
-    font-weight: 600;
-    border-radius: $global-radius;
-  }
-  
-  .menu hr {
-    margin: 2rem 0;
-  }
-  
+
+}
+
+.menu .section-header {
+  margin-bottom: .5rem;
+  font-weight: 300;
+  font-size: 1.2rem;
+  color: color("white");
+  text-transform: uppercase;
+}
+
+.menu hr {
+  border-color: color-a("white", .12);
+  margin: 2rem 0;
+}
+
+.menu ul {
+  list-style: none;
+}
+
+.menu ul li a {
+  display: block;
+  line-height: 3rem;
+  font-weight: 600;
+  color: color-a("white", .84);
+}

@@ -19,15 +19,10 @@
 }
 
 .breadcrumb li+li:before {
-  position: relative;
-  display: inline-block;
-  padding: .5em 0;
+  @include pseudo($display: inline-block, $pos: relative, $content: "\f105");
   margin-right: 1em;
   font-family: fontello;
-  content: '\f105';
-  color: color("silverchalice");
-  font-size: 1.8rem;
-  line-height: 1.5rem;
+  line-height: 1.5em;
 }
 
 .breadcrumb li:last-child a {

@@ -5,22 +5,30 @@ $base-font-family:              "Source Sans Pro", sans-serif;
 $code-font-family:              "Inconsolata", monospace;
 $base-font-size:                14px;
 $table-font-size:               1.4rem;
+$heading-font-weight:           600;
 
 /* colors */
 $colors: (
-  "primary":                    rgb(26, 162, 220),
+  "primary":                    rgb(98, 97, 169),
+  "secondary":                  rgb(91, 89, 89),
   "black":                      rgb(0, 0, 0),
   "white":                      rgb(255, 255, 255),
   "red":                        rgb(170, 4, 3),
   "green":                      rgb(194, 227, 139),
-  "dovegray":                   rgb(102, 102, 102),
-  "seashell":                   rgb(241, 241, 241),
-  "silverchalice":              rgb(157, 157, 157),
+  "cornflowerblue":             rgb(70, 70, 117),
+  "bokaragrey":                 rgb(37, 36, 35),
+  "valhalla":                   rgb(48, 49, 70),
+  "dune":                       rgb(72, 70, 68),
+  "mortar":                     rgb(91, 89, 89),
+  "blacksqueeze":               rgb(249, 249, 247),
+  "blacksqueeze-95":            darken(rgb(249, 249, 247), 5%),
+  "blacksqueeze-90":            darken(rgb(249, 249, 247), 10%),
 );
 
-$body-background:               map-get($colors, "white");
-$font-color:                    map-get($colors, "dovegray");
-$link-color:                    map-get($colors, "primary");
+$body-background:               map-get($colors, "blacksqueeze");
+$font-color:                    map-get($colors, "dune");
+$header-font-color:             map-get($colors, "bokaragrey");
+$border-color:                  map-get($colors, "blacksqueeze-90");
 
 /* misc */
 $global-radius:                 .25rem;
@@ -31,13 +39,16 @@ $input-use-full-width:          true;
 /* buttons */
 $buttons: (
   // name                       color                               font-color
-  red:                          map-get($colors, "red")             map-get($colors, "white"),
   primary:                      map-get($colors, "primary")         map-get($colors, "white"),
+  secondary:                    map-get($colors, "secondary")       map-get($colors, "white"),
+  red:                          map-get($colors, "red")             map-get($colors, "white"),
   white:                        map-get($colors, "white")           map-get($colors, "black"),
 );
-$button-padding-y:              .4rem;
-$button-padding-x:              1rem;
 $button-font-size:              1.4rem;
+$button-padding-x:              1.2rem;
+
+/* tables */
+$table-headed-color:            map-get($colors, "blacksqueeze-95");
 
 // z-indexes
 $z-layers: (

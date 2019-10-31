@@ -3,8 +3,10 @@
 .icon-up-dir:before { content: '\e801'; } /* '' */
 .icon-cancel-circled:before { content: '\e802'; } /* '' */
 .icon-ok-circled:before { content: '\e803'; } /* '' */
+.icon-lock:before { content: '\e804'; } /* '' */
 .icon-search:before { content: '\e806'; } /* '' */
 .icon-angle-double-left:before { content: '\f100'; } /* '' */
 .icon-angle-double-right:before { content: '\f101'; } /* '' */
 .icon-angle-left:before { content: '\f104'; } /* '' */
 .icon-angle-right:before { content: '\f105'; } /* '' */
+.icon-user-circle:before { content: '\f2bd'; } /* '' */

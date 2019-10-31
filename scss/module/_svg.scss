@@ -9,4 +9,8 @@
     &.fill-primary path {
         fill: color("primary");
     }
+
+    &.fill-white path {
+        fill: color("white");
+    }
 }

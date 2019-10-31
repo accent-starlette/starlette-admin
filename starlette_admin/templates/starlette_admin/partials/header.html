@@ -1,14 +1,15 @@
 <header>
     <div class="toggle-menu pointer mr-1h">{% include "starlette_admin/partials/svg/menu.svg" %}</div>
-    <a href="{{ url_for(base_url_name) }}">
+    <a href="{{ url_for(base_url_name) }}" class="mr-auto">
         <div class="logo">{% include "starlette_admin/partials/svg/logo.svg" %}</div>
     </a>
     {% if is_auth_enabled and request.user.is_authenticated %}
-    <div class="ml-auto">
-        <span class="hidden-xs-down c-white mr-1">{{ request.user.display_name }}</span>
+        <div class="hidden-xs-down c-white">
+            <i class="icon-user-circle"></i>
+            <span>{{ request.user.display_name }}</span>
+        </div>
         {% if logout_url %}
-        <a class="button button-outline button-white button-small" href="{{ logout_url }}">Logout</a>
+        <a class="c-white ml-1" href="{{ logout_url }}"><i class="icon-lock"></i></a>
         {% endif %}
-    </div>
     {% endif %}
 </header>
