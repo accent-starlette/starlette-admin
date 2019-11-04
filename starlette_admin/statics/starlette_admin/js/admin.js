@@ -68,7 +68,15 @@ document.addEventListener("DOMContentLoaded", function(){
     var flatpickrs = document.querySelectorAll('[data-flatpickr]');
 
     Array.prototype.forEach.call(flatpickrs, function( pkr ) {
-        var opts = JSON.parse(pkr.dataset.flatpickr);
+        var opts = {};
+        if (pkr.dataset.flatpickr) {
+            try {
+                opts = JSON.parse(pkr.dataset.flatpickr);
+            }
+            catch(error) {
+                console.error(error);
+            }
+        }
         flatpickr(pkr, opts);
     });
     
