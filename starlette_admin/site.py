@@ -46,7 +46,7 @@ class AdminSite(Router):
 
         return sorted(self._registry, key=lambda k: (k.section_name, k.collection_name))
 
-    def get_logout_url(self, request):
+    def get_logout_url(self, request) -> str:
         try:
             return request.url_for("auth:logout")
         except NoMatchFound:
