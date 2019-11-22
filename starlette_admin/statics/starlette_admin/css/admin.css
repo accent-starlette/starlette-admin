@@ -2144,7 +2144,6 @@ header {
   align-items: center;
   height: 5rem;
   width: 100%;
-  padding: 0 1.5rem 0 0;
   -webkit-transform: translateY(0);
   transform: translateY(0);
   transition: -webkit-transform ease-in-out 250ms;
@@ -2166,6 +2165,21 @@ header .toggle-menu {
 
 header .toggle-menu:hover {
   background-color: #333355;
+}
+
+header .logout-link {
+  line-height: 5rem;
+  padding: 0 1.5rem;
+  font-size: 2.5rem;
+  transition: background-color linear 250ms;
+}
+
+header .logout-link:hover {
+  background-color: #333355;
+}
+
+header .logout-link i:before {
+  margin: 0;
 }
 
 /* menu */

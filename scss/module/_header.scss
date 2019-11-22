@@ -7,7 +7,6 @@ header {
   align-items: center;
   height: 5rem;
   width: 100%;
-  padding: 0 1.5rem 0 0;
   transform: translateY(0);
   transition: transform ease-in-out $animation-speed-fast;
   background-color: color("cornflowerblue");
@@ -24,5 +23,21 @@ header .toggle-menu {
 
   &:hover {
     background-color: color-darken("cornflowerblue", $darken-hover-percent);
+  }
+}
+
+header .logout-link {
+  line-height: 5rem;
+  padding: 0 1.5rem;
+  font-size: 2.5rem;
+
+  transition: background-color linear $animation-speed-fast;
+
+  &:hover {
+    background-color: color-darken("cornflowerblue", $darken-hover-percent);
+  }
+
+  i:before {
+    margin: 0;
   }
 }
