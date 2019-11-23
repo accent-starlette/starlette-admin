@@ -1,7 +1,8 @@
 /* panel */
 
 .panel {
-  padding: 3rem;
+  border-radius: $global-radius;
+  padding: 2rem;
   margin: 3rem 0;
 }
 
@@ -9,14 +10,22 @@
   @include box-shadow(0px, 3px, 15px, rgba(0, 0, 0, .16));
 }
 
+.panel-primary {
+  background-color: color-lighten("primary", 35%);
+}
+
 .panel-success {
-  background: linear-gradient(to right, color("green") 0, color("green") 3px, color("white") 3px, color("white") 100%) no-repeat;
+  background-color: color-lighten("green", 35%);
 }
 
 .panel-warning {
-  background: linear-gradient(to right, color("yellow") 0, color("yellow") 3px, color("white") 3px, color("white") 100%) no-repeat;
+  background-color: color-lighten("yellow", 35%);
+}
+
+.panel-info {
+  background-color: color-lighten("aqua", 15%);
 }
 
 .panel-error {
-  background: linear-gradient(to right, color("red") 0, color("red") 3px, color("white") 3px, color("white") 100%) no-repeat;
+  background-color: color-lighten("red", 40%);
 }
