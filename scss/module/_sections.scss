@@ -1,0 +1,21 @@
+/* sections */
+
+.section-list {
+  break-inside: avoid-column;
+
+  .title {
+    background-color: color("blacksqueeze-95");
+    padding: 1rem;
+    text-transform: uppercase;
+  }
+
+  ul {
+    background-color: color("white");
+    list-style: none;
+  }
+
+  ul li a {
+    display: block;
+    padding: 1rem;
+  }
+}

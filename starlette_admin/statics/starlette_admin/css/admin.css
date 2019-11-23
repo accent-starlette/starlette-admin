@@ -2279,6 +2279,29 @@ header .logout-link {
   background-color: #f6b3b6;
 }
 
+/* sections */
+.section-list {
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+  break-inside: avoid-column;
+}
+
+.section-list .title {
+  background-color: #eeeee8;
+  padding: 1rem;
+  text-transform: uppercase;
+}
+
+.section-list ul {
+  background-color: white;
+  list-style: none;
+}
+
+.section-list ul li a {
+  display: block;
+  padding: 1rem;
+}
+
 /* svg */
 .logo path,
 .toggle-menu path {
@@ -2559,6 +2582,28 @@ header .logout-link {
 
 .mt-header {
   margin-top: 6rem;
+}
+
+.columns {
+  -webkit-columns: 1;
+  -moz-columns: 1;
+  columns: 1;
+}
+
+@media (min-width: 768px) {
+  .columns {
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    columns: 2;
+  }
+}
+
+@media (min-width: 992px) {
+  .columns {
+    -webkit-columns: 3;
+    -moz-columns: 3;
+    columns: 3;
+  }
 }
 
 /* karma-css utilities */

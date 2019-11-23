@@ -21,3 +21,15 @@ $spacers: (
 .mt-header {
   margin-top: 6rem;
 }
+
+.columns {
+  @include media-breakpoint-up(xs) {
+    columns: 1;
+  }
+  @include media-breakpoint-up(md) {
+    columns: 2;
+  }
+  @include media-breakpoint-up(lg) {
+    columns: 3;
+  }
+}

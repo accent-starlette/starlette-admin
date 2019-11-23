@@ -1,14 +1,19 @@
 {% extends "starlette_admin/base.html" %}
 
 {% block content %}
-<div class="full-visual-height d-flex align-items-center">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <p class="h1">Welcome to Starlette Admin</p>
-                <p>To get started please open the menu using the <span class="toggle-menu fill-primary mx-1">{% include "starlette_admin/partials/svg/menu.svg" %}</span> top left of the window</p>
-            </div>
-        </div>
+<div class="container-fluid mt-header">
+    <p class="py-1">Welcome. To get started use the links below or open the menu using the <span class="toggle-menu fill-primary mx-1">{% include "starlette_admin/partials/svg/menu.svg" %}</span> above.</p>
+    <div class="columns">
+        {% for section in registry|groupby('section_name') %}
+        <section class="section-list">
+            <div class="title">{{ section.grouper }}</div>
+            <ul>
+            {% for admin in section.list %}
+                <li><a href="{{ url_for(admin.url_names().list) }}" title="{{ admin.collection_name }}">{{ admin.collection_name }}</a></li>
+            {% endfor %}
+            </ul>
+        </section>    
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
