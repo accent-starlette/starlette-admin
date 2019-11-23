@@ -125,8 +125,8 @@ class DemoModelAdmin(ModelAdmin):
     def get_search_results(cls, qs: orm.Query, term: str) -> orm.Query:
         return qs.filter(
             sa.or_(
-                DemoModel.name.like(f"%{term}%"),
-                DemoModel.description.like(f"%{term}%")
+                DemoModel.name.ilike(f"%{term}%"),
+                DemoModel.description.ilike(f"%{term}%")
             )
         )
 

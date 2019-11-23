@@ -3,7 +3,6 @@ from starlette.authentication import AuthCredentials, AuthenticationBackend, Sim
 from starlette.middleware.authentication import AuthenticationMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 from starlette.staticfiles import StaticFiles
-from starlette_admin.config import config
 from starlette_admin.site import AdminSite
 from starlette_core.database import Database, DatabaseURL
 from starlette_core.middleware import DatabaseMiddleware
@@ -22,9 +21,6 @@ url = DatabaseURL("sqlite:///:memory:")
 
 db = Database(url)
 db.create_all()
-
-# config
-config.logout_url = '/auth/logout'
 
 # create an admin site
 adminsite = AdminSite(name="admin", permission_scopes=["authenticated"])
