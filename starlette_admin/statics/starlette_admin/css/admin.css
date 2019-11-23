@@ -2035,10 +2035,6 @@ a.c-blacksqueeze-90:hover {
   line-height: 1.5em;
 }
 
-.breadcrumb li:last-child a {
-  color: #484644;
-}
-
 /* button */
 .button {
   text-transform: uppercase;
