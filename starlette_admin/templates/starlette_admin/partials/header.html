@@ -5,7 +5,6 @@
     </a>
     {% if is_auth_enabled and request.user.is_authenticated %}
         <div class="hidden-xs-down c-white mr-1h">
-            <i class="icon-user-circle"></i>
             <span>{{ request.user.display_name }}</span>
         </div>
         {% if logout_url %}
