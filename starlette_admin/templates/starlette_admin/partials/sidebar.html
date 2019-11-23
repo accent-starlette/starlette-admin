@@ -1,14 +1,14 @@
 <nav class="menu">
     <div class="menu-header">
-        <a href="{{ url_for(base_url_name) }}"><div class="logo fill-white">{% include "starlette_admin/partials/svg/logo.svg" %}</div></a>
-        <div class="ml-auto"><div class="toggle-menu fill-white pointer">{% include "starlette_admin/partials/svg/menu.svg" %}</div></div>
+        <a href="{{ url_for(base_url_name) }}" title="Home"><div class="logo fill-white">{% include "starlette_admin/partials/svg/logo.svg" %}</div></a>
+        <div class="ml-auto"><a class="toggle-menu fill-white pointer" title="Close Menu">{% include "starlette_admin/partials/svg/menu.svg" %}</a></div>
     </div>
     <div class="mt-1 p-1">
         {% for section in registry|groupby('section_name') %}
         <p class="section-header">{{ section.grouper }}</p>
         <ul>
         {% for admin in section.list %}
-            <li><a href="{{ url_for(admin.url_names().list) }}">{{ admin.collection_name }}</a></li>
+            <li><a href="{{ url_for(admin.url_names().list) }}" title="{{ admin.collection_name }}">{{ admin.collection_name }}</a></li>
         {% endfor %}
         </ul>
         <hr>

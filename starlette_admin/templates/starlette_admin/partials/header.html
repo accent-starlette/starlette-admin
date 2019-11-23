@@ -1,6 +1,6 @@
 <header>
-    <div class="toggle-menu pointer mr-1h">{% include "starlette_admin/partials/svg/menu.svg" %}</div>
-    <a href="{{ url_for(base_url_name) }}" class="mr-auto">
+    <a class="toggle-menu pointer mr-1h" title="Open Menu">{% include "starlette_admin/partials/svg/menu.svg" %}</a>
+    <a href="{{ url_for(base_url_name) }}" class="mr-auto" title="Home">
         <div class="logo">{% include "starlette_admin/partials/svg/logo.svg" %}</div>
     </a>
     {% if is_auth_enabled and request.user.is_authenticated %}
@@ -9,7 +9,7 @@
             <span>{{ request.user.display_name }}</span>
         </div>
         {% if logout_url %}
-        <a class="logout-link c-white" href="{{ logout_url }}"><i class="icon-lock"></i></a>
+        <a class="logout-link c-white" href="{{ logout_url }}" title="Logout"><i class="icon-logout"></i></a>
         {% endif %}
     {% endif %}
 </header>

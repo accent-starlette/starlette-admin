@@ -16,9 +16,12 @@ header.up {
   transform: translateY(-100%);
 }
 
-header .toggle-menu {
+header .toggle-menu,
+header .logout-link {
+  display: block;
   line-height: 5rem;
-  padding: 0 1.5rem;
+  width: 4.6rem;
+  text-align: center;
   transition: background-color linear $animation-speed-fast;
 
   &:hover {
@@ -27,17 +30,5 @@ header .toggle-menu {
 }
 
 header .logout-link {
-  line-height: 5rem;
-  padding: 0 1.5rem;
-  font-size: 2.5rem;
-
-  transition: background-color linear $animation-speed-fast;
-
-  &:hover {
-    background-color: color-darken("cornflowerblue", $darken-hover-percent);
-  }
-
-  i:before {
-    margin: 0;
-  }
+  font-size: 2rem;
 }
