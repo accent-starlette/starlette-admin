@@ -28,8 +28,10 @@ $spacers: (
   }
   @include media-breakpoint-up(md) {
     columns: 2;
+    column-gap: 30px;
   }
   @include media-breakpoint-up(lg) {
     columns: 3;
+    column-gap: 30px;
   }
 }

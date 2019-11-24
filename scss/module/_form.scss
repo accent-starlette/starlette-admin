@@ -3,7 +3,7 @@
 input[disabled],
 select[disabled],
 textarea[disabled] {
-  background: color("blacksqueeze-95");
+  background: color-darken("blacksqueeze", 5%);
 }
 
 .text-error {

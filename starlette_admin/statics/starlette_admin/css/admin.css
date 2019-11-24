@@ -2590,6 +2590,9 @@ header .logout-link {
     -webkit-columns: 2;
     -moz-columns: 2;
     columns: 2;
+    -webkit-column-gap: 30px;
+    -moz-column-gap: 30px;
+    column-gap: 30px;
   }
 }
 
@@ -2598,7 +2601,43 @@ header .logout-link {
     -webkit-columns: 3;
     -moz-columns: 3;
     columns: 3;
+    -webkit-column-gap: 30px;
+    -moz-column-gap: 30px;
+    column-gap: 30px;
   }
+}
+
+/* widget */
+.widget {
+  background-color: #eeeee8;
+  border-radius: .25rem;
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+  break-inside: avoid-column;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.5rem;
+}
+
+.widget .icon {
+  -ms-flex-align: center;
+  align-items: center;
+  color: #d8d8cb;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  font-size: 4rem;
+  margin-right: auto;
+}
+
+.widget .content {
+  text-align: right;
+}
+
+.widget .content .value {
+  font-size: 2rem;
 }
 
 /* karma-css utilities */

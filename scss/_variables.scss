@@ -27,7 +27,7 @@ $colors: (
 $body-background:               map-get($colors, "blacksqueeze");
 $font-color:                    map-get($colors, "dune");
 $header-font-color:             map-get($colors, "bokaragrey");
-$border-color:                  map-get($colors, "blacksqueeze-90");
+$border-color:                  darken(map-get($colors, "blacksqueeze"), 10%);
 
 /* misc */
 $global-radius:                 .25rem;
@@ -47,7 +47,7 @@ $button-font-size:              1.4rem;
 $button-padding-x:              1.2rem;
 
 /* tables */
-$table-headed-color:            map-get($colors, "blacksqueeze-95");
+$table-headed-color:            darken(map-get($colors, "blacksqueeze"), 5%);
 
 // z-indexes
 $z-layers: (

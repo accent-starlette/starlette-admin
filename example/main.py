@@ -8,7 +8,7 @@ from starlette_core.database import Database, DatabaseURL
 from starlette_core.middleware import DatabaseMiddleware
 
 from .admin import DemoAdmin, DemoModelAdmin, SystemSettingsModelAdmin
-
+from .widgets import Today, Time, DayOfYear
 
 class DummyAuthBackend(AuthenticationBackend):
     async def authenticate(self, request):
@@ -28,6 +28,10 @@ adminsite = AdminSite(name="admin", permission_scopes=["authenticated"])
 adminsite.register(DemoAdmin)
 adminsite.register(DemoModelAdmin)
 adminsite.register(SystemSettingsModelAdmin)
+# register widgets
+adminsite.register_widget(Today())
+adminsite.register_widget(Time())
+adminsite.register_widget(DayOfYear())
 
 # create app
 app = Starlette(debug=DEBUG)

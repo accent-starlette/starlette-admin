@@ -1,16 +1,25 @@
 {% extends "starlette_admin/base.html" %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+{% endblock %}
+
 {% block content %}
 <div class="container-fluid mt-header">
     <p class="py-1">Welcome. To get started use the links below or open the menu using the <span class="toggle-menu fill-primary mx-1">{% include "starlette_admin/partials/svg/menu.svg" %}</span> above.</p>
+    <div class="row">
+        {% for widget in widgets %}
+        <div class="col-12 col-md-6 col-lg-4">{{ widget.html }}</div>
+        {% endfor %}
+    </div>
     <div class="columns">
         {% for section in registry|groupby('section_name') %}
         <section class="section-list">
             <div class="title">{{ section.grouper }}</div>
             <ul>
-            {% for admin in section.list %}
+                {% for admin in section.list %}
                 <li><a href="{{ url_for(admin.url_names().list) }}" title="{{ admin.collection_name }}">{{ admin.collection_name }}</a></li>
-            {% endfor %}
+                {% endfor %}
             </ul>
         </section>    
         {% endfor %}

@@ -4,7 +4,7 @@
   break-inside: avoid-column;
 
   .title {
-    background-color: color("blacksqueeze-95");
+    background-color: color-darken("blacksqueeze", 5%);
     padding: 1rem;
     text-transform: uppercase;
   }

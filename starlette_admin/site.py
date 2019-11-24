@@ -12,6 +12,7 @@ class AdminSite(Router):
     permission_scopes: typing.Sequence[str]
 
     _registry = []  # type: ignore
+    _widgets = []  # type: ignore
 
     def __init__(
         self,
@@ -46,6 +47,19 @@ class AdminSite(Router):
 
         return sorted(self._registry, key=lambda k: (k.section_name, k.collection_name))
 
+    def register_widget(self, widget) -> None:
+        self._widgets.append(widget)
+
+    def widgets(
+        self,
+    ) -> typing.List["starlette_admin.widgets.BaseWidget"]:  # type: ignore
+        """
+        Returns a list of `starlette_admin.widgets.BaseWidget` classes
+        registered on this admin
+        """
+
+        return self._widgets
+
     def get_logout_url(self, request) -> str:
         try:
             return request.url_for("auth:logout")
@@ -76,5 +90,6 @@ class AdminSite(Router):
             raise HTTPException(403)
 
         context = self.get_context(request)
+        context.update({"widgets": self.widgets()})
         template = "starlette_admin/root.html"
         return config.templates.TemplateResponse(template, context)
