@@ -9,11 +9,13 @@
 {% block content %}
 <div class="container-fluid mt-header">
     <p class="py-1">Welcome. To get started use the links below or open the menu using the <span class="toggle-menu fill-primary mx-1">{% include "starlette_admin/partials/svg/menu.svg" %}</span> above.</p>
+    {% if widgets|length > 0 %}
     <div class="row">
         {% for widget in widgets %}
         <div class="col-12 col-md-6 col-lg-4">{{ widget.html }}</div>
         {% endfor %}
     </div>
+    {% endif %}
     <div class="columns">
         {% for section in registry|groupby('section_name') %}
         <section class="section-list">
