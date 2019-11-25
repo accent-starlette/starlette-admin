@@ -2014,7 +2014,6 @@ a.c-blacksqueeze-90:hover {
 
 .breadcrumb li {
   display: inline-block;
-  padding: .5em;
   position: relative;
   text-decoration: none;
   white-space: nowrap;
@@ -2023,10 +2022,9 @@ a.c-blacksqueeze-90:hover {
 
 .breadcrumb li + li:before {
   position: relative;
-  display: inline-block;
-  content: "";
-  margin-right: 1em;
-  font-family: fontello;
+  display: inline;
+  content: "·";
+  margin: 0 0.8em 0 0.6em;
   line-height: 1.5em;
 }
 

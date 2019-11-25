@@ -11,7 +11,6 @@
 
 .breadcrumb li {
   display: inline-block;
-  padding: .5em;
   position: relative;
   text-decoration: none;
   white-space: nowrap;
@@ -19,8 +18,7 @@
 }
 
 .breadcrumb li+li:before {
-  @include pseudo($display: inline-block, $pos: relative, $content: "\f105");
-  margin-right: 1em;
-  font-family: fontello;
+  @include pseudo($display: inline, $pos: relative, $content: "·");
+  margin: 0 0.8em 0 0.6em;
   line-height: 1.5em;
 }
