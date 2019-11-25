@@ -18,17 +18,19 @@ header.up {
 
 header .toggle-menu,
 header .logout-link {
+  color: color("white");
   display: block;
+  font-size: 2rem;
   line-height: 5rem;
-  width: 4.6rem;
   text-align: center;
   transition: background-color linear $animation-speed-fast;
+  width: 4.6rem;
 
   &:hover {
     background-color: color-darken("cornflowerblue", $darken-hover-percent);
   }
 }
 
-header .logout-link {
-  font-size: 2rem;
+header .logo svg {
+  display: block;
 }

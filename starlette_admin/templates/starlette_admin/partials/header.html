@@ -1,5 +1,5 @@
 <header>
-    <a class="toggle-menu pointer mr-1h" title="Open Menu">{% include "starlette_admin/partials/svg/menu.svg" %}</a>
+    <a class="toggle-menu pointer mr-1h" title="Open Menu"><i class="icon-menu"></i></a>
     <a href="{{ url_for(base_url_name) }}" class="mr-auto" title="Home">
         <div class="logo">{% include "starlette_admin/partials/svg/logo.svg" %}</div>
     </a>
@@ -8,7 +8,7 @@
             <span>{{ request.user.display_name }}</span>
         </div>
         {% if logout_url %}
-        <a class="logout-link c-white" href="{{ logout_url }}" title="Logout"><i class="icon-logout"></i></a>
+        <a class="logout-link" href="{{ logout_url }}" title="Logout"><i class="icon-logout"></i></a>
         {% endif %}
     {% endif %}
 </header>
