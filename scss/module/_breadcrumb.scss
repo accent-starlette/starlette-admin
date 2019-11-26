@@ -19,6 +19,23 @@
 
 .breadcrumb li+li:before {
   @include pseudo($display: inline, $pos: relative, $content: "·");
-  margin: 0 0.8em 0 0.6em;
   line-height: 1.5em;
+}
+
+@include media-breakpoint-down(xs) {
+  .breadcrumb {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .breadcrumb li+li:before {
+    margin: 0 3px 0 2px;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .breadcrumb li+li:before {
+    margin: 0 8px 0 6px;
+  }
 }

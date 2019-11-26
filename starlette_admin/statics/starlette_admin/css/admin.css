@@ -1986,8 +1986,25 @@ a.c-blacksqueeze-darken-5:hover {
   position: relative;
   display: inline;
   content: "·";
-  margin: 0 0.8em 0 0.6em;
   line-height: 1.5em;
+}
+
+@media (max-width: 575px) {
+  .breadcrumb {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .breadcrumb li + li:before {
+    margin: 0 3px 0 2px;
+  }
+}
+
+@media (min-width: 576px) {
+  .breadcrumb li + li:before {
+    margin: 0 8px 0 6px;
+  }
 }
 
 /* button */
