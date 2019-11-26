@@ -47,6 +47,7 @@ $button-padding-x:              1.2rem;
 
 /* tables */
 $table-headed-color:            darken(map-get($colors, "blacksqueeze"), 5%);
+$table-hover-color:             darken(map-get($colors, "blacksqueeze"), 2.5%);
 
 // z-indexes
 $z-layers: (

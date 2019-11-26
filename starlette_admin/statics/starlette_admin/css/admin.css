@@ -1452,7 +1452,7 @@ td {
 }
 
 .table-hover > tbody > tr:hover {
-  background-color: whitesmoke;
+  background-color: #f4f4f0;
 }
 
 h1,
