@@ -1999,12 +1999,8 @@ a.c-blacksqueeze:hover {
   color: #e3e3da;
 }
 
-a.c-blacksqueeze-95:hover {
+a.c-blacksqueeze-darken-5:hover {
   color: #d8d8cb;
-}
-
-a.c-blacksqueeze-90:hover {
-  color: #cdcdbd;
 }
 
 /* breadcrumb */
@@ -2252,33 +2248,10 @@ header .logo svg {
 
 /* panel */
 .panel {
+  background-color: #eeeee8;
   border-radius: 0.25rem;
   padding: 2rem;
-  margin: 3rem 0;
-}
-
-.panel-raised {
-  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.16);
-}
-
-.panel-primary {
-  background-color: #d5d5e8;
-}
-
-.panel-success {
-  background-color: #bcf0c2;
-}
-
-.panel-warning {
-  background-color: #fff5b3;
-}
-
-.panel-info {
-  background-color: #ccf1ff;
-}
-
-.panel-error {
-  background-color: #f6b3b6;
+  margin-bottom: 1.5rem;
 }
 
 /* sections */
@@ -2918,20 +2891,12 @@ header .logo svg {
   color: #f9f9f7;
 }
 
-.b-blacksqueeze-95 {
+.b-blacksqueeze-darken-5 {
   background-color: #eeeee8;
 }
 
-.c-blacksqueeze-95 {
+.c-blacksqueeze-darken-5 {
   color: #eeeee8;
-}
-
-.b-blacksqueeze-90 {
-  background-color: #e3e3da;
-}
-
-.c-blacksqueeze-90 {
-  color: #e3e3da;
 }
 
 .disabled {

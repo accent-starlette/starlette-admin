@@ -1,31 +1,8 @@
 /* panel */
 
 .panel {
+  background-color: color-darken("blacksqueeze", 5%);
   border-radius: $global-radius;
   padding: 2rem;
-  margin: 3rem 0;
-}
-
-.panel-raised {
-  @include box-shadow(0px, 3px, 15px, rgba(0, 0, 0, .16));
-}
-
-.panel-primary {
-  background-color: color-lighten("primary", 35%);
-}
-
-.panel-success {
-  background-color: color-lighten("green", 35%);
-}
-
-.panel-warning {
-  background-color: color-lighten("yellow", 35%);
-}
-
-.panel-info {
-  background-color: color-lighten("aqua", 15%);
-}
-
-.panel-error {
-  background-color: color-lighten("red", 40%);
+  margin-bottom: $generic-margin-bottom;
 }

@@ -20,8 +20,7 @@ $colors: (
   "dune":                       rgb(72, 70, 68),
   "mortar":                     rgb(91, 89, 89),
   "blacksqueeze":               rgb(249, 249, 247),
-  "blacksqueeze-95":            darken(rgb(249, 249, 247), 5%),
-  "blacksqueeze-90":            darken(rgb(249, 249, 247), 10%),
+  "blacksqueeze-darken-5":      darken(rgb(249, 249, 247), 5%),
 );
 
 $body-background:               map-get($colors, "blacksqueeze");
