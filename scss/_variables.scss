@@ -10,8 +10,7 @@ $heading-font-weight:           600;
 /* colors */
 $colors: (
   "primary":                    rgb(98, 97, 169),
-  "secondary":                  rgb(91, 89, 89),
-  "black":                      rgb(0, 0, 0),
+  "secondary":                  rgb(216, 216, 203),
   "white":                      rgb(255, 255, 255),
   "red":                        rgb(198, 23, 30),
   "cornflowerblue":             rgb(70, 70, 117),
@@ -38,9 +37,8 @@ $input-use-full-width:          true;
 $buttons: (
   // name                       color                               font-color
   primary:                      map-get($colors, "primary")         map-get($colors, "white"),
-  secondary:                    map-get($colors, "secondary")       map-get($colors, "white"),
+  secondary:                    map-get($colors, "secondary")       map-get($colors, "dune"),
   red:                          map-get($colors, "red")             map-get($colors, "white"),
-  white:                        map-get($colors, "white")           map-get($colors, "black"),
 );
 $button-font-size:              1.4rem;
 $button-padding-x:              1.2rem;
