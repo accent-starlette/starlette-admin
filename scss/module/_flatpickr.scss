@@ -18,16 +18,16 @@
 .flatpickr-day.selected.nextMonthDay,
 .flatpickr-day.startRange.nextMonthDay,
 .flatpickr-day.endRange.nextMonthDay {
-  background: color("primary");
-  border-color: color("primary");
+  background: color("primary") !important;
+  border-color: color("primary") !important;
 }
 
 .flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n+1)),
 .flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n+1)),
 .flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n+1)) {
-  box-shadow: -10px 0 0 color("primary");
+  box-shadow: -10px 0 0 color("primary") !important;
 }
 
 .flatpickr-day.week.selected {
-  box-shadow: -5px 0 0 color("primary"), 5px 0 0 color("primary")
+  box-shadow: -5px 0 0 color("primary"), 5px 0 0 color("primary") !important;
 }
