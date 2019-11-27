@@ -1,0 +1,17 @@
+site_name: Starlette Admin
+site_description: Starlette Admin Documentation.
+
+theme:
+    name: 'material'
+
+repo_name: accent-starlette/starlette-admin
+repo_url: https://github.com/accent-starlette/starlette-admin
+edit_uri: ""
+
+nav:
+    - Introduction: 'index.md'
+    - Screenshots: 'screenshots.md'
+
+markdown_extensions:
+  - markdown.extensions.codehilite:
+      guess_lang: false

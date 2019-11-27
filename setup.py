@@ -71,6 +71,12 @@ setup(
         'python-multipart',
         'starlette-core @ git+https://github.com/accent-starlette/starlette-core@master'
     ],
+    extras_require={
+        "docs": [
+            "mkdocs",
+            "mkdocs-material",
+        ]
+    },
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
