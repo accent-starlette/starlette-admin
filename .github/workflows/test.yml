@@ -1,0 +1,32 @@
+name: Testing Workflow
+
+on: push 
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.7.x', '3.8.x']
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+        architecture: x64
+
+    - name: Install Dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run Linting and Tests
+      run: scripts/test
+
+    - name: Upload Coverage to Codecov  
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./coverage.xml
