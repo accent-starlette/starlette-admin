@@ -304,13 +304,13 @@ class BaseAdmin:
                     name=f"{mount}_create",
                 ),
                 Route(
-                    "/{id:int}/edit",
+                    "/{id}/edit",
                     endpoint=cls.update_view,
                     methods=["GET", "POST"],
                     name=f"{mount}_edit",
                 ),
                 Route(
-                    "/{id:int}/delete",
+                    "/{id}/delete",
                     endpoint=cls.delete_view,
                     methods=["GET", "POST"],
                     name=f"{mount}_delete",
