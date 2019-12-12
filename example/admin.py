@@ -65,7 +65,7 @@ class DemoAdmin(BaseAdmin):
 
     @classmethod
     def get_object(cls, request):
-        id = request.path_params["id"]
+        id = int(request.path_params["id"])
         try:
             return next(o for o in objects if o["id"] == id)
         except StopIteration:
