@@ -10,8 +10,15 @@ edit_uri: ""
 
 nav:
     - Introduction: 'index.md'
+    - The Basics: 'basics.md'
+    - Permissions: 'permissions.md'
+    - Base Admin: 'base_admin.md'
+    - Model Admin: 'model_admin.md'
+    - Templating: 'templating.md'
+    - Additional Views: 'additional_views.md'
     - Screenshots: 'screenshots.md'
 
 markdown_extensions:
+  - markdown.extensions.admonition
   - markdown.extensions.codehilite:
       guess_lang: false
