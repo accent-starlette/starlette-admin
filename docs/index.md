@@ -2,6 +2,8 @@
 
 A simple, easy to use, admin site designed to manage basic crud operations in starlette.
 
+![Homepage](https://github.com/accent-starlette/starlette-admin/blob/master/screenshots/screenshot_1.png?raw=true)
+
 ## The Vision
 
 - Easy to use
