@@ -12,12 +12,12 @@ nav:
     - Introduction: 'index.md'
     - The Basics: 'basics.md'
     - Admin Site: 'admin_site.md'
-    - Widgets: 'widgets.md'
     - Permissions: 'permissions.md'
     - Base Admin: 'base_admin.md'
     - Model Admin: 'model_admin.md'
     - Templating: 'templating.md'
     - Additional Views: 'additional_views.md'
+    - Widgets: 'widgets.md'
     - Screenshots: 'screenshots.md'
 
 markdown_extensions:

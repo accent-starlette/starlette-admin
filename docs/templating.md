@@ -35,7 +35,7 @@ app = Starlette()
 
 ```
 
-All templates loaded in the admin site crom from the config that by default
+All templates loaded in the admin site from the config that by default
 will load from it's own package. The above will include the `templates` directory 
 in your own project.
 
