@@ -42,6 +42,7 @@ class PersonForm(form.Form):
 class PersonAdmin(BaseAdmin):
     section_name = "General"
     collection_name = "People"
+    routing_id_part = "{id:int}"
     list_field_names = ["name"]
     paginate_by = 10
     order_enabled = True

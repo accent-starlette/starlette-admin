@@ -26,6 +26,8 @@ class BaseAdmin:
     paginator_class = Paginator
     search_enabled: bool = False
     order_enabled: bool = False
+    # routing
+    routing_id_part: str = "{id:int}"
     # permissions
     permission_scopes: typing.Sequence[str] = []
     # templating
@@ -304,13 +306,13 @@ class BaseAdmin:
                     name=f"{mount}_create",
                 ),
                 Route(
-                    "/{id}/edit",
+                    f"/{cls.routing_id_part}/edit",
                     endpoint=cls.update_view,
                     methods=["GET", "POST"],
                     name=f"{mount}_edit",
                 ),
                 Route(
-                    "/{id}/delete",
+                    f"/{cls.routing_id_part}/delete",
                     endpoint=cls.delete_view,
                     methods=["GET", "POST"],
                     name=f"{mount}_delete",
