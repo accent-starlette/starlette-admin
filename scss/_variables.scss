@@ -28,7 +28,7 @@ $header-font-color:             map-get($colors, "bokaragrey");
 $border-color:                  darken(map-get($colors, "blacksqueeze"), 10%);
 
 /* misc */
-$global-radius:                 .25rem;
+$global-radius:                 0;
 
 /* forms */
 $input-use-full-width:          true;

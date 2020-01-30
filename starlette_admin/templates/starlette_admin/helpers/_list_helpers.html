@@ -17,7 +17,7 @@
 {% endmacro %}
 
 {% macro render_search_form(term) %}
-<form method="get">
+<form method="get" class="mb-0 flex-fill">
     <div class="input-group mb-0">
         <div class="icon-input">
             <input type="text" id="search" name="search" placeholder="Search" {% if term %}value="{{ term }}"{% endif %}>

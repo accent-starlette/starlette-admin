@@ -974,7 +974,7 @@ button,
   user-select: none;
   background-color: white;
   border: 1px solid #e3e3da;
-  border-radius: 0.25rem;
+  border-radius: 0;
   transition: background-color linear 250ms, border-color linear 250ms;
 }
 
@@ -1141,7 +1141,7 @@ code {
   word-break: break-word;
   background: #f0f0f0;
   border: 1px solid #e3e3da;
-  border-radius: 0.25rem;
+  border-radius: 0;
 }
 
 pre {
@@ -1154,7 +1154,7 @@ pre {
   white-space: pre;
   background: #f0f0f0;
   border: 1px solid #e3e3da;
-  border-radius: 0.25rem;
+  border-radius: 0;
 }
 
 pre code {
@@ -1179,7 +1179,7 @@ input[type="date"], input[type="datetime"], input[type="datetime-local"], input[
   color: #484644;
   background: white;
   border: 1px solid #e3e3da;
-  border-radius: 0.25rem;
+  border-radius: 0;
   box-shadow: none;
   transition: background linear 250ms, border-color linear 250ms;
   padding: 0.8rem 1rem;
@@ -1247,7 +1247,7 @@ textarea {
   color: #484644;
   background: white;
   border: 1px solid #e3e3da;
-  border-radius: 0.25rem;
+  border-radius: 0;
   box-shadow: none;
   transition: background linear 250ms, border-color linear 250ms;
   padding: 0.8rem 1rem;
@@ -1272,7 +1272,7 @@ select {
   color: #484644;
   background: white;
   border: 1px solid #e3e3da;
-  border-radius: 0.25rem;
+  border-radius: 0;
   box-shadow: none;
   transition: background linear 250ms, border-color linear 250ms;
   padding: 0.8rem 1rem;
@@ -1622,7 +1622,7 @@ ul.radios label input:disabled + span {
 
 .checkbox label span,
 ul.checkboxes label span {
-  border-radius: 0.25rem;
+  border-radius: 0;
 }
 
 .checkbox input[type=checkbox] + span:after,
@@ -1723,14 +1723,14 @@ ul.radios label span {
 
 .input-group > *:first-child,
 .input-group > *:first-child.icon-input > input {
-  border-top-left-radius: 0.25rem !important;
-  border-bottom-left-radius: 0.25rem !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
 }
 
 .input-group > *:last-child,
 .input-group > *:last-child.icon-input > input {
-  border-top-right-radius: 0.25rem !important;
-  border-bottom-right-radius: 0.25rem !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
 }
 
 /* add your custom modules here */
@@ -1835,6 +1835,15 @@ ul.radios label span {
 }
 
 /* '' */
+.action-bar {
+  background-color: #eeeee8;
+  border-bottom: 1px solid #e3e3da;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 1.5rem;
+  padding: .5rem;
+}
+
 /* anchor */
 a.c-white:hover {
   color: #e6e6e6;
@@ -2082,7 +2091,7 @@ textarea[disabled] {
   color: #484644;
   background: white;
   border: 1px solid #e3e3da;
-  border-radius: 0.25rem;
+  border-radius: 0;
   box-shadow: none;
   transition: background linear 250ms, border-color linear 250ms;
   padding: 0.8rem 1rem;
@@ -2227,7 +2236,7 @@ header .logo svg {
 /* panel */
 .panel {
   background-color: #eeeee8;
-  border-radius: 0.25rem;
+  border-radius: 0;
   padding: 2rem;
   margin-bottom: 1.5rem;
 }
@@ -2563,6 +2572,11 @@ header .logo svg {
     -moz-column-gap: 30px;
     column-gap: 30px;
   }
+}
+
+.flex-fill {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 /* widget */
