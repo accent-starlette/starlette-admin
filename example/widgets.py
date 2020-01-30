@@ -25,6 +25,6 @@ class DayOfYear(BaseWidget):
     def get_context(self):
         return {
             "icon": "fa fa-calendar-day",
-            "value": datetime.now().strftime("%j"),
+            "value": datetime.now().strftime("%-j"),
             "text": "Day of year"
         }
