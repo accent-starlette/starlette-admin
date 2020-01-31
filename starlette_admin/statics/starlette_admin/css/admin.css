@@ -1434,7 +1434,7 @@ h1 small, .h1 small, h2 small, .h2 small, h3 small, .h3 small, h4 small, .h4 sma
 
 h1,
 .h1 {
-  margin: 0 0 1.5rem;
+  margin: 0;
   font-size: 28px;
   font-weight: 600;
   line-height: 1.2;
@@ -1980,7 +1980,7 @@ a.c-blacksqueeze-darken-5:hover {
 /* breadcrumb */
 .breadcrumb {
   list-style: none;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .breadcrumb li:first-child {
