@@ -5,7 +5,11 @@
     margin-bottom: $generic-margin-bottom;
     padding: .5rem;
 
-    .button {
-        margin-left: auto;
+    * {
+        margin: 0 0 0 auto;
+    }
+
+    *+* {
+        margin-left: .5rem;
     }
 }

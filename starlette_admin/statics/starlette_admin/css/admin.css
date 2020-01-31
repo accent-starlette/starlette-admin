@@ -1844,8 +1844,12 @@ ul.radios label span {
   padding: .5rem;
 }
 
-.action-bar .button {
-  margin-left: auto;
+.action-bar * {
+  margin: 0 0 0 auto;
+}
+
+.action-bar * + * {
+  margin-left: .5rem;
 }
 
 /* anchor */
