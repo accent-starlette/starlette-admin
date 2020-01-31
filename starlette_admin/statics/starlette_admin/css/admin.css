@@ -1844,6 +1844,10 @@ ul.radios label span {
   padding: .5rem;
 }
 
+.action-bar .button {
+  margin-left: auto;
+}
+
 /* anchor */
 a.c-white:hover {
   color: #e6e6e6;

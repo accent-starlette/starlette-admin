@@ -4,4 +4,8 @@
     display: flex;
     margin-bottom: $generic-margin-bottom;
     padding: .5rem;
+
+    .button {
+        margin-left: auto;
+    }
 }

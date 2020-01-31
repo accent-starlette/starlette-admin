@@ -9,7 +9,7 @@
             {% from "starlette_admin/helpers/_list_helpers.html" import render_search_form %}
             {{ render_search_form(search) }}
         {% endif %}
-        <a href="{{ url_for(url_names.create) }}" class="button button-secondary ml-h">New Record</a>
+        <a href="{{ url_for(url_names.create) }}" class="button button-secondary">New Record</a>
     </div>
     {% include "starlette_admin/partials/table.html" %}
 </div>
