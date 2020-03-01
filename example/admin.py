@@ -1,3 +1,5 @@
+import json
+
 import sqlalchemy as sa
 from sqlalchemy import orm
 from starlette.exceptions import HTTPException
@@ -98,6 +100,19 @@ class DemoAdmin(BaseAdmin):
 class DemoModelForm(ModelForm):
     class Meta:
         model = DemoModel
+        field_args = {
+            "date": {
+                "render_kw": {
+                    "data-flatpickr": json.dumps(
+                        {
+                            "altInput": True,
+                            "altFormat": "d/m/Y",
+                            "dateFormat": "Y-m-d"
+                        }
+                    )
+                }
+            }
+        }
 
     @classmethod
     def get_session(cls):
@@ -113,6 +128,12 @@ class DemoModelAdmin(ModelAdmin):
     paginate_by = 10
     order_enabled = True
     search_enabled = True
+    extra_css_urls = [
+        "https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.3/flatpickr.min.css"
+    ]
+    extra_js_urls = [
+        "https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.3/flatpickr.min.js"
+    ]
     create_form = DemoModelForm
     update_form = DemoModelForm
     delete_form = form.Form
