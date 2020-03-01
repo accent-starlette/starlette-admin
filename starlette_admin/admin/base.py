@@ -36,8 +36,8 @@ class BaseAdmin:
     list_template: str = "starlette_admin/list.html"
     update_template: str = "starlette_admin/update.html"
     # static includes
-    extra_css_urls: typing.List[str]
-    extra_js_urls: typing.List[str]
+    extra_css_urls: typing.List[str] = []
+    extra_js_urls: typing.List[str] = []
     # forms
     create_form: Form
     delete_form: Form
