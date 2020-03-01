@@ -1,5 +1,11 @@
 {% extends "starlette_admin/base.html" %}
 
+{% block extra_css %}
+    {% for url in extra_css_urls %}
+    <link href="{{ url }}" rel="stylesheet">
+    {% endfor %}
+{% endblock %}
+
 {% block content %}
 <div class="container-fluid mt-header">
     <h1>Update</h1>
@@ -8,4 +14,10 @@
     {% include "starlette_admin/partials/form.html" %}
     {% endwith %}
 </div>
+{% endblock %}
+
+{% block extra_js %}
+    {% for url in extra_js_urls %}
+    <script src="{{ url }}"></script>
+    {% endfor %}
 {% endblock %}

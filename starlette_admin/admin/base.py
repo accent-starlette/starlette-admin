@@ -35,6 +35,9 @@ class BaseAdmin:
     delete_template: str = "starlette_admin/delete.html"
     list_template: str = "starlette_admin/list.html"
     update_template: str = "starlette_admin/update.html"
+    # static includes
+    extra_css_urls: typing.List[str]
+    extra_js_urls: typing.List[str]
     # forms
     create_form: Form
     delete_form: Form
@@ -51,6 +54,8 @@ class BaseAdmin:
                 "collection_name": cls.collection_name,
                 "section_name": cls.section_name,
                 "url_names": cls.url_names(),
+                "extra_css_urls": cls.extra_css_urls,
+                "extra_js_urls": cls.extra_js_urls,
             }
         )
         return context
