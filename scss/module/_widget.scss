@@ -1,7 +1,7 @@
 /* widget */
 
 .widget {
-    background-color: color-darken("blacksqueeze", 5%);
+    background-color: color("secondary");
     border-radius: .25rem;
     break-inside: avoid-column;
     display: flex;
@@ -10,7 +10,7 @@
 }
 .widget .icon {
     align-items: center;
-    color: color-darken("blacksqueeze", 15%);
+    color: color("primary");
     display: flex;
     flex-direction: row;
     font-size: 4rem;

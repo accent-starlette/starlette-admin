@@ -1,16 +1,11 @@
 /* svg */
 
-.logo,
-.toggle-menu {
+.logo {
     path {
         fill: color("white");
     }
 
     &.fill-primary path {
         fill: color("primary");
-    }
-
-    &.fill-white path {
-        fill: color("white");
     }
 }

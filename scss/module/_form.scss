@@ -3,7 +3,7 @@
 input[disabled],
 select[disabled],
 textarea[disabled] {
-  background: color-darken("blacksqueeze", 5%);
+  background: color-lighten("secondary", 4%);
 }
 
 .text-error {
@@ -14,12 +14,12 @@ textarea[disabled] {
   textarea,
   .file-field {
     margin-bottom: .25rem;
-    border: 2px solid color("red");
+    border: 1px solid color("chilli");
   }
 
   cite {
     font-style: normal;
-    color: color("red");
+    color: color("chilli");
   }
 }
 

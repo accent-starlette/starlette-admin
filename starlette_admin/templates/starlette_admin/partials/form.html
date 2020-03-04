@@ -11,7 +11,7 @@
         {% endif %}
         <button class="button {{ button_class|default('button-primary') }}">{{ button_name|default('save') }}</button>
         {% if show_delete_link %}
-        <a href="{{ url_for(url_names.delete, id=object.id) }}" class="button button-clear button-red">delete</a>
+        <a href="{{ url_for(url_names.delete, id=object.id) }}" class="button button-clear button-chilli">delete</a>
         {% endif %}
     </div>
 </form>

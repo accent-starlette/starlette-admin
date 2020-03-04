@@ -9,7 +9,7 @@ header {
   width: 100%;
   transform: translateY(0);
   transition: transform ease-in-out $animation-speed-fast;
-  background-color: color("cornflowerblue");
+  background-color: color("charcoal");
 }
 
 header.up {
@@ -27,7 +27,7 @@ header .logout-link {
   width: 4.6rem;
 
   &:hover {
-    background-color: color-darken("cornflowerblue", $darken-hover-percent);
+    background-color: color-darken("charcoal", $darken-hover-percent);
   }
 }
 
