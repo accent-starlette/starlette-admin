@@ -7,9 +7,9 @@
         </div>
     {% elif field.type == "FileField" or field.type == "MultipleFileField" %}
         <label for="{{ field.id }}">{{ field.label.text|replace("_", " ")|title }}</label>
-        <label class="file-field input-group">
-            <div class="info">Choose file(s)</div>
-            {{ field }}
+        <label x-data="{count: 0}" class="file-field input-group">
+            <div class="info" x-text="count ? count + ' files(s) selected' : 'Choose file(s)'"></div>
+            {{ field(**{'@change': 'count = $event.target.files.length'}) }}
             <span class="button button-secondary input-group-addon">Browse</span>
         </label>
     {% else %}

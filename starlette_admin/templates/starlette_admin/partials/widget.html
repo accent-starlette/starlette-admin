@@ -1,7 +1,14 @@
-<div class="widget">
+<div class="widget" 
+    x-data="{toggle: false, text: '{{ text }}', description: '{{ description }}'}"
+    @mouseenter="toggle = true"
+    @mouseleave="toggle = false"
+>
     <div class="icon"><i class="{{ icon }}"></i></div>
     <div class="content">
         <div class="value">{{ value }}</div>
-        <div class="text">{{ text }}</div>
+        <div class="text"
+            :class="{'muted': toggle}"
+            x-text="toggle ? description : text"
+        ></div>
     </div>
 </div>

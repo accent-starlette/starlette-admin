@@ -8,7 +8,12 @@ class BaseWidget:
     template = "starlette_admin/partials/widget.html"
 
     def get_context(self):
-        return {"icon": "fa fa-cog", "value": 0, "text": "Some text"}
+        return {
+            "icon": "fa fa-cog",
+            "value": 0,
+            "text": "Some text",
+            "description": "Some useful description",
+        }
 
     def render(self):
         template = config.templates.get_template(self.template)
@@ -22,14 +27,25 @@ class BaseWidget:
 The idea here is to inherit from `BaseWidget` and return the required context to
 render the template.
 
+In the below example we are using [alpine.js](https://github.com/alpinejs/alpine) 
+to change the widgets text to its description when you mouseover the widget.
+It also sets a muted class on the `.text` element.
+
 The default template is:
 
 ```html
-<div class="widget">
+<div class="widget" 
+    x-data="{toggle: false, text: '{{ text }}', description: '{{ description }}'}"
+    @mouseenter="toggle = true"
+    @mouseleave="toggle = false"
+>
     <div class="icon"><i class="{{ icon }}"></i></div>
     <div class="content">
         <div class="value">{{ value }}</div>
-        <div class="text">{{ text }}</div>
+        <div class="text"
+            :class="{'muted': toggle}"
+            x-text="toggle ? description : text"
+        ></div>
     </div>
 </div>
 ```
@@ -46,8 +62,9 @@ class Today(BaseWidget):
     def get_context(self):
         return {
             "icon": "fa fa-calendar",
-            "value": datetime.now().strftime("%d %B %Y"),
-            "text": "Today"
+            "value": datetime.utcnow().strftime("%d %B %Y"),
+            "text": "Today",
+            "description": "The date as at UTC time"
         }
 
 adminsite = AdminSite(name="admin")

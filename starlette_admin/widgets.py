@@ -7,7 +7,12 @@ class BaseWidget:
     template = "starlette_admin/partials/widget.html"
 
     def get_context(self):
-        return {"icon": "fa fa-cog", "value": 0, "text": "Some text"}
+        return {
+            "icon": "fa fa-cog",
+            "value": 0,
+            "text": "Some text",
+            "description": "Some useful description",
+        }
 
     def render(self):
         template = config.templates.get_template(self.template)

@@ -9,8 +9,10 @@
         <style>@import url('https://fonts.googleapis.com/css?family=Inconsolata|Roboto:300,400,400i,500&display=swap');</style>
         <link href="{{ url_for('static', path='/starlette_admin/css/admin.min.css') }}" rel="stylesheet">
         {% block extra_css %}{% endblock %}
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
     </head>
     <body>
+
     {% block header %}
     {% include "starlette_admin/partials/header.html" %}
     {% endblock %}
@@ -21,7 +23,6 @@
     
     {% block content %}{% endblock %}
 
-    <script src="{{ url_for('static', path='/starlette_admin/js/admin.min.js') }}"></script>
     {% block extra_js %}{% endblock %}
 
     {% from "starlette_admin/helpers/_messages.html" import render_messages with context %}

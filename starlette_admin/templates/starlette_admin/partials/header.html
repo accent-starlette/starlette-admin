@@ -1,5 +1,11 @@
-<header>
-    <a class="toggle-menu pointer mr-1h" title="Open Menu"><i class="icon-menu"></i></a>
+<header
+    x-data="{atTop: true}"
+    :class="{'up' : !atTop}"
+    @scroll.window="atTop = (window.pageYOffset > 100) ? false : true"
+>
+    <a @click="$dispatch('show-sidebar', { show: true })" class="toggle-menu pointer mr-1h" title="Open Menu">
+        <i class="icon-menu"></i>
+    </a>
     <a href="{{ url_for(base_url_name) }}" class="mr-auto" title="Home">
         <div class="logo">{% include "starlette_admin/partials/svg/logo.svg" %}</div>
     </a>

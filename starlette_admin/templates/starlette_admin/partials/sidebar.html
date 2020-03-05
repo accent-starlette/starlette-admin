@@ -1,7 +1,18 @@
-<nav class="menu">
+<nav class="menu"
+    x-data="{show: false}"
+    :class="{'active': show}"
+    @mouseleave="show = false"
+    @show-sidebar.window="show = $event.detail.show"
+>
     <div class="menu-header">
-        <a href="{{ url_for(base_url_name) }}" title="Home"><div class="logo">{% include "starlette_admin/partials/svg/logo.svg" %}</div></a>
-        <div class="ml-auto"><a class="toggle-menu pointer" title="Close Menu"><i class="icon-menu"></i></a></div>
+        <a href="{{ url_for(base_url_name) }}" title="Home">
+            <div class="logo">{% include "starlette_admin/partials/svg/logo.svg" %}</div>
+        </a>
+        <div class="ml-auto">
+            <a @click="show = false" class="toggle-menu pointer" title="Close Menu">
+                <i class="icon-menu"></i>
+            </a>
+        </div>
     </div>
     <div class="mt-1 p-1">
         {% for section in registry|groupby('section_name') %}
@@ -11,7 +22,7 @@
             <li><a href="{{ url_for(admin.url_names().list) }}" title="{{ admin.collection_name }}">{{ admin.collection_name }}</a></li>
         {% endfor %}
         </ul>
-        <hr>
+        {% if not loop.last %}<hr>{% endif %}
         {% endfor %}
     </div>
 </nav>

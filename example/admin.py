@@ -11,6 +11,14 @@ from wtforms_alchemy import ModelForm
 
 from .models import DemoModel, SystemSettingsModel
 
+DATE_PICKER_OPTS = {
+    "altInput": True,
+    "altFormat": "d/m/Y",
+    "dateFormat": "Y-m-d"
+}
+DATE_PICKER_JSON = json.dumps(DATE_PICKER_OPTS)
+DATE_PICKER_JSON_KEYS = str({k for k in DATE_PICKER_OPTS.keys()}).replace("'", "")
+
 
 # objects using the base admin that must implement
 # all required methods
@@ -103,13 +111,8 @@ class DemoModelForm(ModelForm):
         field_args = {
             "date": {
                 "render_kw": {
-                    "data-flatpickr": json.dumps(
-                        {
-                            "altInput": True,
-                            "altFormat": "d/m/Y",
-                            "dateFormat": "Y-m-d"
-                        }
-                    )
+                    "x-data": DATE_PICKER_JSON,
+                    "x-init": f"flatpickr($el, {DATE_PICKER_JSON_KEYS})"
                 }
             }
         }
