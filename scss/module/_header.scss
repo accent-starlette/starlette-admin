@@ -34,3 +34,7 @@ header .logout-link {
 header .logo svg {
   display: block;
 }
+
+header ~ .main-content {
+  padding-top: 6rem;
+}

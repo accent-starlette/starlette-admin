@@ -2143,6 +2143,10 @@ header .logo svg {
   display: block;
 }
 
+header ~ .main-content {
+  padding-top: 6rem;
+}
+
 /* menu */
 .menu {
   position: fixed;
@@ -2523,10 +2527,6 @@ header .logo svg {
 
 .ml-1h {
   margin-left: 1.5rem !important;
-}
-
-.mt-header {
-  margin-top: 6rem;
 }
 
 .columns {

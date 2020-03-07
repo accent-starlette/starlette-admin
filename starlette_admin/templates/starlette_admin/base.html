@@ -21,8 +21,8 @@
     {% include "starlette_admin/partials/sidebar.html" %}
     {% endblock %}
     
-    {% block content %}{% endblock %}
-
+    <div class="main-content">{% block content %}{% endblock %}</div>
+    
     {% block extra_js %}{% endblock %}
 
     {% from "starlette_admin/helpers/_messages.html" import render_messages with context %}

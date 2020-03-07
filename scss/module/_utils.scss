@@ -18,10 +18,6 @@ $spacers: (
   }
 }
 
-.mt-header {
-  margin-top: 6rem;
-}
-
 .columns {
   @include media-breakpoint-up(xs) {
     columns: 1;
