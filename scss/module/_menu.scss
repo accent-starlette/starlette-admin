@@ -3,7 +3,6 @@
 .menu {
   @include position($top: 0, $left: 0, $position: fixed);
   z-index: zindex("menu");
-  width: 290px;
   max-width: 100%;
   height: 100vh;
   overflow-y: auto;
@@ -11,6 +10,13 @@
   transition: transform ease-in-out $animation-speed-fast;
   background-color: color-a("charcoal", .94);
   backdrop-filter: blur(10px);
+
+  @include media-breakpoint-down(xs) {
+    width: 100%;
+  }
+  @include media-breakpoint-up(xs) {
+    width: 300px;
+  }
 
   &.active {
     transform: translateX(0);
