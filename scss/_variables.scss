@@ -1,11 +1,10 @@
 /* variables */
 
 // typography
-$base-font-family:              "Roboto", sans-serif;
+$base-font-family:              Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
 $code-font-family:              "Inconsolata", monospace;
 $base-font-size:                14px;
 $table-font-size:               1.4rem;
-$heading-font-weight:           500;
 
 $h1-margin:                     0;
 
@@ -39,7 +38,7 @@ $button-font-size:              1.4rem;
 $button-padding-x:              1.2rem;
 
 /* forms */
-$label-font-weight:             500;
+$label-font-weight:             700;
 
 /* tables */
 $table-headed-color:            map-get($colors, "secondary");
