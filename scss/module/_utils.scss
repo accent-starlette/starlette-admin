@@ -32,6 +32,34 @@ $spacers: (
   }
 }
 
-.flex-fill {
-  flex: 1 1 auto;
+/* alpine.js */
+
+[x-cloak] {
+  display: none;
+}
+
+/* transition helpers */
+
+.transition-fast {
+  transition-duration: $animation-speed-fast;
+}
+
+.transition-slow {
+  transition-duration: $animation-speed-slow;
+}
+
+.ease-in {
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);      
+}
+
+.ease-out {
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.translate-x-0 {
+  transform: translateX(0);
+}
+
+.translate-x-minus-100 {
+  transform: translateX(-100%);
 }

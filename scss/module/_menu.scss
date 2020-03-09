@@ -6,8 +6,6 @@
   max-width: 100%;
   height: 100vh;
   overflow-y: auto;
-  transform: translateX(-100%);
-  transition: transform ease-in-out $animation-speed-fast;
   background-color: color-a("charcoal", .94);
   backdrop-filter: blur(10px);
 
@@ -17,11 +15,6 @@
   @include media-breakpoint-up(xs) {
     width: 300px;
   }
-
-  &.active {
-    transform: translateX(0);
-  }
-  
 }
 
 .menu .menu-header {

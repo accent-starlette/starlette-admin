@@ -1,8 +1,15 @@
 <nav class="menu"
     x-data="{show: false}"
-    :class="{'active': show}"
-    @mouseleave="show = false"
+    x-cloak
+    x-show="show"
+    x-transition:enter="ease-out transition-fast"
+    x-transition:enter-start="translate-x-minus-100"
+    x-transition:enter-end="translate-x-0"
+    x-transition:leave="ease-in transition-fast"
+    x-transition:leave-start="translate-x-0"
+    x-transition:leave-end="translate-x-minus-100"
     @show-sidebar.window="show = $event.detail.show"
+    @mouseleave="show = false"
 >
     <div class="menu-header">
         <a href="{{ url_for(base_url_name) }}" title="Home">

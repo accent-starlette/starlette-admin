@@ -1295,7 +1295,7 @@ select:not([multiple]) {
 
 label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: .5rem;
   font-weight: 700;
 }
 
@@ -1303,7 +1303,7 @@ legend {
   box-sizing: border-box;
   display: block;
   max-width: 100%;
-  margin-bottom: 0.5rem;
+  margin-bottom: .5rem;
   font-weight: 700;
   color: inherit;
   white-space: normal;
@@ -1342,15 +1342,15 @@ ul {
   list-style: circle inside;
 }
 
+ul ul,
+ul ol {
+  margin: 0 0 0 2rem;
+}
+
 ol {
   padding-left: 0;
   margin-bottom: 1.5rem;
   list-style: decimal inside;
-}
-
-ul ul,
-ul ol {
-  margin: 0 0 0 2rem;
 }
 
 ol ol,
@@ -1514,11 +1514,11 @@ sup {
 }
 
 sub {
-  bottom: -0.25em;
+  bottom: -.25em;
 }
 
 sup {
-  top: -0.5em;
+  top: -.5em;
 }
 
 /* karma-css components */
@@ -2158,11 +2158,6 @@ header ~ .main-content {
   max-width: 100%;
   height: 100vh;
   overflow-y: auto;
-  -webkit-transform: translateX(-100%);
-  transform: translateX(-100%);
-  transition: -webkit-transform ease-in-out 250ms;
-  transition: transform ease-in-out 250ms;
-  transition: transform ease-in-out 250ms, -webkit-transform ease-in-out 250ms;
   background-color: rgba(60, 60, 60, 0.94);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -2173,11 +2168,6 @@ header ~ .main-content {
   .menu {
     width: 100%;
   }
-}
-
-.menu.active {
-  -webkit-transform: translateX(0);
-  transform: translateX(0);
 }
 
 .menu .menu-header {
@@ -2563,9 +2553,36 @@ header ~ .main-content {
   }
 }
 
-.flex-fill {
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
+/* alpine.js */
+[x-cloak] {
+  display: none;
+}
+
+/* transition helpers */
+.transition-fast {
+  transition-duration: 250ms;
+}
+
+.transition-slow {
+  transition-duration: 1000ms;
+}
+
+.ease-in {
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+
+.ease-out {
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.translate-x-0 {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+
+.translate-x-minus-100 {
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
 }
 
 /* widget */
