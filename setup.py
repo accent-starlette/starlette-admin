@@ -53,7 +53,7 @@ package_name = "starlette_admin"
 
 setup(
     name=name,
-    python_requires=">=3.6",
+    python_requires=">=3.7",
     version=get_version(package_name),
     url="https://github.com/accent-starlette/starlette-admin",
     license="MIT",
@@ -84,7 +84,7 @@ setup(
         "Operating System :: OS Independent",
         "Topic :: Internet :: WWW/HTTP",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
     ],
 )
