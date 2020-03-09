@@ -1,0 +1,33 @@
+/* messages */
+
+.messages {
+  @include position($right: 10px, $bottom: 0, $position: fixed);
+  border-radius: $global-radius;
+  list-style-type: none;
+  margin-bottom: 0;
+
+  @include media-breakpoint-down(xs) {
+    left: 10px;
+  }
+
+  li {
+    color: color("white");
+    margin-bottom: 1rem;
+    padding: 1rem 1.5rem;
+
+    @include media-breakpoint-down(xs) {
+      width: 100%;
+    }
+
+    @include media-breakpoint-up(xs) {
+      float: right;
+      clear: right;
+    }
+
+    &.message-default { background: color("charcoal"); }
+    &.message-success { background: color("olive"); }
+    &.message-error { background: color("chilli"); }
+    &.message-info { background: color("aqua"); }
+    &.message-warning { background: color("orange"); }
+  }
+}

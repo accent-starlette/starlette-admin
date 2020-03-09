@@ -2223,6 +2223,58 @@ header ~ .main-content {
   color: rgba(255, 255, 255, 0.84);
 }
 
+/* messages */
+.messages {
+  position: fixed;
+  top: auto;
+  right: 10px;
+  bottom: 0;
+  left: auto;
+  border-radius: 0;
+  list-style-type: none;
+  margin-bottom: 0;
+}
+
+@media (max-width: 575px) {
+  .messages {
+    left: 10px;
+  }
+}
+
+.messages li {
+  color: white;
+  margin-bottom: 1rem;
+  padding: 1rem 1.5rem;
+  float: right;
+  clear: right;
+}
+
+@media (max-width: 575px) {
+  .messages li {
+    width: 100%;
+  }
+}
+
+.messages li.message-default {
+  background: #3c3c3c;
+}
+
+.messages li.message-success {
+  background: #3d9970;
+}
+
+.messages li.message-error {
+  background: #af473c;
+}
+
+.messages li.message-info {
+  background: #7fdbff;
+}
+
+.messages li.message-warning {
+  background: #ff851b;
+}
+
 /* panel */
 .panel {
   background-color: #eeedf1;
@@ -2261,27 +2313,6 @@ header ~ .main-content {
 
 .logo.fill-primary path {
   fill: #945d60;
-}
-
-/* toastify */
-.toastify.toastify-default {
-  background: #3c3c3c;
-}
-
-.toastify.toastify-success {
-  background: #3d9970;
-}
-
-.toastify.toastify-error {
-  background: #af473c;
-}
-
-.toastify.toastify-info {
-  background: #7fdbff;
-}
-
-.toastify.toastify-warning {
-  background: #ff851b;
 }
 
 /* utils */
@@ -2583,6 +2614,14 @@ header ~ .main-content {
 .translate-x-minus-100 {
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-100 {
+  opacity: 100;
 }
 
 /* widget */
