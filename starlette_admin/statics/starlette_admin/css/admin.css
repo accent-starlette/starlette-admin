@@ -2605,11 +2605,11 @@ header ~ .main-content {
 }
 
 .ease-in {
-  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+  transition-timing-function: ease-in;
 }
 
 .ease-out {
-  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-timing-function: ease-out;
 }
 
 .translate-x-0 {
@@ -2620,6 +2620,11 @@ header ~ .main-content {
 .translate-x-minus-100 {
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
+}
+
+.translate-x-plus-100 {
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
 }
 
 .opacity-0 {
