@@ -32,6 +32,12 @@ $spacers: (
   }
 }
 
+/* flex */
+
+.flex-fill {
+  flex: 1 1 auto;
+}
+
 /* alpine.js */
 
 [x-cloak] {
