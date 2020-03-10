@@ -62,6 +62,10 @@ $spacers: (
   transition-timing-function: ease-out;
 }
 
+.linear {
+  transition-timing-function: linear;
+}
+
 .translate-x-0 {
   transform: translateX(0);
 }
@@ -72,6 +76,18 @@ $spacers: (
 
 .translate-x-plus-100 {
   transform: translateX(100%);
+}
+
+.translate-y-0 {
+  transform: translateY(0);
+}
+
+.translate-y-minus-100 {
+  transform: translateY(-100%);
+}
+
+.translate-y-plus-100 {
+  transform: translateY(100%);
 }
 
 .opacity-0 {

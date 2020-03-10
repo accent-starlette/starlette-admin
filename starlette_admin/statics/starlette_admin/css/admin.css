@@ -2110,17 +2110,7 @@ header {
   align-items: center;
   height: 5rem;
   width: 100%;
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
-  transition: -webkit-transform ease-in-out 250ms;
-  transition: transform ease-in-out 250ms;
-  transition: transform ease-in-out 250ms, -webkit-transform ease-in-out 250ms;
   background-color: #3c3c3c;
-}
-
-header.up {
-  -webkit-transform: translateY(-100%);
-  transform: translateY(-100%);
 }
 
 header .toggle-menu,
@@ -2612,6 +2602,10 @@ header ~ .main-content {
   transition-timing-function: ease-out;
 }
 
+.linear {
+  transition-timing-function: linear;
+}
+
 .translate-x-0 {
   -webkit-transform: translateX(0);
   transform: translateX(0);
@@ -2625,6 +2619,21 @@ header ~ .main-content {
 .translate-x-plus-100 {
   -webkit-transform: translateX(100%);
   transform: translateX(100%);
+}
+
+.translate-y-0 {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.translate-y-minus-100 {
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+
+.translate-y-plus-100 {
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
 }
 
 .opacity-0 {

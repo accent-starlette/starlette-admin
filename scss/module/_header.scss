@@ -7,13 +7,7 @@ header {
   align-items: center;
   height: 5rem;
   width: 100%;
-  transform: translateY(0);
-  transition: transform ease-in-out $animation-speed-fast;
   background-color: color("charcoal");
-}
-
-header.up {
-  transform: translateY(-100%);
 }
 
 header .toggle-menu,
