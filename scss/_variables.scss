@@ -31,7 +31,7 @@ $input-use-full-width:          true;
 $buttons: (
   // name                       color                               font-color
   primary:                      map-get($colors, "primary")         map-get($colors, "white"),
-  secondary:                    map-get($colors, "secondary")       map-get($colors, "charcoal"),
+  secondary:                    map-get($colors, "secondary")       map-get($colors, "primary"),
   chilli:                       map-get($colors, "chilli")          map-get($colors, "white"),
 );
 $button-font-size:              1.4rem;

@@ -1051,13 +1051,13 @@ button,
 }
 
 .button.button-secondary {
-  color: #3c3c3c;
+  color: #945d60;
   background-color: #eeedf1;
   border-color: #e0dfe6;
 }
 
 .button.button-secondary:hover, .button.button-secondary:focus {
-  color: #3c3c3c;
+  color: #945d60;
   background-color: #d3d0db;
   border-color: #c5c2d0;
   outline: 0;
