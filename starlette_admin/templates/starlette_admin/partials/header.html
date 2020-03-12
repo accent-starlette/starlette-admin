@@ -10,7 +10,7 @@
     @scroll.window="top = (window.pageYOffset > 100) ? false : true"
 >
     <a @click="$dispatch('show-sidebar', { show: true })" class="toggle-menu pointer mr-1h" title="Open Menu">
-        <i class="icon-menu"></i>
+        <i class="fa fa-bars"></i>
     </a>
     <a href="{{ url_for(base_url_name) }}" class="mr-auto" title="Home">
         <div class="logo">{% include "starlette_admin/partials/svg/logo.svg" %}</div>
@@ -20,7 +20,7 @@
             <span>{{ request.user.display_name }}</span>
         </div>
         {% if logout_url %}
-        <a class="logout-link" href="{{ logout_url }}" title="Logout"><i class="icon-logout"></i></a>
+        <a class="logout-link" href="{{ logout_url }}" title="Logout"><i class="fa fa-sign-out-alt"></i></a>
         {% endif %}
     {% endif %}
 </header>

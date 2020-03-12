@@ -72,6 +72,6 @@ adminsite = AdminSite(name="admin")
 adminsite.register_widget(Today())
 ```
 
-This will appear on the root page. If any widgets are added to the home page the free
+This will appear on the root page. The free
 version of [font awesome](https://fontawesome.com/icons?d=gallery&m=free) is loaded in the template
 so you can use any icon class from there.

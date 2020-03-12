@@ -14,8 +14,13 @@
 @import "node_modules/karma-css-components/scss/components/icon-input";
 @import "node_modules/karma-css-components/scss/components/input-group";
 
+/* font awesome */
+@import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
+@import "node_modules/@fortawesome/fontawesome-free/scss/regular";
+@import "node_modules/@fortawesome/fontawesome-free/scss/solid";
+@import "node_modules/@fortawesome/fontawesome-free/scss/brands";
+
 /* add your custom modules here */
-@import "fontello/css/fontello";
 @import "module/actions";
 @import "module/anchor";
 @import "module/breadcrumb";

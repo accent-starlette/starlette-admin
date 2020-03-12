@@ -5,30 +5,25 @@
   "keywords": [],
   "license": "MIT",
   "scripts": {
-    "css": "npm-run-all css-compile* --sequential css-prefix* css-minify* fontello-dist*",
+    "css": "npm-run-all css-compile* --sequential css-prefix* css-minify*",
     "css-compile": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 scss/admin.scss starlette_admin/statics/starlette_admin/css/admin.css",
     "css-prefix": "postcss --config scss/postcss.config.js --replace \"starlette_admin/statics/starlette_admin/css/*.css\" \"!starlette_admin/statics/starlette_admin/css/*.min.css\"",
     "css-minify": "cleancss --level 1 --source-map --source-map-inline-sources --output starlette_admin/statics/starlette_admin/css/admin.min.css starlette_admin/statics/starlette_admin/css/admin.css",
-    "fontello-dist": "cpy 'scss/fontello/font/*' starlette_admin/statics/starlette_admin/font",
-    "fontello-install": "fontello-cli install --config scss/fontello/config.json --css scss/fontello/css --font scss/fontello/font",
-    "fontello-web": "fontello-cli open --config scss/fontello/config.json",
     "watch-css": "nodemon -e scss -x \"npm run css\"",
     "js-minify": "rm starlette_admin/statics/starlette_admin/js/*.min.js; for f in starlette_admin/statics/starlette_admin/js/*.js; do short=${f%.js}; uglifyjs $f > $short.min.js; done"
   },
-  "dependencies": {
-    "uglify-js": "^3.4.10"
-  },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.1",
     "autoprefixer": "^9.5.0",
     "clean-css-cli": "^4.2.1",
     "cpy-cli": "^2.0.0",
-    "fontello-cli": "^0.4.0",
     "karma-css": "git+https://git@github.com/accentdesign/karma-css.git",
     "karma-css-components": "git+https://git@github.com/accentdesign/karma-css-components.git",
     "node-sass": "^4.7.2",
     "nodemon": "^1.18.10",
     "npm-run-all": "^4.1.5",
-    "postcss-cli": "^6.1.2"
+    "postcss-cli": "^6.1.2",
+    "uglify-js": "^3.4.10"
   },
   "browserslist": [
     "last 1 major version",

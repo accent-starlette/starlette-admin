@@ -1,14 +1,8 @@
 {% extends "starlette_admin/base.html" %}
 
-{% block extra_css %}
-{% if widgets|length > 0 %}
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" rel="stylesheet" />
-{% endif %}
-{% endblock %}
-
 {% block content %}
 <div class="container-fluid">
-    <p class="py-1">Welcome. To get started use the links below or open the menu using the <span class="toggle-menu c-primary"><i class="icon-menu"></i></span> above.</p>
+    <p class="py-1">Welcome. To get started use the links below or open the menu using the <i class="fa fa-bars c-primary"></i> above.</p>
     {% if widgets|length > 0 %}
     <div class="row">
         {% for widget in widgets %}
