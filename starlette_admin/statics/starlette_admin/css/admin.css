@@ -1295,7 +1295,7 @@ select:not([multiple]) {
 
 label {
   display: block;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   font-weight: 700;
 }
 
@@ -1303,7 +1303,7 @@ legend {
   box-sizing: border-box;
   display: block;
   max-width: 100%;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   font-weight: 700;
   color: inherit;
   white-space: normal;
@@ -1342,15 +1342,15 @@ ul {
   list-style: circle inside;
 }
 
-ul ul,
-ul ol {
-  margin: 0 0 0 2rem;
-}
-
 ol {
   padding-left: 0;
   margin-bottom: 1.5rem;
   list-style: decimal inside;
+}
+
+ul ul,
+ul ol {
+  margin: 0 0 0 2rem;
 }
 
 ol ol,
@@ -1514,11 +1514,11 @@ sup {
 }
 
 sub {
-  bottom: -.25em;
+  bottom: -0.25em;
 }
 
 sup {
-  top: -.5em;
+  top: -0.5em;
 }
 
 /* karma-css components */

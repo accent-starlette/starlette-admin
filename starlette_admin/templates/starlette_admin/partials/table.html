@@ -11,7 +11,7 @@
                     <a href="?{{ url_params_update(request.query_params, order_direction='asc') }}">{{ name|replace("_", " ")|title }} <i class="fa fa-sort-down"></i></a>
                     {% endif %}
                 {% else %}
-                <a href="?{{ url_params_update(request.query_params, order_by=name, order_direction='asc') }}">{{ name|replace("_", " ")|title }}</a>
+                    <a href="?{{ url_params_update(request.query_params, order_by=name, order_direction='asc') }}">{{ name|replace("_", " ")|title }} <i class="fa fa-sort"></i></a>
                 {% endif %}
             {% else %}
                 <span>{{ name|replace("_", " ")|title }}</span>
