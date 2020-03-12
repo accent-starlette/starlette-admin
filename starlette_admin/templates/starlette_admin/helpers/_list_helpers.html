@@ -20,11 +20,10 @@
 <form method="get" class="mb-0 flex-fill">
     <div class="input-group mb-0">
         <div class="icon-input">
-            <input type="text" id="search" name="search" placeholder="Search" {% if term %}value="{{ term }}"{% endif %}>
+            <input type="text" name="search" placeholder="Search" {% if term %}value="{{ term }}"{% endif %} autofocus>
             <span class="fa fa-search"></span>
         </div>
         <button type="submit" class="d-hidden"></button>
     </div>
 </form>
-<script>document.getElementById("search").focus();</script>
 {% endmacro %}
