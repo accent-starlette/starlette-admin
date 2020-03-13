@@ -2,6 +2,11 @@
 
 A simple, easy to use, admin site designed to manage basic crud operations in starlette.
 
+We use the free version of [font awesome](https://fontawesome.com/icons?d=gallery&m=free) 
+so when overriding templates you can use any icon from there.
+Javascript is all written using [alpine.js](https://github.com/alpinejs/alpine)
+so there is no additional javascript files to worry about.
+
 ![Homepage](https://github.com/accent-starlette/starlette-admin/blob/master/screenshots/screenshot_1.png?raw=true)
 
 ## The Vision
