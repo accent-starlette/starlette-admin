@@ -1,6 +1,7 @@
 from starlette.applications import Starlette
 from starlette.authentication import AuthCredentials, AuthenticationBackend, SimpleUser
 from starlette.middleware.authentication import AuthenticationMiddleware
+from starlette.middleware.gzip import GZipMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 from starlette.staticfiles import StaticFiles
 from starlette_admin.site import AdminSite
@@ -36,12 +37,11 @@ adminsite.register_widget(DayOfYear())
 # create app
 app = Starlette(debug=DEBUG)
 
-app.mount(
-    path="/static",
-    app=StaticFiles(directory="static", packages=["starlette_admin"]),
-    name="static"
-)
+# static app
+staticapp = StaticFiles(directory="static", packages=["starlette_admin"])
+app.mount(path="/static", app=staticapp, name="static")
 
+app.add_middleware(GZipMiddleware)
 app.add_middleware(AuthenticationMiddleware, backend=DummyAuthBackend())
 app.add_middleware(SessionMiddleware, secret_key="secret")
 app.add_middleware(DatabaseMiddleware)
