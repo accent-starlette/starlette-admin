@@ -9,7 +9,7 @@
     x-transition:leave-end="translate-y-minus-100"
     @scroll.window="top = (window.pageYOffset > 100) ? false : true"
 >
-    <a @click="$dispatch('show-sidebar', { show: true })" class="toggle-menu pointer mr-1h" title="Open Menu">
+    <a @click="$dispatch('toggle-sidebar')" class="toggle-menu pointer mr-1h" title="Open Menu">
         <i class="fa fa-bars"></i>
     </a>
     <a href="{{ url_for(base_url_name) }}" class="mr-auto" title="Home">

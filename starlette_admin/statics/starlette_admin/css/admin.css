@@ -923,7 +923,7 @@ body {
   font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-weight: 400;
-  color: #3c3c3c;
+  color: rgba(0, 0, 0, 0.8);
   background: white;
 }
 
@@ -964,7 +964,7 @@ button,
   font-size: 1.4rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #3c3c3c;
+  color: rgba(0, 0, 0, 0.8);
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
@@ -980,7 +980,7 @@ button,
 }
 
 .button:hover, .button:focus {
-  color: #3c3c3c;
+  color: rgba(0, 0, 0, 0.8);
   background-color: #e6e6e6;
   border-color: #cdcdcd;
   outline: 0;
@@ -992,7 +992,7 @@ button,
 }
 
 .button.button-outline:hover, .button.button-outline:focus {
-  color: #232323;
+  color: rgba(0, 0, 0, 0.8);
   background-color: transparent;
   border-color: #cdcdcd;
   outline: 0;
@@ -1005,7 +1005,7 @@ button,
 }
 
 .button.button-clear:hover, .button.button-clear:focus {
-  color: #232323;
+  color: rgba(0, 0, 0, 0.8);
   background-color: transparent;
   border-color: transparent;
   outline: 0;
@@ -1138,7 +1138,7 @@ samp {
 code {
   padding: 0.2rem 0.5rem;
   font-size: 100%;
-  color: #3c3c3c;
+  color: rgba(0, 0, 0, 0.8);
   word-break: break-word;
   background: #f0f0f0;
   border: 1px solid #e6e6e6;
@@ -1151,7 +1151,7 @@ pre {
   margin-bottom: 1.5rem;
   overflow-x: auto;
   font-size: 90%;
-  color: #3c3c3c;
+  color: rgba(0, 0, 0, 0.8);
   white-space: pre;
   background: #f0f0f0;
   border: 1px solid #e6e6e6;
@@ -1177,7 +1177,7 @@ input[type="date"], input[type="datetime"], input[type="datetime-local"], input[
   margin-bottom: 1.5rem;
   font-family: inherit;
   line-height: 1.5;
-  color: #3c3c3c;
+  color: rgba(0, 0, 0, 0.8);
   background: white;
   border: 1px solid #e6e6e6;
   border-radius: 0;
@@ -1245,7 +1245,7 @@ textarea {
   margin-bottom: 1.5rem;
   font-family: inherit;
   line-height: 1.5;
-  color: #3c3c3c;
+  color: rgba(0, 0, 0, 0.8);
   background: white;
   border: 1px solid #e6e6e6;
   border-radius: 0;
@@ -1270,7 +1270,7 @@ select {
   margin-bottom: 1.5rem;
   font-family: inherit;
   line-height: 1.5;
-  color: #3c3c3c;
+  color: rgba(0, 0, 0, 0.8);
   background: white;
   border: 1px solid #e6e6e6;
   border-radius: 0;
@@ -1296,7 +1296,7 @@ select:not([multiple]) {
 label {
   display: block;
   margin-bottom: 0.5rem;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 legend {
@@ -1304,7 +1304,7 @@ legend {
   display: block;
   max-width: 100%;
   margin-bottom: 0.5rem;
-  font-weight: 700;
+  font-weight: 400;
   color: inherit;
   white-space: normal;
 }
@@ -1425,7 +1425,7 @@ h1,
 .h5, h6,
 .h6 {
   font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
-  color: #565656;
+  color: rgba(0, 0, 0, 0.9);
 }
 
 h1 small, .h1 small, h2 small, .h2 small, h3 small, .h3 small, h4 small, .h4 small, h5 small, .h5 small, h6 small, .h6 small {
@@ -7796,8 +7796,12 @@ a.c-chilli:hover {
   color: #89382f;
 }
 
-a.c-charcoal:hover {
-  color: #232323;
+a.c-bluecharcoal:hover {
+  color: #121417;
+}
+
+a.c-mirage:hover {
+  color: #1d2025;
 }
 
 /* breadcrumb */
@@ -7915,7 +7919,7 @@ textarea[disabled] {
   margin-bottom: 1.5rem;
   font-family: inherit;
   line-height: 1.5;
-  color: #3c3c3c;
+  color: rgba(0, 0, 0, 0.8);
   background: white;
   border: 1px solid #e6e6e6;
   border-radius: 0;
@@ -7941,14 +7945,14 @@ header {
   right: auto;
   bottom: auto;
   left: auto;
-  z-index: 1;
+  z-index: 2;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
   align-items: center;
   height: 5rem;
   width: 100%;
-  background-color: #3c3c3c;
+  background-color: #282c34;
 }
 
 header .toggle-menu,
@@ -7964,7 +7968,7 @@ header .logout-link {
 
 header .toggle-menu:hover,
 header .logout-link:hover {
-  background-color: #232323;
+  background-color: #333842;
 }
 
 header .logo svg {
@@ -7982,13 +7986,12 @@ header ~ .main-content {
   right: auto;
   bottom: auto;
   left: 0;
-  z-index: 2;
+  z-index: 1;
   max-width: 100%;
+  padding-top: 4rem;
   height: 100vh;
   overflow-y: auto;
-  background-color: rgba(60, 60, 60, 0.94);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  background-color: #333842;
   width: 300px;
 }
 
@@ -7998,45 +8001,16 @@ header ~ .main-content {
   }
 }
 
-.menu .menu-header {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  right: auto;
-  bottom: auto;
-  left: auto;
-  background-color: #3c3c3c;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-  align-items: center;
-  padding-left: 1rem;
-}
-
-.menu .menu-header .toggle-menu {
-  color: white;
-  display: block;
-  font-size: 2rem;
-  line-height: 5rem;
-  text-align: center;
-  transition: background-color linear 250ms;
-  width: 4.6rem;
-}
-
-.menu .menu-header .toggle-menu:hover {
-  background-color: #232323;
-}
-
 .menu .section-header {
   margin-bottom: .5rem;
   font-weight: 300;
   font-size: 1.2rem;
-  color: white;
+  color: rgba(255, 255, 255, 0.85);
   text-transform: uppercase;
 }
 
 .menu hr {
-  border-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
   margin: 2rem 0;
 }
 
@@ -8047,8 +8021,12 @@ header ~ .main-content {
 .menu ul li a {
   display: block;
   line-height: 3rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.84);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.menu ul li a:hover {
+  color: white;
 }
 
 /* messages */
@@ -8084,7 +8062,7 @@ header ~ .main-content {
 }
 
 .messages li.message-default {
-  background: #3c3c3c;
+  background: #282c34;
 }
 
 .messages li.message-success {
@@ -8746,12 +8724,20 @@ header ~ .main-content {
   color: #af473c;
 }
 
-.b-charcoal {
-  background-color: #3c3c3c;
+.b-bluecharcoal {
+  background-color: #282c34;
 }
 
-.c-charcoal {
-  color: #3c3c3c;
+.c-bluecharcoal {
+  color: #282c34;
+}
+
+.b-mirage {
+  background-color: #333842;
+}
+
+.c-mirage {
+  color: #333842;
 }
 
 .disabled {

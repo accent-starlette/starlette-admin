@@ -14,12 +14,13 @@ $colors: (
   "secondary":                  rgb(238, 237, 241),
   "white":                      rgb(255, 255, 255),
   "chilli":                     rgb(175, 71, 60),
-  "charcoal":                   rgb(60, 60, 60),
+  "bluecharcoal":               rgb(40, 44, 52),
+  "mirage":                     rgb(51, 56, 66),
 );
 
 $body-background:               map-get($colors, "white");
-$font-color:                    map-get($colors, "charcoal");
-$header-font-color:             lighten(map-get($colors, "charcoal"), 10%);
+$font-color:                    rgba(0, 0, 0, 0.8);
+$header-font-color:             rgba(0, 0, 0, 0.9);
 
 /* misc */
 $global-radius:                 0;
@@ -38,7 +39,7 @@ $button-font-size:              1.4rem;
 $button-padding-x:              1.2rem;
 
 /* forms */
-$label-font-weight:             700;
+$label-font-weight:             400;
 
 /* tables */
 $table-headed-color:            map-get($colors, "secondary");
@@ -46,6 +47,6 @@ $table-hover-color:             lighten(map-get($colors, "secondary"), 4%);
 
 // z-indexes
 $z-layers: (
-  "header": 1,
-  "menu": 2
+  "header": 2,
+  "menu": 1
 );

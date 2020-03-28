@@ -7,7 +7,7 @@ header {
   align-items: center;
   height: 5rem;
   width: 100%;
-  background-color: color("charcoal");
+  background-color: color("bluecharcoal");
 }
 
 header .toggle-menu,
@@ -21,7 +21,7 @@ header .logout-link {
   width: 4.6rem;
 
   &:hover {
-    background-color: color-darken("charcoal", $darken-hover-percent);
+    background-color: color("mirage");
   }
 }
 

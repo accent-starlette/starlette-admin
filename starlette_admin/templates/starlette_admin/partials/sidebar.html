@@ -8,19 +8,9 @@
     x-transition:leave="ease-in transition-fast"
     x-transition:leave-start="translate-x-0"
     x-transition:leave-end="translate-x-minus-100"
-    @show-sidebar.window="show = $event.detail.show"
+    @toggle-sidebar.window="show = !show"
     @mouseleave="show = false"
 >
-    <div class="menu-header">
-        <a href="{{ url_for(base_url_name) }}" title="Home">
-            <div class="logo">{% include "starlette_admin/partials/svg/logo.svg" %}</div>
-        </a>
-        <div class="ml-auto">
-            <a @click="show = false" class="toggle-menu pointer" title="Close Menu">
-                <i class="fa fa-bars"></i>
-            </a>
-        </div>
-    </div>
     <div class="mt-1 p-1">
         {% for section in registry|groupby('section_name') %}
         <p class="section-header">{{ section.grouper }}</p>

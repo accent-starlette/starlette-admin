@@ -4,10 +4,10 @@
   @include position($top: 0, $left: 0, $position: fixed);
   z-index: zindex("menu");
   max-width: 100%;
+  padding-top: 4rem;
   height: 100vh;
   overflow-y: auto;
-  background-color: color-a("charcoal", .94);
-  backdrop-filter: blur(10px);
+  background-color: color("mirage");
 
   @include media-breakpoint-down(xs) {
     width: 100%;
@@ -15,52 +15,32 @@
   @include media-breakpoint-up(xs) {
     width: 300px;
   }
-}
 
-.menu .menu-header {
-  @include position($top: 0, $position: sticky);
-  background-color: color("charcoal");
-  display: flex;
-  align-items: center;
-  padding-left: 1rem;
-
-  .toggle-menu {
-    color: color("white");
-    display: block;
-    font-size: 2rem;
-    line-height: 5rem;
-    text-align: center;
-    transition: background-color linear $animation-speed-fast;
-    width: 4.6rem;
-  
-    &:hover {
-      background-color: color-darken("charcoal", $darken-hover-percent);
-    }
-  
+  .section-header {
+    margin-bottom: .5rem;
+    font-weight: 300;
+    font-size: 1.2rem;
+    color: color-a("white", 0.85);
+    text-transform: uppercase;
   }
 
-}
+  hr {
+    border-color: color-a("white", 0.2);
+    margin: 2rem 0;
+  }
 
-.menu .section-header {
-  margin-bottom: .5rem;
-  font-weight: 300;
-  font-size: 1.2rem;
-  color: color("white");
-  text-transform: uppercase;
-}
+  ul {
+    list-style: none;
+  }
 
-.menu hr {
-  border-color: color-a("white", .12);
-  margin: 2rem 0;
-}
+  ul li a {
+    display: block;
+    line-height: 3rem;
+    font-weight: 400;
+    color: color-a("white", 0.85);
 
-.menu ul {
-  list-style: none;
-}
-
-.menu ul li a {
-  display: block;
-  line-height: 3rem;
-  font-weight: 600;
-  color: color-a("white", .84);
+    &:hover {
+      color: color("white");
+    }
+  }
 }
