@@ -5,6 +5,7 @@ from wtforms import widgets
 
 class CheckboxInput(widgets.CheckboxInput):
     def __call__(self, field, **kwargs):
+        kwargs.update({"class_": "checkbox-field"})
         rendered_field = super().__call__(field, **kwargs)
         return widgets.HTMLString(
             """
@@ -113,6 +114,7 @@ class PasswordInput(widgets.PasswordInput):
 
 class RadioInput(widgets.RadioInput):
     def __call__(self, field, **kwargs):
+        kwargs.update({"class_": "radio-field"})
         rendered_field = super().__call__(field, **kwargs)
         return widgets.HTMLString(
             """

@@ -28,8 +28,8 @@ textarea[disabled] {
     border: 1px solid color("chilli");
   }
 
-  input[type=checkbox] + .state:before,
-  input[type=radio] + .state:before {
+  .checkbox-field + .state:before,
+  .radio-field + .state:before {
     color: color("chilli");
   }
 
@@ -139,8 +139,8 @@ textarea[disabled] {
   }
 }
 
-input[type="checkbox"],
-input[type="radio"] {
+.checkbox-field,
+.radio-field {
   position: absolute;
   visibility: hidden;
 
@@ -167,7 +167,7 @@ input[type="radio"] {
   }
 }
 
-input[type="checkbox"] {
+.checkbox-field {
   & + .state:before {
     content: fa-content($fa-var-square);
   }
@@ -176,7 +176,7 @@ input[type="checkbox"] {
   }
 }
 
-input[type="radio"] {
+.radio-field {
   & + .state:before {
     content: fa-content($fa-var-circle);
   }
@@ -185,7 +185,7 @@ input[type="radio"] {
   }
 }
 
-ul li input[type="checkbox"] ~ label,
-ul li input[type="radio"] ~ label {
+ul li .checkbox-field ~ label,
+ul li .radio-field ~ label {
   margin-bottom: .5rem;
 }
