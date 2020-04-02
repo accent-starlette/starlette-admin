@@ -1,25 +1,12 @@
 {% macro render_field(field) %}
-<div {% if field.errors %}class="text-error"{% endif %}>
-    {% if field.type == "BooleanField" %}
-        <label for="{{ field.id }}">{{ field.label.text|replace("_", " ")|title }}</label>
-        <div class="checkbox">
-            <label>{{ field }}<span></span> &nbsp;</label> 
-        </div>
-    {% elif field.type == "FileField" or field.type == "MultipleFileField" %}
-        <label for="{{ field.id }}">{{ field.label.text|replace("_", " ")|title }}</label>
-        <label x-data="{count: 0}" class="file-field input-group">
-            <div class="info" x-text="count ? count + ' files(s) selected' : 'Choose file(s)'"></div>
-            {{ field(**{'@change': 'count = $event.target.files.length'}) }}
-            <span class="button button-secondary input-group-addon">Browse</span>
-        </label>
-    {% else %}
-        <label for="{{ field.id }}">{{ field.label.text|replace("_", " ")|title }}</label>
-        {{ field }}
-    {% endif %}
+<div class="field-wrapper {% if field.errors %}field-error{% endif %}">
+    <label for="{{ field.id }}">{{ field.label.text|replace("_", " ")|title }}</label>
+    {{ field }}
     {% if field.errors %}
     <cite>{{ field.errors|join(' ') }}</cite>
     {% elif field.description %}
     <cite>{{ field.description }}</cite>
     {% endif %}
+
 </div>
 {% endmacro %}

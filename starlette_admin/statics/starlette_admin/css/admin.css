@@ -1295,7 +1295,7 @@ select:not([multiple]) {
 
 label {
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: .5rem;
   font-weight: 400;
 }
 
@@ -1303,7 +1303,7 @@ legend {
   box-sizing: border-box;
   display: block;
   max-width: 100%;
-  margin-bottom: 0.5rem;
+  margin-bottom: .5rem;
   font-weight: 400;
   color: inherit;
   white-space: normal;
@@ -1342,15 +1342,15 @@ ul {
   list-style: circle inside;
 }
 
+ul ul,
+ul ol {
+  margin: 0 0 0 2rem;
+}
+
 ol {
   padding-left: 0;
   margin-bottom: 1.5rem;
   list-style: decimal inside;
-}
-
-ul ul,
-ul ol {
-  margin: 0 0 0 2rem;
 }
 
 ol ol,
@@ -1514,17 +1514,16 @@ sup {
 }
 
 sub {
-  bottom: -0.25em;
+  bottom: -.25em;
 }
 
 sup {
-  top: -0.5em;
+  top: -.5em;
 }
 
 /* karma-css components */
 /* Component Variables */
 /* Button Groups */
-/* checkboxes */
 /* Icon Input */
 /* Input Groups */
 .button-group {
@@ -1547,103 +1546,6 @@ sup {
 .button-group > .button:not(:last-child) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-}
-
-ul.checkboxes,
-ul.radios {
-  list-style: none;
-}
-
-ul.checkboxes li,
-ul.radios li {
-  margin-bottom: .5rem;
-  position: relative;
-}
-
-.checkbox,
-ul.checkboxes,
-ul.radios {
-  margin-bottom: 1.5rem;
-}
-
-.checkbox label,
-ul.checkboxes label,
-ul.radios label {
-  cursor: pointer;
-  display: inline-block;
-  font-weight: 400;
-  line-height: 1.8rem;
-  margin-bottom: 0;
-  padding: 0 2.7rem;
-  position: relative;
-}
-
-.checkbox label span,
-ul.checkboxes label span,
-ul.radios label span {
-  position: absolute;
-  top: 0;
-  right: auto;
-  bottom: auto;
-  left: 0;
-  background: white;
-  border: 1px solid #e6e6e6;
-  height: 1.8rem;
-  width: 1.8rem;
-}
-
-.checkbox input,
-ul.checkboxes input,
-ul.radios input {
-  position: absolute;
-  visibility: hidden;
-}
-
-.checkbox input + span:after,
-ul.checkboxes input + span:after,
-ul.radios input + span:after {
-  position: absolute;
-  display: block;
-  content: "";
-  border-color: white;
-}
-
-.checkbox input:checked + span,
-ul.checkboxes input:checked + span,
-ul.radios input:checked + span {
-  background: #945d60;
-  border-color: #945d60;
-}
-
-.checkbox label input:disabled + span,
-ul.checkboxes label input:disabled + span,
-ul.radios label input:disabled + span {
-  cursor: not-allowed;
-}
-
-.checkbox label span,
-ul.checkboxes label span {
-  border-radius: 0;
-}
-
-.checkbox input[type=checkbox] + span:after,
-ul.checkboxes input[type=checkbox] + span:after {
-  position: absolute;
-  top: 0.504rem;
-  right: auto;
-  bottom: auto;
-  left: 0.306rem;
-  border: 0.2rem solid white;
-  border-top: none;
-  border-right: none;
-  height: 0.54rem;
-  width: 0.972rem;
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-
-ul.radios label span {
-  border-radius: 50%;
 }
 
 .icon-input {
@@ -1741,6 +1643,8 @@ ul.radios label span {
  */
 .fa,
 .fas,
+input[type="checkbox"] + .state,
+input[type="radio"] + .state,
 .far,
 .fal,
 .fad,
@@ -1751,6 +1655,17 @@ ul.radios label span {
   font-style: normal;
   font-variant: normal;
   text-rendering: auto;
+  line-height: 1;
+}
+
+input[type="checkbox"] + .state,
+input[type="radio"] + .state {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
   line-height: 1;
 }
 
@@ -1847,6 +1762,8 @@ ul.radios label span {
 
 .fa.fa-pull-left,
 .fas.fa-pull-left,
+input[type="checkbox"] + .fa-pull-left.state,
+input[type="radio"] + .fa-pull-left.state,
 .far.fa-pull-left,
 .fal.fa-pull-left,
 .fab.fa-pull-left {
@@ -1855,6 +1772,8 @@ ul.radios label span {
 
 .fa.fa-pull-right,
 .fas.fa-pull-right,
+input[type="checkbox"] + .fa-pull-right.state,
+input[type="radio"] + .fa-pull-right.state,
 .far.fa-pull-right,
 .fal.fa-pull-right,
 .fab.fa-pull-right {
@@ -7650,7 +7569,9 @@ readers do not read off random characters that represent icons */
 }
 
 .fa,
-.fas {
+.fas,
+input[type="checkbox"] + .state,
+input[type="radio"] + .state {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
 }
@@ -7897,20 +7818,31 @@ textarea[disabled] {
   background: #f9f8fa;
 }
 
-.text-error {
-  margin-bottom: 1.5rem;
+.field-wrapper cite {
+  display: block;
+  margin: -1rem 0 1.5rem;
 }
 
-.text-error input,
-.text-error select,
-.text-error textarea,
-.text-error .file-field {
-  margin-bottom: .25rem;
+.field-wrapper ul {
+  list-style-type: none;
+}
+
+.field-error input,
+.field-error select,
+.field-error textarea,
+.field-error .file-field,
+.field-error .tags-field,
+.field-error .select-field,
+.field-error .select-multi-field ul {
   border: 1px solid #af473c;
 }
 
-.text-error cite {
-  font-style: normal;
+.field-error input[type=checkbox] + .state:before,
+.field-error input[type=radio] + .state:before {
+  color: #af473c;
+}
+
+.field-error cite {
   color: #af473c;
 }
 
@@ -7933,9 +7865,174 @@ textarea[disabled] {
   font-weight: 400;
 }
 
-.file-field input {
+.password-field [class*=fa-] {
+  color: #945d60;
+  cursor: pointer;
+  pointer-events: all;
+}
+
+.tags-field {
+  box-sizing: border-box;
+  margin-bottom: 1.5rem;
+  font-family: inherit;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.8);
+  background: white;
+  border: 1px solid #e6e6e6;
+  border-radius: 0;
+  box-shadow: none;
+  transition: background linear 250ms, border-color linear 250ms;
+  padding: 0.8rem 1rem;
+  font-size: 1.5rem;
+  max-width: 100%;
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: .5rem .5rem 0 .5rem;
+}
+
+.tags-field .tag {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: .3rem .5rem;
+  margin: 0 .5rem .5rem 0;
+  background-color: #eeedf1;
+}
+
+.tags-field .tag a {
+  cursor: pointer;
+  padding-left: .5rem;
+}
+
+.tags-field input {
+  border: 0;
+  -ms-flex: 1;
+  flex: 1;
+  outline: 0;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  padding: .3rem .5rem;
+  margin-bottom: .5rem;
+}
+
+.select-field {
+  box-sizing: border-box;
+  margin-bottom: 1.5rem;
+  font-family: inherit;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.8);
+  background: white;
+  border: 1px solid #e6e6e6;
+  border-radius: 0;
+  box-shadow: none;
+  transition: background linear 250ms, border-color linear 250ms;
+  padding: 0.8rem 1rem;
+  font-size: 1.5rem;
+  max-width: 100%;
+  width: 100%;
+}
+
+.select-field select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  height: auto;
+  margin: 0;
+  padding: 0 2.65em 0 0;
+}
+
+.select-field [class*=fa-] {
+  color: #945d60;
+}
+
+.select-multi-field .title {
+  background-color: #eeedf1;
+  border: 1px solid #e6e6e6;
+  border-bottom: 0;
+  padding: .3rem 1rem;
+}
+
+.select-multi-field ul {
+  border: 1px solid #e6e6e6;
+  height: 200px;
+  list-style-type: none;
+  margin-bottom: 1.5rem;
+  overflow-y: scroll;
+}
+
+.select-multi-field ul li {
+  border-bottom: 1px dotted #e6e6e6;
+  line-height: 1.8;
+}
+
+.select-multi-field ul li a {
+  display: block;
+  padding: 0 1rem;
+}
+
+.select-multi-field ul li a:hover {
+  background-color: #f9f8fa;
+}
+
+input[type="checkbox"], input[type="radio"] {
   position: absolute;
   visibility: hidden;
+}
+
+input[type="checkbox"] ~ label,
+input[type="radio"] ~ label {
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+}
+
+input[type="checkbox"] + .state,
+input[type="radio"] + .state {
+  width: 3rem;
+}
+
+input[type="checkbox"] + .state:before,
+input[type="radio"] + .state:before {
+  color: #e6e6e6;
+  font-size: 1.8rem;
+}
+
+input[type="checkbox"]:checked + .state:before,
+input[type="radio"]:checked + .state:before {
+  color: #945d60;
+}
+
+input[type="checkbox"] + .state:before {
+  content: "\f0c8";
+}
+
+input[type="checkbox"]:checked + .state:before {
+  content: "\f14a";
+}
+
+input[type="radio"] + .state:before {
+  content: "\f111";
+}
+
+input[type="radio"]:checked + .state:before {
+  content: "\f058";
+}
+
+ul li input[type="checkbox"] ~ label,
+ul li input[type="radio"] ~ label {
+  margin-bottom: .5rem;
 }
 
 /* header */

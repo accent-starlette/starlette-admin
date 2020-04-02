@@ -6,7 +6,9 @@ from starlette.exceptions import HTTPException
 from starlette.responses import RedirectResponse
 from starlette.routing import Route, Router
 from starlette_admin.admin import BaseAdmin, ModelAdmin
-from wtforms import fields, form, validators
+from starlette_admin.forms import fields as admin_fields
+from starlette_admin.forms import widgets as admin_widgets
+from wtforms import fields, form, validators, widgets
 from wtforms_alchemy import ModelForm
 
 from .models import DemoModel, SystemSettingsModel
@@ -36,14 +38,86 @@ class DemoObject(dict):
 
 
 objects = [
-    DemoObject({"id": id, "name": f"Record {id:02d}", "description": "Some description"})
-    for id in range(1, 16)
+    DemoObject(
+        {
+            "id": id, 
+            "name": f"Record {id:02d}", 
+            "description": "Some description", 
+            "sex": "Male",
+            "password": "",
+            "tags": ["awesome", "starlette"],
+            "options": ["One"],
+            "choices": ["One"],
+            "choice": "One",
+            "agree": True,
+        }
+    ) for id in range(1, 16)
 ]
 
 
 class DemoForm(form.Form):
-    name = fields.TextField(validators=[validators.required()])
-    description = fields.TextAreaField()
+    name = fields.TextField(validators=[validators.DataRequired()])
+    description = fields.TextAreaField(validators=[validators.DataRequired()])
+    sex = fields.SelectField(
+        validators=[validators.DataRequired()],
+        choices=(
+            ("", "Please Select.."),
+            ("Male", "Male"),
+            ("Female", "Female"),
+            ("Other", "Other"),
+        ),
+        widget=admin_widgets.Select(),
+    )
+    password = fields.PasswordField(
+        validators=[validators.DataRequired()],
+        widget=admin_widgets.PasswordInput(),
+    )
+    tags = admin_fields.TagsField(
+        default=[]
+    )
+    options = fields.SelectMultipleField(
+        validators=[validators.DataRequired()],
+        choices=(
+            ("One", "One"),
+            ("Two", "Two"),
+            ("Three", "Three"),
+            ("Four", "Four"),
+            ("Five", "Five"),
+            ("Six", "Six"),
+            ("Seven", "Seven"),
+            ("Eight", "Eight"),
+            ("Nine", "Nine"),
+            ("Ten", "Ten"),
+        ),
+        widget=admin_widgets.HorizontalSelect(),
+    )
+    choices = fields.SelectMultipleField(
+        validators=[validators.DataRequired()],
+        choices=(
+            ("One", "One"),
+            ("Two", "Two"),
+            ("Three", "Three"),
+            ("Four", "Four"),
+            ("Five", "Five"),
+        ),
+        widget=widgets.ListWidget(prefix_label=False),
+        option_widget=admin_widgets.CheckboxInput(),
+    )
+    choice = fields.RadioField(
+        validators=[validators.DataRequired()],
+        choices=(
+            ("One", "One"),
+            ("Two", "Two"),
+            ("Three", "Three"),
+            ("Four", "Four"),
+            ("Five", "Five"),
+        ),
+        option_widget=admin_widgets.RadioInput(),
+    )
+    agree = fields.BooleanField(
+        validators=[validators.DataRequired()],
+        widget=admin_widgets.CheckboxInput(),
+    )
 
 
 class DemoAdmin(BaseAdmin):
