@@ -15,6 +15,7 @@ nav:
     - Permissions: 'permissions.md'
     - Base Admin: 'base_admin.md'
     - Model Admin: 'model_admin.md'
+    - Form Fields & Widgets: 'forms.md'
     - Templating: 'templating.md'
     - Additional Views: 'additional_views.md'
     - Widgets: 'widgets.md'
