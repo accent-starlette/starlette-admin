@@ -1643,8 +1643,8 @@ sup {
  */
 .fa,
 .fas,
-input[type="checkbox"] + .state,
-input[type="radio"] + .state,
+.checkbox-field + .state,
+.radio-field + .state,
 .far,
 .fal,
 .fad,
@@ -1658,8 +1658,8 @@ input[type="radio"] + .state,
   line-height: 1;
 }
 
-input[type="checkbox"] + .state,
-input[type="radio"] + .state {
+.checkbox-field + .state,
+.radio-field + .state {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: inline-block;
@@ -1762,8 +1762,8 @@ input[type="radio"] + .state {
 
 .fa.fa-pull-left,
 .fas.fa-pull-left,
-input[type="checkbox"] + .fa-pull-left.state,
-input[type="radio"] + .fa-pull-left.state,
+.checkbox-field + .fa-pull-left.state,
+.radio-field + .fa-pull-left.state,
 .far.fa-pull-left,
 .fal.fa-pull-left,
 .fab.fa-pull-left {
@@ -1772,8 +1772,8 @@ input[type="radio"] + .fa-pull-left.state,
 
 .fa.fa-pull-right,
 .fas.fa-pull-right,
-input[type="checkbox"] + .fa-pull-right.state,
-input[type="radio"] + .fa-pull-right.state,
+.checkbox-field + .fa-pull-right.state,
+.radio-field + .fa-pull-right.state,
 .far.fa-pull-right,
 .fal.fa-pull-right,
 .fab.fa-pull-right {
@@ -7570,8 +7570,8 @@ readers do not read off random characters that represent icons */
 
 .fa,
 .fas,
-input[type="checkbox"] + .state,
-input[type="radio"] + .state {
+.checkbox-field + .state,
+.radio-field + .state {
   font-family: 'Font Awesome 5 Free';
   font-weight: 900;
 }
@@ -7837,8 +7837,8 @@ textarea[disabled] {
   border: 1px solid #af473c;
 }
 
-.field-error input[type=checkbox] + .state:before,
-.field-error input[type=radio] + .state:before {
+.field-error .checkbox-field + .state:before,
+.field-error .radio-field + .state:before {
   color: #af473c;
 }
 
@@ -7985,53 +7985,54 @@ textarea[disabled] {
   background-color: #f9f8fa;
 }
 
-input[type="checkbox"], input[type="radio"] {
+.checkbox-field,
+.radio-field {
   position: absolute;
   visibility: hidden;
 }
 
-input[type="checkbox"] ~ label,
-input[type="radio"] ~ label {
+.checkbox-field ~ label,
+.radio-field ~ label {
   cursor: pointer;
   display: inline-block;
   font-weight: 400;
   margin-bottom: 1.5rem;
 }
 
-input[type="checkbox"] + .state,
-input[type="radio"] + .state {
+.checkbox-field + .state,
+.radio-field + .state {
   width: 3rem;
 }
 
-input[type="checkbox"] + .state:before,
-input[type="radio"] + .state:before {
+.checkbox-field + .state:before,
+.radio-field + .state:before {
   color: #e6e6e6;
   font-size: 1.8rem;
 }
 
-input[type="checkbox"]:checked + .state:before,
-input[type="radio"]:checked + .state:before {
+.checkbox-field:checked + .state:before,
+.radio-field:checked + .state:before {
   color: #945d60;
 }
 
-input[type="checkbox"] + .state:before {
+.checkbox-field + .state:before {
   content: "\f0c8";
 }
 
-input[type="checkbox"]:checked + .state:before {
+.checkbox-field:checked + .state:before {
   content: "\f14a";
 }
 
-input[type="radio"] + .state:before {
+.radio-field + .state:before {
   content: "\f111";
 }
 
-input[type="radio"]:checked + .state:before {
+.radio-field:checked + .state:before {
   content: "\f058";
 }
 
-ul li input[type="checkbox"] ~ label,
-ul li input[type="radio"] ~ label {
+ul li .checkbox-field ~ label,
+ul li .radio-field ~ label {
   margin-bottom: .5rem;
 }
 
