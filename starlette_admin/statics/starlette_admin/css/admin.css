@@ -8,13 +8,13 @@
 /* forms */
 /* tables */
 /* karma-css core */
-/*! Karma-CSS v1.9.8 MIT License | http://karmacss.com | https://github.com/accentdesign/karma-css */
+/*! Karma-CSS v2.0.0 MIT License | http://karmacss.com | https://github.com/accentdesign/karma-css */
 .container {
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 @media (min-width: 576px) {
@@ -43,10 +43,10 @@
 
 .container-fluid {
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 .row {
@@ -902,8 +902,8 @@
 
 * {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 *::before, *::after {
@@ -920,10 +920,10 @@ html {
 }
 
 body {
-  font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  font-weight: 400;
   color: rgba(0, 0, 0, 0.8);
+  font-weight: 400;
+  font-size: 14px;
+  font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
   background: white;
 }
 
@@ -935,7 +935,7 @@ a {
   color: #945d60;
   text-decoration: none;
   background-color: transparent;
-  transition: color linear 250ms;
+  transition: color linear 0.18s;
 }
 
 a:hover {
@@ -956,27 +956,27 @@ button,
 }
 
 .button {
-  box-sizing: border-box;
   display: inline-block;
+  box-sizing: border-box;
   padding: 0.8rem 1.2rem;
   overflow: visible;
-  font-family: inherit;
-  font-size: 1.4rem;
-  font-weight: 400;
-  line-height: 1.5;
   color: rgba(0, 0, 0, 0.8);
+  font-weight: 400;
+  font-size: 1.4rem;
+  font-family: inherit;
+  line-height: 1.5;
+  white-space: nowrap;
   text-align: center;
   text-decoration: none;
-  white-space: nowrap;
+  background-color: white;
+  border: 1px solid #e6e6e6;
+  border-radius: 0;
   cursor: pointer;
+  transition: background-color linear 0.18s, border-color linear 0.18s;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  background-color: white;
-  border: 1px solid #e6e6e6;
-  border-radius: 0;
-  transition: background-color linear 250ms, border-color linear 250ms;
 }
 
 .button:hover, .button:focus {
@@ -988,7 +988,7 @@ button,
 
 .button.button-outline {
   background-color: transparent;
-  transition: background-color linear 250ms, border-color linear 250ms, color linear 250ms;
+  transition: background-color linear 0.18s, border-color linear 0.18s, color linear 0.18s;
 }
 
 .button.button-outline:hover, .button.button-outline:focus {
@@ -1001,7 +1001,7 @@ button,
 .button.button-clear {
   background-color: transparent;
   border-color: transparent;
-  transition: background-color linear 250ms, border-color linear 250ms, color linear 250ms;
+  transition: background-color linear 0.18s, border-color linear 0.18s, color linear 0.18s;
 }
 
 .button.button-clear:hover, .button.button-clear:focus {
@@ -1137,8 +1137,8 @@ samp {
 
 code {
   padding: 0.2rem 0.5rem;
-  font-size: 100%;
   color: rgba(0, 0, 0, 0.8);
+  font-size: 100%;
   word-break: break-word;
   background: #f0f0f0;
   border: 1px solid #e6e6e6;
@@ -1147,11 +1147,11 @@ code {
 
 pre {
   display: block;
-  padding: 1rem 1.5rem;
   margin-bottom: 1.5rem;
+  padding: 1rem 1.5rem;
   overflow-x: auto;
-  font-size: 90%;
   color: rgba(0, 0, 0, 0.8);
+  font-size: 90%;
   white-space: pre;
   background: #f0f0f0;
   border: 1px solid #e6e6e6;
@@ -1159,8 +1159,8 @@ pre {
 }
 
 pre code {
-  font-size: inherit;
   color: inherit;
+  font-size: inherit;
   word-break: normal;
 }
 
@@ -1175,14 +1175,14 @@ form {
 input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="email"], input[type="month"], input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="text"], input[type="url"], input[type="week"] {
   box-sizing: border-box;
   margin-bottom: 1.5rem;
+  color: rgba(0, 0, 0, 0.8);
   font-family: inherit;
   line-height: 1.5;
-  color: rgba(0, 0, 0, 0.8);
   background: white;
   border: 1px solid #e6e6e6;
   border-radius: 0;
   box-shadow: none;
-  transition: background linear 250ms, border-color linear 250ms;
+  transition: background linear 0.18s, border-color linear 0.18s;
   padding: 0.8rem 1rem;
   font-size: 1.5rem;
   max-width: 100%;
@@ -1197,8 +1197,8 @@ input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-loc
 }
 
 input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="week"] {
-  -webkit-appearance: listbox;
   height: calc(3.85rem + 2px);
+  -webkit-appearance: listbox;
 }
 
 input[type="checkbox"], input[type="radio"] {
@@ -1211,8 +1211,8 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 ::-webkit-datetime-edit-fields-wrapper {
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 ::-webkit-input-placeholder {
@@ -1243,20 +1243,20 @@ input[type="checkbox"], input[type="radio"] {
 textarea {
   box-sizing: border-box;
   margin-bottom: 1.5rem;
+  color: rgba(0, 0, 0, 0.8);
   font-family: inherit;
   line-height: 1.5;
-  color: rgba(0, 0, 0, 0.8);
   background: white;
   border: 1px solid #e6e6e6;
   border-radius: 0;
   box-shadow: none;
-  transition: background linear 250ms, border-color linear 250ms;
+  transition: background linear 0.18s, border-color linear 0.18s;
   padding: 0.8rem 1rem;
   font-size: 1.5rem;
   max-width: 100%;
   width: 100%;
-  -webkit-appearance: none;
   overflow: auto;
+  -webkit-appearance: none;
 }
 
 textarea:focus {
@@ -1268,14 +1268,14 @@ textarea:focus {
 select {
   box-sizing: border-box;
   margin-bottom: 1.5rem;
+  color: rgba(0, 0, 0, 0.8);
   font-family: inherit;
   line-height: 1.5;
-  color: rgba(0, 0, 0, 0.8);
   background: white;
   border: 1px solid #e6e6e6;
   border-radius: 0;
   box-shadow: none;
-  transition: background linear 250ms, border-color linear 250ms;
+  transition: background linear 0.18s, border-color linear 0.18s;
   padding: 0.8rem 1rem;
   font-size: 1.5rem;
   max-width: 100%;
@@ -1295,17 +1295,17 @@ select:not([multiple]) {
 
 label {
   display: block;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   font-weight: 400;
 }
 
 legend {
-  box-sizing: border-box;
   display: block;
+  box-sizing: border-box;
   max-width: 100%;
-  margin-bottom: .5rem;
-  font-weight: 400;
+  margin-bottom: 0.5rem;
   color: inherit;
+  font-weight: 400;
   white-space: normal;
 }
 
@@ -1337,20 +1337,20 @@ figure {
 }
 
 ul {
-  padding-left: 0;
   margin-bottom: 1.5rem;
+  padding-left: 0;
   list-style: circle inside;
+}
+
+ol {
+  margin-bottom: 1.5rem;
+  padding-left: 0;
+  list-style: decimal inside;
 }
 
 ul ul,
 ul ol {
   margin: 0 0 0 2rem;
-}
-
-ol {
-  padding-left: 0;
-  margin-bottom: 1.5rem;
-  list-style: decimal inside;
 }
 
 ol ol,
@@ -1376,9 +1376,9 @@ table {
   max-width: 100%;
   margin-bottom: 1.5rem;
   font-size: 1.4rem;
-  border-spacing: 0;
-  border-collapse: collapse;
   background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 caption {
@@ -1424,8 +1424,8 @@ h1,
 .h4, h5,
 .h5, h6,
 .h6 {
-  font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
   color: rgba(0, 0, 0, 0.9);
+  font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
 h1 small, .h1 small, h2 small, .h2 small, h3 small, .h3 small, h4 small, .h4 small, h5 small, .h5 small, h6 small, .h6 small {
@@ -1436,48 +1436,48 @@ h1 small, .h1 small, h2 small, .h2 small, h3 small, .h3 small, h4 small, .h4 sma
 h1,
 .h1 {
   margin: 0;
-  font-size: 28px;
   font-weight: 400;
+  font-size: 28px;
   line-height: 1.2;
 }
 
 h2,
 .h2 {
   margin: 0 0 1.5rem;
-  font-size: 21px;
   font-weight: 400;
+  font-size: 21px;
   line-height: 1.25;
 }
 
 h3,
 .h3 {
   margin: 0 0 1.5rem;
-  font-size: 16.38px;
   font-weight: 400;
+  font-size: 16.38px;
   line-height: 1.3;
 }
 
 h4,
 .h4 {
   margin: 0 0 1.5rem;
-  font-size: 14px;
   font-weight: 400;
+  font-size: 14px;
   line-height: 1.35;
 }
 
 h5,
 .h5 {
   margin: 0 0 1.5rem;
-  font-size: 11.62px;
   font-weight: 400;
+  font-size: 11.62px;
   line-height: 1.5;
 }
 
 h6,
 .h6 {
   margin: 0 0 1.5rem;
-  font-size: 9.38px;
   font-weight: 400;
+  font-size: 9.38px;
   line-height: 1.6;
 }
 
@@ -1491,8 +1491,8 @@ p {
 }
 
 blockquote {
-  padding: 1rem 1.5rem;
   margin-bottom: 1.5rem;
+  padding: 1rem 1.5rem;
   border-left: 3px solid #e6e6e6;
 }
 
@@ -1514,18 +1514,14 @@ sup {
 }
 
 sub {
-  bottom: -.25em;
+  bottom: -0.25em;
 }
 
 sup {
-  top: -.5em;
+  top: -0.5em;
 }
 
 /* karma-css components */
-/* Component Variables */
-/* Button Groups */
-/* Icon Input */
-/* Input Groups */
 .button-group {
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -1539,6 +1535,7 @@ sup {
 }
 
 .button-group > .button:not(:first-child) {
+  border-left: 0;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -1551,19 +1548,19 @@ sup {
 .icon-input {
   max-width: 100%;
   width: 100%;
+  position: relative;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  font-size: 1.5rem;
   margin-bottom: 1.5rem;
-  position: relative;
+  font-size: 1.5rem;
 }
 
 .icon-input input {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
-  font-size: 1em;
   margin: 0;
   padding-right: 2.65em;
+  font-size: 1em;
 }
 
 .icon-input [class*="fa-"] {
@@ -1572,14 +1569,12 @@ sup {
   right: 0;
   bottom: auto;
   left: auto;
-  color: #b9b9b9;
+  width: 2.65em;
   height: 100%;
   font-size: 1em;
   line-height: 1;
-  opacity: 1;
-  pointer-events: none;
   text-align: center;
-  width: 2.65em;
+  opacity: 1;
 }
 
 .icon-input [class*="fa-"]:before {
@@ -1588,9 +1583,9 @@ sup {
   right: auto;
   bottom: auto;
   left: 0;
-  margin: -.5em 0;
-  text-align: center;
   width: 100%;
+  margin: -0.5em 0;
+  text-align: center;
 }
 
 .input-group {
@@ -1599,29 +1594,31 @@ sup {
   display: -ms-inline-flexbox;
   display: inline-flex;
   margin-bottom: 1.5rem;
+  vertical-align: top;
 }
 
-.input-group > *,
-.input-group > .icon-input > * {
-  border-radius: 0 !important;
+.input-group * {
   margin-bottom: 0 !important;
+  border-radius: 0 !important;
 }
 
 .input-group > input,
-.input-group > select {
+.input-group > select,
+.input-group > .icon-input {
+  position: relative;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
-  position: relative;
   width: 1%;
+  min-width: 0;
 }
 
 .input-group .input-group-addon {
   display: -ms-flexbox;
   display: flex;
-  padding: 0 1rem;
-  white-space: nowrap;
   -ms-flex-align: center;
   align-items: center;
+  padding: 0 1rem;
+  white-space: nowrap;
 }
 
 .input-group > *:first-child,
@@ -1636,9 +1633,67 @@ sup {
   border-bottom-right-radius: 0 !important;
 }
 
+.messages {
+  position: fixed;
+  top: auto;
+  right: 10px;
+  bottom: 0;
+  left: auto;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+@media (max-width: 575px) {
+  .messages {
+    right: 10px;
+    left: 10px;
+  }
+}
+
+.messages li {
+  margin-bottom: 1rem;
+  padding: 1rem 1.5rem;
+  color: white;
+  background: #111111;
+  border-radius: 0;
+  float: right;
+  clear: right;
+}
+
+@media (max-width: 575px) {
+  .messages li {
+    width: 100%;
+  }
+}
+
+.messages li.message-default {
+  color: white;
+  background: #282c34;
+}
+
+.messages li.message-success {
+  color: white;
+  background: #3d9970;
+}
+
+.messages li.message-error {
+  color: white;
+  background: #af473c;
+}
+
+.messages li.message-warning {
+  color: white;
+  background: #ff851b;
+}
+
+.messages li.message-info {
+  color: white;
+  background: #7fdbff;
+}
+
 /* font awesome */
 /*!
- * Font Awesome Free 5.12.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.13.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 .fa,
@@ -2475,6 +2530,10 @@ readers do not read off random characters that represent icons */
 
 .fa-box-open:before {
   content: "\f49e";
+}
+
+.fa-box-tissue:before {
+  content: "\f95b";
 }
 
 .fa-boxes:before {
@@ -3361,6 +3420,10 @@ readers do not read off random characters that represent icons */
   content: "\f393";
 }
 
+.fa-disease:before {
+  content: "\f7fa";
+}
+
 .fa-divide:before {
   content: "\f529";
 }
@@ -3667,6 +3730,10 @@ readers do not read off random characters that represent icons */
 
 .fa-fast-forward:before {
   content: "\f050";
+}
+
+.fa-faucet:before {
+  content: "\f905";
 }
 
 .fa-fax:before {
@@ -4317,8 +4384,16 @@ readers do not read off random characters that represent icons */
   content: "\f4be";
 }
 
+.fa-hand-holding-medical:before {
+  content: "\f95c";
+}
+
 .fa-hand-holding-usd:before {
   content: "\f4c0";
+}
+
+.fa-hand-holding-water:before {
+  content: "\f4c1";
 }
 
 .fa-hand-lizard:before {
@@ -4365,6 +4440,10 @@ readers do not read off random characters that represent icons */
   content: "\f257";
 }
 
+.fa-hand-sparkles:before {
+  content: "\f95d";
+}
+
 .fa-hand-spock:before {
   content: "\f259";
 }
@@ -4377,8 +4456,20 @@ readers do not read off random characters that represent icons */
   content: "\f4c4";
 }
 
+.fa-hands-wash:before {
+  content: "\f95e";
+}
+
 .fa-handshake:before {
   content: "\f2b5";
+}
+
+.fa-handshake-alt-slash:before {
+  content: "\f95f";
+}
+
+.fa-handshake-slash:before {
+  content: "\f960";
 }
 
 .fa-hanukiah:before {
@@ -4407,6 +4498,22 @@ readers do not read off random characters that represent icons */
 
 .fa-hdd:before {
   content: "\f0a0";
+}
+
+.fa-head-side-cough:before {
+  content: "\f961";
+}
+
+.fa-head-side-cough-slash:before {
+  content: "\f962";
+}
+
+.fa-head-side-mask:before {
+  content: "\f963";
+}
+
+.fa-head-side-virus:before {
+  content: "\f964";
 }
 
 .fa-heading:before {
@@ -4505,6 +4612,10 @@ readers do not read off random characters that represent icons */
   content: "\f47e";
 }
 
+.fa-hospital-user:before {
+  content: "\f80d";
+}
+
 .fa-hot-tub:before {
   content: "\f593";
 }
@@ -4539,6 +4650,10 @@ readers do not read off random characters that represent icons */
 
 .fa-house-damage:before {
   content: "\f6f1";
+}
+
+.fa-house-user:before {
+  content: "\f965";
 }
 
 .fa-houzz:before {
@@ -4789,6 +4904,10 @@ readers do not read off random characters that represent icons */
   content: "\f5fc";
 }
 
+.fa-laptop-house:before {
+  content: "\f966";
+}
+
 .fa-laptop-medical:before {
   content: "\f812";
 }
@@ -4943,6 +5062,14 @@ readers do not read off random characters that represent icons */
 
 .fa-luggage-cart:before {
   content: "\f59d";
+}
+
+.fa-lungs:before {
+  content: "\f604";
+}
+
+.fa-lungs-virus:before {
+  content: "\f967";
 }
 
 .fa-lyft:before {
@@ -5489,6 +5616,10 @@ readers do not read off random characters that represent icons */
   content: "\f704";
 }
 
+.fa-people-arrows:before {
+  content: "\f968";
+}
+
 .fa-people-carry:before {
   content: "\f4ce";
 }
@@ -5617,6 +5748,10 @@ readers do not read off random characters that represent icons */
   content: "\f5b0";
 }
 
+.fa-plane-slash:before {
+  content: "\f969";
+}
+
 .fa-play:before {
   content: "\f04b";
 }
@@ -5715,6 +5850,14 @@ readers do not read off random characters that represent icons */
 
 .fa-project-diagram:before {
   content: "\f542";
+}
+
+.fa-pump-medical:before {
+  content: "\f96a";
+}
+
+.fa-pump-soap:before {
+  content: "\f96b";
 }
 
 .fa-pushed:before {
@@ -6097,6 +6240,10 @@ readers do not read off random characters that represent icons */
   content: "\f3ed";
 }
 
+.fa-shield-virus:before {
+  content: "\f96c";
+}
+
 .fa-ship:before {
   content: "\f21a";
 }
@@ -6295,6 +6442,10 @@ readers do not read off random characters that represent icons */
 
 .fa-snowplow:before {
   content: "\f7d2";
+}
+
+.fa-soap:before {
+  content: "\f96e";
 }
 
 .fa-socks:before {
@@ -6517,12 +6668,24 @@ readers do not read off random characters that represent icons */
   content: "\f2f2";
 }
 
+.fa-stopwatch-20:before {
+  content: "\f96f";
+}
+
 .fa-store:before {
   content: "\f54e";
 }
 
 .fa-store-alt:before {
   content: "\f54f";
+}
+
+.fa-store-alt-slash:before {
+  content: "\f970";
+}
+
+.fa-store-slash:before {
+  content: "\f971";
 }
 
 .fa-strava:before {
@@ -6839,6 +7002,10 @@ readers do not read off random characters that represent icons */
 
 .fa-toilet-paper:before {
   content: "\f71e";
+}
+
+.fa-toilet-paper-slash:before {
+  content: "\f972";
 }
 
 .fa-toolbox:before {
@@ -7257,6 +7424,18 @@ readers do not read off random characters that represent icons */
   content: "\f1ca";
 }
 
+.fa-virus:before {
+  content: "\f974";
+}
+
+.fa-virus-slash:before {
+  content: "\f975";
+}
+
+.fa-viruses:before {
+  content: "\f976";
+}
+
 .fa-vk:before {
   content: "\f189";
 }
@@ -7538,14 +7717,14 @@ readers do not read off random characters that represent icons */
 }
 
 /*!
- * Font Awesome Free 5.12.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.13.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 @font-face {
   font-family: 'Font Awesome 5 Free';
   font-style: normal;
   font-weight: 400;
-  font-display: auto;
+  font-display: block;
   src: url("../webfonts/fa-regular-400.eot");
   src: url("../webfonts/fa-regular-400.eot?#iefix") format("embedded-opentype"), url("../webfonts/fa-regular-400.woff2") format("woff2"), url("../webfonts/fa-regular-400.woff") format("woff"), url("../webfonts/fa-regular-400.ttf") format("truetype"), url("../webfonts/fa-regular-400.svg#fontawesome") format("svg");
 }
@@ -7556,14 +7735,14 @@ readers do not read off random characters that represent icons */
 }
 
 /*!
- * Font Awesome Free 5.12.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.13.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 @font-face {
   font-family: 'Font Awesome 5 Free';
   font-style: normal;
   font-weight: 900;
-  font-display: auto;
+  font-display: block;
   src: url("../webfonts/fa-solid-900.eot");
   src: url("../webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"), url("../webfonts/fa-solid-900.woff2") format("woff2"), url("../webfonts/fa-solid-900.woff") format("woff"), url("../webfonts/fa-solid-900.ttf") format("truetype"), url("../webfonts/fa-solid-900.svg#fontawesome") format("svg");
 }
@@ -7577,14 +7756,14 @@ readers do not read off random characters that represent icons */
 }
 
 /*!
- * Font Awesome Free 5.12.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.13.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 @font-face {
   font-family: 'Font Awesome 5 Brands';
   font-style: normal;
   font-weight: 400;
-  font-display: auto;
+  font-display: block;
   src: url("../webfonts/fa-brands-400.eot");
   src: url("../webfonts/fa-brands-400.eot?#iefix") format("embedded-opentype"), url("../webfonts/fa-brands-400.woff2") format("woff2"), url("../webfonts/fa-brands-400.woff") format("woff"), url("../webfonts/fa-brands-400.ttf") format("truetype"), url("../webfonts/fa-brands-400.svg#fontawesome") format("svg");
 }
@@ -7849,14 +8028,14 @@ textarea[disabled] {
 .file-field .info {
   box-sizing: border-box;
   margin-bottom: 1.5rem;
+  color: rgba(0, 0, 0, 0.8);
   font-family: inherit;
   line-height: 1.5;
-  color: rgba(0, 0, 0, 0.8);
   background: white;
   border: 1px solid #e6e6e6;
   border-radius: 0;
   box-shadow: none;
-  transition: background linear 250ms, border-color linear 250ms;
+  transition: background linear 0.18s, border-color linear 0.18s;
   padding: 0.8rem 1rem;
   font-size: 1.5rem;
   max-width: 100%;
@@ -7868,20 +8047,19 @@ textarea[disabled] {
 .password-field [class*=fa-] {
   color: #945d60;
   cursor: pointer;
-  pointer-events: all;
 }
 
 .tags-field {
   box-sizing: border-box;
   margin-bottom: 1.5rem;
+  color: rgba(0, 0, 0, 0.8);
   font-family: inherit;
   line-height: 1.5;
-  color: rgba(0, 0, 0, 0.8);
   background: white;
   border: 1px solid #e6e6e6;
   border-radius: 0;
   box-shadow: none;
-  transition: background linear 250ms, border-color linear 250ms;
+  transition: background linear 0.18s, border-color linear 0.18s;
   padding: 0.8rem 1rem;
   font-size: 1.5rem;
   max-width: 100%;
@@ -7926,14 +8104,14 @@ textarea[disabled] {
 .select-field {
   box-sizing: border-box;
   margin-bottom: 1.5rem;
+  color: rgba(0, 0, 0, 0.8);
   font-family: inherit;
   line-height: 1.5;
-  color: rgba(0, 0, 0, 0.8);
   background: white;
   border: 1px solid #e6e6e6;
   border-radius: 0;
   box-shadow: none;
-  transition: background linear 250ms, border-color linear 250ms;
+  transition: background linear 0.18s, border-color linear 0.18s;
   padding: 0.8rem 1rem;
   font-size: 1.5rem;
   max-width: 100%;
@@ -8060,7 +8238,7 @@ header .logout-link {
   font-size: 2rem;
   line-height: 5rem;
   text-align: center;
-  transition: background-color linear 250ms;
+  transition: background-color linear 0.18s;
   width: 4.6rem;
 }
 
@@ -8125,58 +8303,6 @@ header ~ .main-content {
 
 .menu ul li a:hover {
   color: white;
-}
-
-/* messages */
-.messages {
-  position: fixed;
-  top: auto;
-  right: 10px;
-  bottom: 0;
-  left: auto;
-  border-radius: 0;
-  list-style-type: none;
-  margin-bottom: 0;
-}
-
-@media (max-width: 575px) {
-  .messages {
-    left: 10px;
-  }
-}
-
-.messages li {
-  color: white;
-  margin-bottom: 1rem;
-  padding: 1rem 1.5rem;
-  float: right;
-  clear: right;
-}
-
-@media (max-width: 575px) {
-  .messages li {
-    width: 100%;
-  }
-}
-
-.messages li.message-default {
-  background: #282c34;
-}
-
-.messages li.message-success {
-  background: #3d9970;
-}
-
-.messages li.message-error {
-  background: #af473c;
-}
-
-.messages li.message-info {
-  background: #7fdbff;
-}
-
-.messages li.message-warning {
-  background: #ff851b;
 }
 
 /* panel */
@@ -8494,18 +8620,13 @@ header ~ .main-content {
   flex: 1 1 auto;
 }
 
-/* alpine.js */
-[x-cloak] {
-  display: none;
-}
-
 /* transition helpers */
 .transition-fast {
-  transition-duration: 250ms;
+  transition-duration: 0.18s;
 }
 
 .transition-slow {
-  transition-duration: 1000ms;
+  transition-duration: 0.5s;
 }
 
 .ease-in {
@@ -8854,6 +8975,7 @@ header ~ .main-content {
   display: block;
 }
 
+[x-cloak],
 .d-hidden {
   display: none !important;
 }
@@ -9019,8 +9141,8 @@ header ~ .main-content {
 }
 
 .list-style-reset {
-  padding: 0;
   margin: 0;
+  padding: 0;
   list-style: none !important;
 }
 
@@ -9155,6 +9277,10 @@ header ~ .main-content {
 .flip-both {
   -webkit-transform: scale(-1, -1);
   transform: scale(-1, -1);
+}
+
+.preload-transitions * {
+  transition: none !important;
 }
 
 .hidden-xs-up {

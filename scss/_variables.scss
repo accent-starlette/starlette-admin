@@ -16,6 +16,9 @@ $colors: (
   "chilli":                     rgb(175, 71, 60),
   "bluecharcoal":               rgb(40, 44, 52),
   "mirage":                     rgb(51, 56, 66),
+  "aqua":                       rgb(127, 219, 255),
+  "olive":                      rgb(61, 153, 112),
+  "orange":                     rgb(255, 133, 27),
 );
 
 $body-background:               map-get($colors, "white");
@@ -49,4 +52,16 @@ $table-hover-color:             lighten(map-get($colors, "secondary"), 4%);
 $z-layers: (
   "header": 2,
   "menu": 1
+);
+
+// components
+
+// messages
+$messages: (
+  // name     background                        font-color
+  default:    map-get($colors, "bluecharcoal")  map-get($colors, "white"),
+  success:    map-get($colors, "olive")         map-get($colors, "white"),
+  error:      map-get($colors, "chilli")        map-get($colors, "white"),
+  warning:    map-get($colors, "orange")        map-get($colors, "white"),
+  info:       map-get($colors, "aqua")          map-get($colors, "white"),
 );

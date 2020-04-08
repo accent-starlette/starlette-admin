@@ -7,11 +7,10 @@
 @import "node_modules/karma-css/scss/import";
 
 /* karma-css components */
-@import "component-variables";
-
-@import "node_modules/karma-css-components/scss/components/button-group";
-@import "node_modules/karma-css-components/scss/components/icon-input";
-@import "node_modules/karma-css-components/scss/components/input-group";
+@import "node_modules/karma-css/scss/components/button-group";
+@import "node_modules/karma-css/scss/components/icon-input";
+@import "node_modules/karma-css/scss/components/input-group";
+@import "node_modules/karma-css/scss/components/message";
 
 /* font awesome */
 @import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
@@ -28,7 +27,6 @@
 @import "module/form";
 @import "module/header";
 @import "module/menu";
-@import "module/messages";
 @import "module/panel";
 @import "module/sections";
 @import "module/svg";

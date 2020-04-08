@@ -11,7 +11,7 @@
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
         <title>Starlette Admin</title>
     </head>
-    <body>
+    <body class="preload-transitions" x-data x-init="setTimeout(() => { $el.classList.remove('preload-transitions') })">
 
     {% block header %}
     {% include "starlette_admin/partials/header.html" %}
