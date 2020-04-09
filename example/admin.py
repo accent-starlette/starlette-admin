@@ -12,6 +12,7 @@ from wtforms import fields, form, validators, widgets
 from wtforms_alchemy import ModelForm
 
 from .models import DemoModel, SystemSettingsModel
+from .store import store
 
 
 def datepicker_kwargs():
@@ -30,29 +31,6 @@ def datepicker_kwargs():
 # objects using the base admin that must implement
 # all required methods
 ####################################################################
-
-
-class DemoObject(dict):
-    def __str__(self):
-        return self["name"]
-
-
-objects = [
-    DemoObject(
-        {
-            "id": id, 
-            "name": f"Record {id:02d}", 
-            "description": "Some description", 
-            "sex": "Male",
-            "password": "",
-            "tags": ["awesome", "starlette"],
-            "options": ["One"],
-            "choices": ["One"],
-            "choice": "One",
-            "agree": True,
-        }
-    ) for id in range(1, 16)
-]
 
 
 class DemoForm(form.Form):
@@ -132,52 +110,45 @@ class DemoAdmin(BaseAdmin):
     delete_form = form.Form
 
     @classmethod
+    def get_search_results(cls, objs, term):
+        return list(filter(lambda ob: term in ob.name.lower(), objs))
+
+    @classmethod
+    def get_ordered_results(cls, objs, by, direction):
+        return sorted(objs, key=lambda ob: getattr(ob, by), reverse=direction=="desc")
+
+    @classmethod
     def get_list_objects(cls, request):
-        list_objects = objects
+        list_objects = store.objects
 
-        # if enabled, very basic search example
-        search = request.query_params.get("search","").strip().lower()
-        if cls.search_enabled and search:
-            list_objects = list(
-                filter(lambda obj: search in obj["name"].lower(), list_objects)
-            )
+        search = request.query_params.get("search", "").strip().lower()
+        if search:
+            list_objects = cls.get_search_results(list_objects, search)
 
-        # if enabled, sort the results
-        if cls.order_enabled:
-            order_by = request.query_params.get("order_by", "name")
-            order_direction = request.query_params.get("order_direction", "asc")
-            list_objects = sorted(
-                list_objects, key=lambda k: k[order_by], reverse=order_direction=="desc"
-            )
+        by = request.query_params.get("order_by", "name")
+        direction = request.query_params.get("order_direction", "asc")
+        list_objects = cls.get_ordered_results(list_objects, by, direction)
 
         return list_objects
 
     @classmethod
     def get_object(cls, request):
-        id = int(request.path_params["id"])
         try:
-            return next(o for o in objects if o["id"] == id)
+            return store.get(int(request.path_params["id"]))
         except StopIteration:
             raise HTTPException(404)
 
     @classmethod
     async def do_create(cls, form, request):
-        next_id = objects[-1]["id"] + 1 if objects else 1
-        new_object = DemoObject(form.data)
-        new_object["id"] = next_id
-        objects.append(new_object)
+        store.create(form.data)
 
     @classmethod
     async def do_update(cls, instance, form, request):
-        index = objects.index(instance)
-        for k, v in form.data.items():
-            instance[k] = v
-        objects[index] = instance
+        store.update(instance, form.data)
 
     @classmethod
     async def do_delete(cls, instance, form, request):
-        index = objects.index(instance)
-        objects.pop(index)
+        store.delete(instance)
 
 
 # objects using the model admin
