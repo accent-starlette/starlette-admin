@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "css": "npm-run-all css-compile* --sequential css-prefix* css-minify*",
-    "css-compile": "node-sass --output-style expanded --source-map true --source-map-contents true --precision 6 scss/admin.scss starlette_admin/statics/starlette_admin/css/admin.css",
+    "css-compile": "node-sass --output-style expanded --source-map true --source-map-contents true scss/admin.scss starlette_admin/statics/starlette_admin/css/admin.css",
     "css-prefix": "postcss --config scss/postcss.config.js --replace \"starlette_admin/statics/starlette_admin/css/*.css\" \"!starlette_admin/statics/starlette_admin/css/*.min.css\"",
     "css-minify": "cleancss --level 1 --source-map --source-map-inline-sources --output starlette_admin/statics/starlette_admin/css/admin.min.css starlette_admin/statics/starlette_admin/css/admin.css",
     "watch-css": "nodemon -e scss -x \"npm run css\""
@@ -15,7 +15,7 @@
     "@fortawesome/fontawesome-free": "^5.12.1",
     "autoprefixer": "^9.5.0",
     "clean-css-cli": "^4.2.1",
-    "karma-css": "git+https://git@github.com/accentdesign/karma-css.git#v2-dev",
+    "karma-css": "^2.0.0",
     "node-sass": "^4.7.2",
     "nodemon": "^1.18.10",
     "npm-run-all": "^4.1.5",

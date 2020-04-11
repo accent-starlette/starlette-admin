@@ -10,9 +10,9 @@ header {
   background-color: color("bluecharcoal");
 }
 
-header .toggle-menu,
-header .logout-link {
+header .header-button {
   color: color("white");
+  cursor: pointer;
   display: block;
   font-size: 2rem;
   line-height: 5rem;
