@@ -1,7 +1,8 @@
 /* sections */
 
 .section-list {
-  break-inside: avoid-column;
+  display: inline-block;
+  width: 100%;
 
   .title {
     background-color: color("secondary");

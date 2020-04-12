@@ -8314,9 +8314,8 @@ header ~ .main-content {
 
 /* sections */
 .section-list {
-  -webkit-column-break-inside: avoid;
-  -moz-column-break-inside: avoid;
-  break-inside: avoid-column;
+  display: inline-block;
+  width: 100%;
 }
 
 .section-list .title {
@@ -8586,6 +8585,11 @@ header ~ .main-content {
 }
 
 .columns {
+  -webkit-column-gap: 30px;
+  -moz-column-gap: 30px;
+  column-gap: 30px;
+  orphans: 1;
+  widows: 1;
   -webkit-columns: 1;
   -moz-columns: 1;
   columns: 1;
@@ -8596,9 +8600,6 @@ header ~ .main-content {
     -webkit-columns: 2;
     -moz-columns: 2;
     columns: 2;
-    -webkit-column-gap: 30px;
-    -moz-column-gap: 30px;
-    column-gap: 30px;
   }
 }
 
@@ -8607,9 +8608,6 @@ header ~ .main-content {
     -webkit-columns: 3;
     -moz-columns: 3;
     columns: 3;
-    -webkit-column-gap: 30px;
-    -moz-column-gap: 30px;
-    column-gap: 30px;
   }
 }
 
