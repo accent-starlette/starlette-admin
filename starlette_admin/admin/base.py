@@ -120,8 +120,12 @@ class BaseAdmin:
         return form_cls(**kwargs)
 
     @classmethod
+    async def has_required_scope(cls, request):
+        return has_required_scope(request, cls.permission_scopes)
+
+    @classmethod
     async def list_view(cls, request):
-        if not has_required_scope(request, cls.permission_scopes):
+        if not await cls.has_required_scope(request):
             raise HTTPException(403)
 
         context = cls.get_context(request)
@@ -164,7 +168,7 @@ class BaseAdmin:
 
     @classmethod
     async def create_view(cls, request):
-        if not has_required_scope(request, cls.permission_scopes):
+        if not await cls.has_required_scope(request):
             raise HTTPException(403)
 
         if not cls.create_form:
@@ -194,7 +198,7 @@ class BaseAdmin:
 
     @classmethod
     async def update_view(cls, request):
-        if not has_required_scope(request, cls.permission_scopes):
+        if not await cls.has_required_scope(request):
             raise HTTPException(403)
 
         if not cls.update_form:
@@ -230,7 +234,7 @@ class BaseAdmin:
 
     @classmethod
     async def delete_view(cls, request):
-        if not has_required_scope(request, cls.permission_scopes):
+        if not await cls.has_required_scope(request):
             raise HTTPException(403)
 
         if not cls.delete_form:

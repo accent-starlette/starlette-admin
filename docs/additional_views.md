@@ -16,7 +16,7 @@ from starlette_core import config
 class PersonAdmin(...):
     @classmethod
     async def some_view(cls, request):
-        if not has_required_scope(request, cls.permission_scopes):
+        if not await cls.has_required_scope(request):
             raise HTTPException(403)
         instance = cls.get_object(request)
         context = cls.get_context(request)
