@@ -1,4 +1,4 @@
-__version__ = "0.0.1.b1"
+__version__ = "0.0.1"
 
 
 from .admin import BaseAdmin, ModelAdmin
