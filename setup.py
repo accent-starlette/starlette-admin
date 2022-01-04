@@ -69,10 +69,7 @@ setup(
         'itsdangerous',
         'jinja2',
         'python-multipart',
-        'starlette-core'
-    ],
-    dependency_links=[
-        'git+ssh://git@github.com/accent-starlette/starlette-core.git#egg=starlette-core-0.0.1'
+        'starlette-core @ http://github.com/accent-starlette/starlette-core/tarball/master#egg=starlette-core',
     ],
     extras_require={
         "docs": [
