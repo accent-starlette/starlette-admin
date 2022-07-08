@@ -76,7 +76,7 @@ class PersonAdmin(ModelAdmin):
     def get_search_results(cls, qs: orm.Query, term: str) -> orm.Query:
         """ filter the qs from the search term """
 
-        return qs.filter(Person.name.ilike(f"%{term}%")
+        return qs.filter(Person.name.ilike(f"%{term}%"))
 ```
 
 ## Registering the Admin
