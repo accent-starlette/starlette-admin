@@ -35,7 +35,7 @@ people = [
 # create a form to validate the data and to use in the 
 # create and edit views
 class PersonForm(form.Form):
-    name = fields.TextField(validators=[validators.required()])
+    name = fields.StringField(validators=[validators.data_required()])
 
 
 # define the person admin
